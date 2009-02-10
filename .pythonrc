@@ -45,3 +45,4 @@ atexit.register(lambda x=history_path: readline.write_history_file(x))
 # Tidy up the main namespace.
 del atexit
 del os.path
+

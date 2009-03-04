@@ -20,6 +20,9 @@ export SUDO_PS1='\[\h:\w\] \u\$ '
 # Add the current directory and MacPorts to the path
 export PATH=./:~/code/bin/:~/code/script/:/opt/local/bin:/opt/local/sbin:opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$PATH
 
+# Set the editor variable to use vim
+export EDITOR=vim
+
 # Use .pythonrc if it exists
 if [ -f ~/.pythonrc ]; then
   export PYTHONSTARTUP=~/.pythonrc

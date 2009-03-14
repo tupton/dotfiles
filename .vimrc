@@ -1,3 +1,5 @@
+colorscheme ir_black
+
 " Manage multiple buffers
 set hidden
 
@@ -36,8 +38,8 @@ set wildmenu
 set wildmode=list:longest
 
 " Mouse options
-"set mouse=a
-"set mousemodel=popup
+set mouse=a
+set mousemodel=popup
 
 " Spacing and tabbing
 set expandtab

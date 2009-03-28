@@ -1,4 +1,5 @@
 colorscheme ir_black
+"colorscheme wombat
 
 " Manage multiple buffers
 set hidden
@@ -39,14 +40,14 @@ set wildmode=list:longest
 
 " Mouse options
 set mouse=a
-set mousemodel=popup
+"set mousemodel=popup
 
 " Spacing and tabbing
 set expandtab
 set smarttab
-set softtabstop=2
-set shiftwidth=2
-set tabstop=2
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
 set textwidth=80
 set nowrap
 

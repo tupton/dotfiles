@@ -1,0 +1,15 @@
+# Always use color
+--color
+
+# Ignore case when there are no upper-case letters in the pattern
+--smart-case
+
+# Show some context
+--context=3
+
+# Don't search resources or built files by default
+--ignore-dir=locale
+--ignore-dir=target
+
+# Additional types
+--type-set=coffee=.coffee

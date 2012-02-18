@@ -21,5 +21,10 @@ shell -$SHELL
 # enable support for the "alternate screen" capability in all windows
 altscreen on
 
+# use xterm because it's not 1985
+term xterm-256color
+
+defscrollback 50000
+
 caption always "%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}"
 

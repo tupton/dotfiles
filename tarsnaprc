@@ -1,0 +1,6 @@
+# Main keyfile
+keyfile /var/root/tarsnap.key
+
+# Always humanize numbers
+humanize-numbers
+

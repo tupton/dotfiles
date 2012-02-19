@@ -25,6 +25,7 @@ windowTitle           = "$TM_DISPLAYNAME${TM_DIRECTORY/\A(?:\/Users\/thomas\w+\/
 tabSize               = 4
 softTabs              = true
 wrapColumn            = 100
+showWrapColumn        = true
 softWrap              = false
 
 [ *.{txt,md,mdown,markdown} ]

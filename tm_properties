@@ -50,3 +50,6 @@ binary                = true
 
 [ source.apache ]
 tabSize = 2
+
+[ attr.file.unknown-type ]
+fileType = "text.plain"

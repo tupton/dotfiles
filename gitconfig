@@ -16,3 +16,5 @@
 
 [mergetool]
 	keepBackup = true
+[core]
+	excludesfile = /Users/thomas/.gitignore-global

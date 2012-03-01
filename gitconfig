@@ -20,3 +20,5 @@
 	excludesfile = /Users/thomas/.gitignore-global
 [push]
 	default = current
+[color]
+	ui = auto

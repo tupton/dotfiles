@@ -102,6 +102,9 @@ fi
 
 # Turn off flow control, so Ctrl-S doesn't stop input
 stty -ixon
+
+# Tolerate types when switching directories
+shopt -s cdspell
 # }}}
 # {{{ External Functions and Scripts
 # Set the editor variable to use vim

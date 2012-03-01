@@ -99,6 +99,9 @@ export PATH=.:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
+
+# Turn off flow control, so Ctrl-S doesn't stop input
+stty -ixon
 # }}}
 # {{{ External Functions and Scripts
 # Set the editor variable to use vim

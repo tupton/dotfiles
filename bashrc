@@ -8,9 +8,26 @@ set -o vi
 export TERM=xterm-256color
 # }}}
 # History {{{
-export HISTCONTROL=erasedups
-export HISTSIZE=10000
+# Ignore commands that start with a space and duplicates
+export HISTCONTROL=ignoreboth
+
+# Remove limits on the history file size
+unset HISTFILESIZE
+
+# Expand the number of commands remembered
+export HISTSIZE=1000000
+
+# Ignore these commands in history becase it's pointless to remember them
+export HISTIGNORE='ls:bg:fg:history'
+
+# Prepend a date and time to history
+export HISTTIMEFORMAT='%F %T '
+
+# Append history instead of overwriting it
 shopt -s histappend
+
+# Force commands entered on more than one line to be on one line in the history
+shopt -s cmdhist
 # }}}
 # Aliases {{{
 alias ls='ls -FG'
@@ -54,6 +71,12 @@ prompt_command () {
 ${BBLACK}(${LOAD}) ${BWHITE}${TIME} ${MAGENTA}!${HIST} ${BBLACK}] ${CYAN}\w\n\
 ${GREEN}${BRANCH}${BMAGENTA}$ ${DEFAULT}"
     export SUDO_PS1='\[\h:\w\] \u\$ '
+
+    # Write and retrieve history on prompt
+    # -a writes lines from this session that aren't yet in history
+    # -n grabs lines from history that aren't in this session (e.g. from other bash sessions)
+    history -a
+    history -n
 }
 PROMPT_COMMAND=prompt_command
  

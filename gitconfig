@@ -18,3 +18,5 @@
 	keepBackup = true
 [core]
 	excludesfile = /Users/thomas/.gitignore-global
+[push]
+	default = current

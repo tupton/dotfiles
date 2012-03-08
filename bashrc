@@ -23,11 +23,10 @@ alias ngrep='grep -I'
 #export PS1='\e]2;\u@\h\a\[\e[1;m\]\t\[\e[0m\] [\[\e[32m\]\u\[\e[0m\]\[\e[33m\]@\h\[\e[0m\]] [\!] [\[\e[36m\]\w\[\e[0m\]]\n\[\e[35m\]\$\[\e[0m\] '
 #export SUDO_PS1='\[\h:\w\] \u\$ '
 prompt_command () {
-    if [ "\$(type -t __git_ps1)" ]; then # if we're in a Git repo, show current branch
+    if type -t __git_ps1 >/dev/null 2>&1; then # if we're in a Git repo, show current branch
         BRANCH="\$(__git_ps1 '[ %s ] ')"
     fi
     local TIME=`fmt_time` # format time for prompt string
-    local LOAD=`uptime|awk '{min=NF-2;print $min}'`
     local HIST="\!"
 
     local BLACK="\[\033[0;30m\]"
@@ -51,7 +50,7 @@ prompt_command () {
     local TITLEBAR='\[\e]2;\u@\h `pwdtail`\a'
 
     export PS1="\[${TITLEBAR}\]${BBLACK}[ ${BGREEN}\u${YELLOW}@\h\
-${BBLACK}(${LOAD}) ${BWHITE}${TIME} ${MAGENTA}!${HIST} ${BBLACK}] ${CYAN}\w\n\
+ ${BWHITE}${TIME} ${MAGENTA}!${HIST} ${BBLACK}] ${CYAN}\w\n\
 ${GREEN}${BRANCH}${BMAGENTA}$ ${DEFAULT}"
     export SUDO_PS1='\[\h:\w\] \u\$ '
 }
@@ -72,9 +71,13 @@ fi
 export PATH=.:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 # }}}
 # {{{ Utility
-# Homebrew bash completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
+# Bash completion
+BASH_COMPLETION_PREFIX=''
+if type -t brew >/dev/null 2>&1; then
+    BASH_COMPLETION_PREFIX=`brew --prefix`
+fi
+if [ -f $BASH_COMPLETION_PREFIX/etc/bash_completion ]; then
+    . $BASH_COMPLETION_PREFIX/etc/bash_completion
 fi
 # }}}
 # {{{ External Functions and Scripts

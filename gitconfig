@@ -22,3 +22,5 @@
 	default = current
 [color]
 	ui = auto
+[branch]
+	autosetrebase = always

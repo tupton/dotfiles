@@ -1,5 +1,5 @@
 [user]
-	name = tupton
+	name = Thomas Upton
 	email = thomasupton@gmail.com
 
 [github]
@@ -10,7 +10,7 @@
     ci = commit
     st = status
     br = branch
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    hist = log --pretty=format:\"%Cgreen%h%Creset %ad | %Cblue%s%Cred%d%Creset [%an]\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
 

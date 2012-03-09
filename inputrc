@@ -37,6 +37,15 @@ $endif
 # Bind ^L to clear
 C-L: clear-screen
 
+# Single tab press shows possible values for autocomplete
+set show-all-if-ambiguous on
+
+# Case insensitive completion
+set completion-ignore-case on
+
+# Be insensititve to hyphens and underscores when autocompleting
+set completion-map-case on
+
 # Include system wide settings which are ignored
 # by default if one has their own .inputrc
 $include /etc/inputrc

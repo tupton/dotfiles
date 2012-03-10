@@ -95,12 +95,12 @@ export PATH=.:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 # }}}
 # {{{ Utility
 # Bash completion
-BASH_COMPLETION_PREFIX=''
+BREW_PREFIX=''
 if type -t brew >/dev/null 2>&1; then
-    BASH_COMPLETION_PREFIX=`brew --prefix`
+    BREW_PREFIX=`brew --prefix`
 fi
-if [ -f $BASH_COMPLETION_PREFIX/etc/bash_completion ]; then
-    . $BASH_COMPLETION_PREFIX/etc/bash_completion
+if [ -f $BREW_PREFIX/etc/bash_completion ]; then
+    . $BREW_PREFIX/etc/bash_completion
 fi
 
 # Turn off flow control, so Ctrl-S doesn't stop input

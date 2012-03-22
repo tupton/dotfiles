@@ -40,8 +40,9 @@ alias ngrep='grep -I'
 #export PS1='\e]2;\u@\h\a\[\e[1;m\]\t\[\e[0m\] [\[\e[32m\]\u\[\e[0m\]\[\e[33m\]@\h\[\e[0m\]] [\!] [\[\e[36m\]\w\[\e[0m\]]\n\[\e[35m\]\$\[\e[0m\] '
 #export SUDO_PS1='\[\h:\w\] \u\$ '
 prompt_command () {
-    if type -t __git_ps1 >/dev/null 2>&1; then # if we're in a Git repo, show current branch
-        BRANCH="\$(__git_ps1 '[ %s ] ')"
+    hash __git_ps1 &> /dev/null
+    if [ $? -eq 0 ]; then
+        BRANCH="\$(__git_ps1 '[ %s ] ')" # if we're in a Git repo, show current branch
     fi
     local TIME=`fmt_time` # format time for prompt string
     local HIST="\!"
@@ -95,8 +96,8 @@ export PATH=.:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 # }}}
 # {{{ Utility
 # Bash completion
-BREW_PREFIX=''
-if type -t brew >/dev/null 2>&1; then
+hash brew &> /dev/null
+if [ $? -eq 0 ]; then
     BREW_PREFIX=`brew --prefix`
 fi
 if [ -f $BREW_PREFIX/etc/bash_completion ]; then

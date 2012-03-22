@@ -27,7 +27,7 @@ export HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 
 # Force commands entered on more than one line to be on one line in the history
-shopt -s cmdhist
+#shopt -s cmdhist
 # }}}
 # Aliases {{{
 alias ls='ls -FG'

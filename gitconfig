@@ -23,4 +23,4 @@
 [color]
 	ui = auto
 [branch]
-	autosetrebase = always
+	autosetuprebase = always

@@ -42,7 +42,7 @@ alias ngrep='grep -I'
 prompt_command () {
     hash __git_ps1 &> /dev/null
     if [ $? -eq 0 ]; then
-        BRANCH="\$(__git_ps1 '[ %s ] ')" # if we're in a Git repo, show current branch
+        GITSTATUS="\$(__git_ps1 '[ %s ] ')" # if we're in a git repo, show current status
     fi
     local TIME=`fmt_time` # format time for prompt string
     local HIST="\!"
@@ -69,7 +69,7 @@ prompt_command () {
 
     export PS1="\[${TITLEBAR}\]${BBLACK}[ ${BGREEN}\u${YELLOW}@\h\
  ${BWHITE}${TIME} ${MAGENTA}!${HIST} ${BBLACK}] ${CYAN}\w\n\
-${GREEN}${BRANCH}${BMAGENTA}$ ${DEFAULT}"
+${GREEN}${GITSTATUS}${BMAGENTA}$ ${DEFAULT}"
     export SUDO_PS1='\[\h:\w\] \u\$ '
 
     # Write and retrieve history on prompt

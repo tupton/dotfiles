@@ -92,7 +92,7 @@ pwdtail () { #returns the last 2 fields of the working directory
 if [ -d ~/bin ] ; then
  PATH=~/bin:"${PATH}"
 fi
-export PATH=.:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=.:/usr/local/Cellar/python/2.7.2/lib/python2.7/:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 # }}}
 # {{{ Utility
 # Bash completion

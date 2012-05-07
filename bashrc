@@ -105,7 +105,9 @@ if [ -f $BREW_PREFIX/etc/bash_completion ]; then
 fi
 
 # Turn off flow control, so Ctrl-S doesn't stop input
-stty -ixon
+if [ -t 0 ]; then
+    stty -ixon
+fi
 
 # Tolerate typos when switching directories
 shopt -s cdspell

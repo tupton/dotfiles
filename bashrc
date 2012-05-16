@@ -42,7 +42,7 @@ case "$(uname)" in
 esac
 alias ll='ls -al'
 alias rm='rm -i'
-alias grep='grep -nI --color=always'
+alias grep='grep -nI --color=auto'
 alias ngrep='grep -I'
 # }}}
 # Prompt {{{

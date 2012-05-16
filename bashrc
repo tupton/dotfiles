@@ -30,7 +30,16 @@ shopt -s histappend
 #shopt -s cmdhist
 # }}}
 # Aliases {{{
-alias ls='ls -FG'
+case "$(uname)" in
+    'Linux')
+        alias ls='ls -F --color=auto'
+        ;;
+    'Darwin')
+        alias ls='ls -FG'
+        ;;
+    *)
+        ;;
+esac
 alias ll='ls -al'
 alias rm='rm -i'
 alias grep='grep -nI --color=always'

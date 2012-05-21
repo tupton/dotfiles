@@ -32,7 +32,7 @@ shopt -s histappend
 # Aliases {{{
 case "$(uname)" in
     'Linux')
-        alias ls='ls -F --color=auto'
+        alias ls='ls -F --group-directories-first --color=auto'
         ;;
     'Darwin')
         alias ls='ls -FG'

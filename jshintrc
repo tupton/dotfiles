@@ -22,9 +22,9 @@
     "bitwise"       : true,     // prohibit the use of bitwise operations (slow and '&' is usually supposed to be '&&')
     "curly"         : true,     // require {} for all blocks/scopes
     "latedef"       : true,     // prohibit variable use before definition ("hoisting")
-    "undef"         : true,     // prevent the use of undeclared variables
-    "trailing"      : true,     // no trailing whitespace is allowed
     "noempty"       : true,     // prohibit empty blocks
+    "trailing"      : true,     // no trailing whitespace is allowed
+    "undef"         : true,     // prevent the use of undeclared variables
 
     // Relaxing
     "sub"           : true      // allow all subscript notation, including '[]'

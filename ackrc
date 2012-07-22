@@ -13,3 +13,4 @@
 
 # Additional types
 --type-set=coffee=.coffee
+--type-set=sass=.scss,.sass

@@ -6,6 +6,9 @@ set -o vi
 
 # Terminal
 export TERM=xterm-256color
+
+# Load RVM into a shell session as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # }}}
 # History {{{
 # Ignore commands that start with a space and duplicates
@@ -88,7 +91,7 @@ ${GREEN}${GITSTATUS}${BMAGENTA}$ ${DEFAULT}"
     history -n
 }
 PROMPT_COMMAND=prompt_command
- 
+
 fmt_time () {
     date +"%T"
 }
@@ -101,7 +104,7 @@ pwdtail () { #returns the last 2 fields of the working directory
 if [ -d ~/bin ] ; then
  PATH=~/bin:"${PATH}"
 fi
-export PATH=.:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=.:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH
 # }}}
 # {{{ Utility
 # Bash completion

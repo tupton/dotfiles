@@ -79,8 +79,8 @@ prompt_command () {
     # set the titlebar to the last 2 fields of pwd
     local TITLEBAR='\[\e]2;\u@\h `pwdtail`\a'
 
-    export PS1="\[${TITLEBAR}\]${BBLACK}[ ${BGREEN}\u${YELLOW}@\h\
- ${BWHITE}${TIME} ${MAGENTA}!${HIST} ${BBLACK}] ${CYAN}\w\n\
+    export PS1="\[${TITLEBAR}\]${BGREEN}\u${YELLOW}@\h\
+ ${BLUE}${TIME} ${MAGENTA}!${HIST} ${CYAN}\w\n\
 ${GREEN}${GITSTATUS}${BMAGENTA}$ ${DEFAULT}"
     export SUDO_PS1='\[\h:\w\] \u\$ '
 

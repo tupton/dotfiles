@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="clean"
+ZSH_THEME="blinks"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -29,7 +29,7 @@ ZSH_THEME="clean"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git github lein node npm osx python rake rvm)
+plugins=(brew git github lein node npm osx python rake rvm zsh-syntax-highlighting zsh-history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -44,3 +44,8 @@ bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
 setopt AUTO_CD
+
+# Load RVM into a shell session as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+PATH=".:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"

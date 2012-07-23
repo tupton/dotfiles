@@ -13,6 +13,7 @@
     hist = log --pretty=format:\"%C(green)%h%C(cyan) %ar%Creset - %s%C(red)%d%C(yellow) [%an] %Creset\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
+    diff = diff -F
 
 [mergetool]
 	keepBackup = true

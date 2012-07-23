@@ -29,19 +29,22 @@ ZSH_THEME="upton"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git github lein node npm osx python rake rvm zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(brew git github history-substring-search lein node npm osx python rake rvm zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export EDITOR="vim"
-bindkey -v
 
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
+
+# history with up/down arrows
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 
 setopt AUTO_CD
 

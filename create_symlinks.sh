@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Make sure we are given a directory and that it's not a symlink
 DIRECTORY="$1"
 if [[ ! -d "${DIRECTORY}" || -L "${DIRECTORY}" ]]; then

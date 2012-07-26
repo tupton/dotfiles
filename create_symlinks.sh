@@ -1,26 +1,27 @@
 #! /bin/bash
 
 # Make sure we are given a directory and that it's not a symlink
-DIRECTORY="$1"
+DESTINATION="$1"
+SOURCE="`dirname $0`"
 
-if [[ -z "$DIRECTORY" ]]; then
+if [[ -z "$DESTINATION" ]]; then
     echo "No directory given; using $HOME"
-    DIRECTORY="$HOME"
+    DESTINATION="$HOME"
 fi
 
-if [[ ! -d "$DIRECTORY" || -L "$DIRECTORY" ]]; then
-    echo "The target provided is not a directory: $DIRECTORY" 
+if [[ ! -d "$DESTINATION" || -L "$DESTINATION" ]]; then
+    echo "The target provided is not a directory: $DESTINATION" 
     exit 1
 fi
 
 # Create symlinks to config files
-for FILE in `pwd`/*
+for FILE in $SOURCE/*
 do
     BASE=`basename $FILE`
 
     # Exclude the README and this script
     if [[ "README.md" != "$BASE" && `basename $0` != "$BASE" ]]; then
-        echo "Linking $BASE to $DIRECTORY/.$BASE ..."
-        ln -s `pwd`/$BASE $DIRECTORY/.$BASE
+        echo "Linking $BASE to $DESTINATION/.$BASE ..."
+        ln -s $SOURCE/$BASE $DESTINATION/.$BASE
     fi
 done

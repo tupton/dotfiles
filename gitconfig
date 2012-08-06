@@ -28,3 +28,5 @@
 	autosetupmerge = always
 [credential]
 	helper = osxkeychain
+[web]
+	browser = open

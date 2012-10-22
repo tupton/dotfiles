@@ -30,3 +30,5 @@
 	helper = osxkeychain
 [web]
 	browser = open
+[rerere]
+	enabled = 1

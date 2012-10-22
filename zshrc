@@ -51,6 +51,8 @@ bindkey "^[[B" history-beginning-search-forward
 
 setopt AUTO_CD
 
+alias ctool="/Users/tupton/code/automaton/bin/ctool"
+
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 

@@ -1,7 +1,6 @@
 # Font and appearance
 fontName              = "Menlo" 
 fontSize              = 12
-theme                 = "Twilight"
 
 # Environment
 TM_GIT                = "/usr/local/bin/git"

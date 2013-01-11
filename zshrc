@@ -58,4 +58,4 @@ alias ctool="/Users/tupton/code/automaton/bin/ctool"
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-PATH=".:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
+PATH=".:/usr/local/share/npm/bin:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"

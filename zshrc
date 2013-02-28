@@ -51,8 +51,8 @@ bindkey "^[[B" history-beginning-search-forward
 
 setopt AUTO_CD
 
-alias ctool="/Users/tupton/code/automaton/bin/ctool"
-
+# aliases
+[[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
 [[ -e "/usr/local/bin/mvim" ]] && alias vim="/usr/local/bin/mvim -v"
 
 # Load RVM into a shell session as a function*

@@ -59,3 +59,5 @@ setopt AUTO_CD
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 PATH=".:/usr/local/share/npm/bin:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
+
+[[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)

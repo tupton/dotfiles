@@ -19,7 +19,7 @@
 [mergetool]
 	keepBackup = true
 [core]
-	excludesfile = /Users/thomas/.gitignore-global
+	excludesfile = ~/.gitignore-global
 [push]
 	default = current
 [color]

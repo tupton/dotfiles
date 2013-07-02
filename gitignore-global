@@ -37,3 +37,4 @@ Thumbs.db
 # build directories
 target/
 .ant_targets
+doc/tags

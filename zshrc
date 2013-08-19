@@ -59,6 +59,6 @@ setopt AUTO_CD
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-PATH=".:/usr/local/share/npm/bin:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
+PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
 
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)

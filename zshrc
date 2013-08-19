@@ -54,6 +54,7 @@ setopt AUTO_CD
 # aliases
 [[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
 [[ -e "/usr/local/bin/mvim" ]] && alias vim="/usr/local/bin/mvim -v"
+[[ -e "/usr/local/bin/growlnotify" ]] && alias n="/usr/local/bin/growlnotify \"iTerm\" -a iTerm --sticky -m"
 
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

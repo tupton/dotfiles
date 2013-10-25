@@ -63,3 +63,9 @@ PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/loc
 export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
+
+# -R -- properly display color escape sequences (was on by default; necessary to include when changing)
+# -s -- squeeze consecutive blank lines into one line
+# -X -- don't clear the screen on exit
+# -F -- immediately quit if the output fits on one screen; useful for `git diff` and short man pages
+export LESS="-R -s -X -F"

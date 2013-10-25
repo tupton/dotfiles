@@ -12,7 +12,5 @@
 --ignore-dir=target
 
 # Additional types
---type-set=coffee=.coffee
---type-set=sass=.scss,.sass
---type-set=clj=.clj
---type-set=json=.json
+--type-add=coffee:ext:coffee
+--type-add=clj:ext:clj

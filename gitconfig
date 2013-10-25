@@ -1,9 +1,9 @@
 [user]
-	name = Thomas Upton
-	email = thomasupton@gmail.com
+    name = Thomas Upton
+    email = thomasupton@gmail.com
 
 [github]
-	user = tupton
+    user = tupton
 
 [alias]
     co = checkout
@@ -17,19 +17,19 @@
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
 [mergetool]
-	keepBackup = true
+    keepBackup = true
 [core]
-	excludesfile = ~/.gitignore-global
+    excludesfile = ~/.gitignore-global
 [push]
-	default = current
+    default = current
 [color]
-	ui = auto
+    ui = auto
 [branch]
-	autosetuprebase = always
-	autosetupmerge = always
+    autosetuprebase = always
+    autosetupmerge = always
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [web]
-	browser = open
+    browser = open
 [rerere]
-	enabled = 1
+    enabled = 1

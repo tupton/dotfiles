@@ -20,6 +20,7 @@
     keepBackup = true
 [core]
     excludesfile = ~/.gitignore-global
+    ignorecase = true
 [push]
     default = current
 [color]

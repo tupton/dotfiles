@@ -22,7 +22,7 @@
     excludesfile = ~/.gitignore-global
     ignorecase = true
 [push]
-    default = current
+    default = simple
 [color]
     ui = auto
 [branch]

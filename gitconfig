@@ -34,3 +34,5 @@
     browser = open
 [rerere]
     enabled = 1
+[fetch]
+	prune = true

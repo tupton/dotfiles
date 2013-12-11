@@ -61,7 +61,8 @@ alias ls="ls -FG"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
-export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+
+[[ -e "/usr/local/bin/brew" ]] && export PYTHONPATH="$(/usr/local/bin/brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 

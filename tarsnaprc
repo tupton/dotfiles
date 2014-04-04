@@ -4,3 +4,12 @@ keyfile /var/root/tarsnap.key
 # Always humanize numbers
 humanize-numbers
 
+### Recommended options from the default config
+# Don't archive files which have the nodump flag set
+nodump
+
+# Print statistics when creating or deleting archives
+print-stats
+
+# Create a checkpoint once per GB of uploaded data.
+checkpoint-bytes 1G

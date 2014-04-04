@@ -1,5 +1,5 @@
 # Font and appearance
-fontName              = "Menlo" 
+fontName              = "Source Code Pro"
 fontSize              = 12
 
 # Environment
@@ -13,13 +13,13 @@ include               = "{$include,$myExtraIncludes}"
 # Extra excludes
 # Hide log, vendor and tmp directories from search popups.
 myExtraExcludes       = "log,vendor,tmp"
-excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}" 
+excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeFiles          = "*.{so,pyc,o,scssc}"
 excludeDirectories    = "build,dist,tmp,log"
 
-# show the path to the current tab's file in the window title 
-windowTitle           = "$TM_DISPLAYNAME${TM_DIRECTORY/\A(?:\/Users\/thomas\w+\/?(.*)|(.+))\z/${2:? – ${2/\A\/Users\/thomas/~/}:${1/\A(?=.)/ – /}}/}"
+# show the path to the current tab's file in the window title
+windowTitle           = "$TM_DISPLAYNAME${TM_DIRECTORY/\A(?:\/Users\/tupton\w+\/?(.*)|(.+))\z/${2:? – ${2/\A\/Users\/tupton/~/}:${1/\A(?=.)/ – /}}/}"
 
 tabSize               = 4
 softTabs              = true

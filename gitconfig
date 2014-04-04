@@ -36,3 +36,5 @@
     enabled = 1
 [fetch]
 	prune = true
+[help]
+	autocorrect = 1

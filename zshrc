@@ -46,8 +46,8 @@ bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
 # history with up/down arrows
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "$terminfo[kcuu1]" up-line-or-search      # start typing + [Up-Arrow] - fuzzy find history forward
+bindkey "$terminfo[kcud1]" down-line-or-search    # start typing + [Down-Arrow] - fuzzy find history backward
 
 # history substring search
 # bind UP and DOWN arrow keys
@@ -62,7 +62,15 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# push current command to stack, run a different command, pop from stack
+bindkey '^Q' push-input
+
+# `cd command` if no other match; e.g. > code => > cd code
 setopt AUTO_CD
+
+# allow comments in interactive mode, i.e. on the command line
+setopt INTERACTIVE_COMMENTS
+
 # aliases
 [[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
 [[ -e "/usr/local/bin/mvim" ]] && alias vim="/usr/local/bin/mvim -v"

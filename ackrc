@@ -12,5 +12,5 @@
 --ignore-dir=target
 
 # Additional types
---type-add=coffee:ext:coffee
---type-add=clj:ext:clj
+--type-set=coffee:ext:coffee
+--type-set=clj:ext:clj

@@ -77,6 +77,9 @@ setopt INTERACTIVE_COMMENTS
 [[ -e "/usr/local/bin/terminal-notifier" ]] && alias n="/usr/local/bin/terminal-notifier -activate com.googlecode.iterm2 -message"
 alias ls="ls -FG"
 
+# functions
+gt() { cd $(git rev-parse --show-toplevel) }
+
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 

@@ -85,10 +85,17 @@ gt() { cd $(git rev-parse --show-toplevel) }
 
 PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
 
-[[ -e "/usr/local/bin/brew" ]] && export PYTHONPATH="$(/usr/local/bin/brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+if [[ -e "/usr/local/bin/brew" ]]; then
+    # python site-packages
+    export PYTHONPATH="$(/usr/local/bin/brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+
+    # source directory db init instead of running as a function
+    source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
+fi
 
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
+# environment
 # -R -- properly display color escape sequences (was on by default; necessary to include when changing)
 # -s -- squeeze consecutive blank lines into one line
 # -X -- don't clear the screen on exit

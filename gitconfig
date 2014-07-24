@@ -16,8 +16,10 @@
     diff = diff -F
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
+[merge]
+    tool = vimdiff
 [mergetool]
-    keepBackup = true
+    keepBackup = false
 [core]
     excludesfile = ~/.gitignore-global
     ignorecase = true

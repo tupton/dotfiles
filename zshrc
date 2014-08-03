@@ -168,12 +168,11 @@ function +vi-git-remotebranch() {
     branch_name=${$(git symbolic-ref --short HEAD 2>/dev/null)}
 
     hook_com[branch]="%F{cyan}${hook_com[branch]}%f"
-    # The first test will show a tracking branch whenever there is one. The
-    # second test, however, will only show the remote branch's name if it
-    # differs from the local one.
+    # Always show the remote
     #if [[ -n ${remote} ]] ; then
+    # Only show the remote if it differs from the local
     if [[ -n ${remote} && ${remote#*/} != ${branch_name} ]] ; then
-        hook_com[branch]+="→%B%F{cyan}${remote}%f%b"
+        hook_com[branch]+="%B%F{red}→%f%b%B%F{cyan}${remote}%f%b"
     fi
 }
 

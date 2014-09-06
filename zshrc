@@ -93,6 +93,10 @@ if [[ -e "/usr/local/bin/brew" ]]; then
     source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
 fi
 
+if [[ -f ~/.fzf.zsh ]]; then
+    source ~/.fzf.zsh
+fi
+
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
 # environment

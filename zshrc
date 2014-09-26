@@ -37,7 +37,9 @@ plugins=(brew git github lein node npm osx python rake rvm zsh-syntax-highlighti
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+# use vim
 export EDITOR="vim"
+bindkey -v
 
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
@@ -105,6 +107,14 @@ fi
 # -X -- don't clear the screen on exit
 # -F -- immediately quit if the output fits on one screen; useful for `git diff` and short man pages
 export LESS="-R -s -X -F"
+
+# Fix some keys
+if [[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
+    source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+    [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+    [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+    [[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+fi
 
 # prompt
 # %                - the escape character

@@ -38,7 +38,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 # use vim
-export EDITOR="vim"
+hash vim 2>/dev/null && export EDITOR=vim
 bindkey -v
 
 # vi style incremental search
@@ -85,7 +85,7 @@ gt() { cd $(git rev-parse --show-toplevel) }
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin:$PATH"
+export PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$PATH"
 
 if [[ -e "/usr/local/bin/brew" ]]; then
     # python site-packages

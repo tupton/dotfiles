@@ -140,6 +140,10 @@ fi
 if [ -f /usr/local/bin/z ]; then
   . /usr/local/bin/z
 fi
+
+if [ -f ~/.fzf.bash ]; then
+  source ~/.fzf.bash
+fi
 # }}}
 
 # vim: fdm=marker

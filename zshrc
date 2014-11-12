@@ -134,6 +134,15 @@ function user_name() {
     [[ -n "$SSH_CONNECTION" ]] && echo "%F{yellow}%n%f%F{gray}@%f%F{blue}%m%f " || echo ""
 }
 
+function compact_path() {
+    local cp="/usr/local/bin/compact_path"
+    if [[ -e "$cp" ]]; then
+        echo $("$cp" "$1" 20)
+    else
+        echo "$1"
+    fi
+}
+
 function prompt_char() {
     git rev-parse > /dev/null 2>&1 && echo "%F{cyan}±%f" || echo "%F{yellow}○%f"
 }
@@ -199,5 +208,5 @@ function +vi-git-tagname() {
 
 precmd() { vcs_info }
 
-PROMPT='$(prompt_char) $(user_name)%f%B%F{green}${PWD/#$HOME/~}%f%b ${vcs_info_msg_0_}%E
+PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b ${vcs_info_msg_0_}%E
 %(?.%F{blue}.%F{red})❯%f '

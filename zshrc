@@ -84,6 +84,8 @@ setopt EXTENDED_HISTORY
 [[ -e "/usr/local/bin/terminal-notifier" ]] && alias n="/usr/local/bin/terminal-notifier -activate com.googlecode.iterm2 -message"
 alias ls="ls -FG"
 
+hash hub 2>/dev/null && alias git="hub"
+
 # functions
 gt() { cd $(git rev-parse --show-toplevel) }
 

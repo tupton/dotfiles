@@ -73,6 +73,11 @@ setopt AUTO_CD
 # allow comments in interactive mode, i.e. on the command line
 setopt INTERACTIVE_COMMENTS
 
+# bigger history
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+
 # aliases
 [[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
 [[ -e "/usr/local/bin/mvim" ]] && alias vim="/usr/local/bin/mvim -v"

@@ -80,7 +80,6 @@ setopt EXTENDED_HISTORY
 
 # aliases
 [[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
-[[ -e "/usr/local/bin/mvim" ]] && alias vim="/usr/local/bin/mvim -v"
 [[ -e "/usr/local/bin/terminal-notifier" ]] && alias n="/usr/local/bin/terminal-notifier -activate com.googlecode.iterm2 -message"
 alias ls="ls -FG"
 

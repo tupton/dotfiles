@@ -11,6 +11,13 @@
 		install-tarsnap \
 		install-textmate \
 		install-tmux \
+		install-vim \
+		install-gvim \
+		install-vim-config \
+		install-gvim-config \
+		install-vim-init \
+		install-vim-vundle \
+		install-vim-plugins \
 		install-zsh \
 		install-oh-my-zsh
 
@@ -63,6 +70,34 @@ install-tmux :
 	install -m 0644 -- tmux/tmux.conf "$(HOME)"/.tmux.conf
 	install -m 0755 -d -- "$(HOME)"/.tmuxinator
 	install -m 0644 -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
+
+install-vim : install-vim-config \
+		install-vim-init \
+		install-vim-vundle \
+		install-vim-plugins
+
+install-gvim : install-vim \
+		install-gvim-config
+
+install-vim-config :
+	install -m 0644 -- vim/vimrc "$(HOME)"/.vimrc
+
+install-gvim-config :
+	install -m 0644 -- vim/gvimrc "$(HOME)"/.gvimrc
+
+install-vim-init:
+	install -m 0755 -d -- \
+			"$(HOME)"/.vim/bundle \
+			"$(HOME)"/.vim/swap \
+			"$(HOME)"/.vim/undodir
+
+install-vim-vundle :
+	if [ ! -d "$(HOME)"/.vim/bundle/Vundle.vim ]; then \
+		git clone https://github.com/gmarik/Vundle.vim "$(HOME)"/.vim/bundle/Vundle.vim; \
+	fi
+
+install-vim-plugins :
+	vim +PluginInstall +qall
 
 install-zsh : install-zsh-config \
 		install-oh-my-zsh

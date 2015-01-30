@@ -6,6 +6,7 @@
 		install-bash \
 		install-git \
 		install-jshint \
+		install-lein \
 		install-python \
 		install-readline \
 		install-tarsnap \
@@ -34,6 +35,7 @@ distclean :
 install : install-ack \
 		install-bash \
 		install-git \
+		install-lein \
 		install-python \
 		install-readline \
 		install-tmux \
@@ -53,6 +55,10 @@ install-git :
 
 install-jshint :
 	install -m 0644 -- jshint/jshintrc "$(HOME)"/.jshintrc
+
+install-lein :
+	install -m 0755 -d -- "$(HOME)"/.lein
+	install -m 0644 -- lein/profiles.clj "$(HOME)"/.lein/profiles.clj
 
 install-python :
 	install -m 0644 -- python/pythonrc "$(HOME)"/.pythonrc

@@ -73,7 +73,7 @@ install-readline :
 install-tarsnap :
 	install -m 0644 -- tarsnap/tarsnaprc "$(HOME)"/.tarsnaprc
 
-install-texmate :
+install-textmate :
 	install -m 0644 -- TextMate/tm_properties "$(HOME)"/.tm_properties
 
 install-tmux :

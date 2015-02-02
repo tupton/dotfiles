@@ -23,16 +23,14 @@ windows:
   - opscenter:
       layout: even-vertical
       panes:
-        - tail -f /Users/tupton/.ccm/single/node1/logs/system.log
+        - logs:
+            -
         - cassandra:
             - cd ~/code/cassandra
-            - ccm start
         - opscenterd:
             - cd opscenterd
-            - ./bin/opscenter -f
         - agent:
             - cd agent
-            - lein run local/address.yaml
   - ctool:
       layout: 7c66,148x70,0,0[148x34,0,0,2,148x17,0,35,6,148x17,0,53,7] # top 50%, middle/bottom 25%
       panes:

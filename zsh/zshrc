@@ -87,6 +87,13 @@ hash hub 2>/dev/null && alias git="hub"
 
 # functions
 gt() { cd $(git rev-parse --show-toplevel) }
+npm-exec() {
+    if hash npm 2>/dev/null; then
+        local bin="$1"
+        shift
+        "$(npm bin)"/"$bin" "$@"
+    fi
+}
 
 # Load RVM into a shell session as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

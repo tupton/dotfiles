@@ -67,6 +67,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 # push current command to stack, run a different command, pop from stack
 bindkey '^Q' push-input
 
+# edit command in EDITOR
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # `cd command` if no other match; e.g. > code => > cd code
 setopt AUTO_CD
 

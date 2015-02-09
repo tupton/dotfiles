@@ -41,8 +41,8 @@ Plugin 'vim-scripts/VimClojure'
 " Solarized theme
 Plugin 'altercation/vim-colors-solarized'
 
-" Somewhat improved Javascript syntax
-Plugin 'pangloss/vim-javascript'
+" Javascript syntax
+Plugin 'jelera/vim-javascript-syntax'
 
 " JSON syntax highlighting
 Plugin 'leshill/vim-json'

@@ -83,6 +83,9 @@ Plugin 'itspriddle/vim-marked'
 " Better rainbow parens
 Plugin 'luochen1990/rainbow'
 
+" iTerm2 and tmux integration
+Plugin 'sjl/vitality.vim'
+
 call vundle#end()
 
 syntax enable

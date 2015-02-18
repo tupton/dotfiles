@@ -119,7 +119,10 @@ fi
 
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
-# environment
+if [[ -e "/usr/libexec/java_home" ]]; then
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+fi
+
 # -R -- properly display color escape sequences (was on by default; necessary to include when changing)
 # -s -- squeeze consecutive blank lines into one line
 # -X -- don't clear the screen on exit

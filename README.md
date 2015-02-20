@@ -2,9 +2,33 @@
 
 A collection of config files that I use.
 
-When setting up a new system, I like to clone this git repository into `~/.dotfiles` and create
-symlinks to these files in `~` with:
+## Installation
 
-    $ git clone https://tupton@github.com/tupton/dotfiles.git ~/.dotfiles
-    $ cd ~/.dotfiles
-    $ ./create_symlinks.sh ~
+Installing will overwrite anything in the way. Run `make -n` first. If you are happy with that
+output, you can test the dotfile environment with
+
+    ❯ TMP=$(mktemp -d /tmp/tmp.XXXXX)
+    ❯ HOME=$TMP make install
+    ❯ ls -al $TMP
+
+Install common, cross-platform dotfiles to `$HOME` with
+
+    ❯ make install
+
+Install individual dotfiles with, e.g.
+
+    ❯ make install-git
+
+or
+
+    ❯ make install-vim-config
+
+Look at the `Makefile` to see which dotfiles are installed by default and which require running a
+separate task. E.g. TextMate and tarsnap config only really apply to my local machine, so they are
+not installed by default.
+
+## Inspiration and Thanks
+
+https://github.com/tejr/dotfiles - Makefile and overall project structure
+
+https://github.com/holman/dotfiles - Interactive, templated gitconfig

@@ -1,9 +1,6 @@
 [user]
-    name = Thomas Upton
-    email = thomasupton@gmail.com
-
-[github]
-    user = tupton
+    name = AUTHORNAME
+    email = AUTHOREMAIL
 
 [alias]
     co = checkout
@@ -24,14 +21,14 @@
     excludesfile = ~/.gitignore-global
     ignorecase = true
 [push]
-    default = simple
+    default = GIT_PUSH_DEFAULT
 [color]
     ui = auto
 [branch]
     autosetuprebase = always
     autosetupmerge = always
 [credential]
-    helper = osxkeychain
+    helper = GIT_CREDENTIAL_HELPER
 [web]
     browser = open
 [rerere]

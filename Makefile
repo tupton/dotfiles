@@ -53,7 +53,10 @@ install-dotjs :
 	install -m 0755 -d -- "$(HOME)"/.js
 	find dotjs -type f -maxdepth 1 -name "*.js" -exec install -m 0644 -- "{}" "$(HOME)"/.js \;
 
-install-git :
+create-gitconfig:
+	git/setup
+
+install-git : create-gitconfig
 	install -m 0644 -- git/gitconfig "$(HOME)"/.gitconfig
 	install -m 0644 -- git/gitignore-global "$(HOME)"/.gitignore-global
 

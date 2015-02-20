@@ -23,9 +23,11 @@ or
 
     ❯ make install-vim-config
 
+and so forth.
+
 Look at the `Makefile` to see which dotfiles are installed by default and which require running a
-separate task. E.g. TextMate and tarsnap config only really apply to my local machine, so they are
-not installed by default.
+separate task. For example, TextMate and tarsnap configs only really apply to my local machine, so
+they are not installed by default.
 
 ## Inspiration and Thanks
 

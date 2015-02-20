@@ -1,26 +1,7 @@
 .PHONY: all \
 		clean \
 		distclean \
-		install \
-		install-ack \
-		install-bash \
-		install-git \
-		install-jshint \
-		install-lein \
-		install-python \
-		install-readline \
-		install-tarsnap \
-		install-textmate \
-		install-tmux \
-		install-vim \
-		install-gvim \
-		install-vim-config \
-		install-gvim-config \
-		install-vim-init \
-		install-vim-vundle \
-		install-vim-plugins \
-		install-zsh \
-		install-oh-my-zsh
+		install
 
 all :
 	@echo "Run \`make -n install\` and read the output carefully."

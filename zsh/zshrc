@@ -84,7 +84,7 @@ export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
 # aliases
-[[ -e "/Users/tupton/code/automaton/bin/ctool" ]] && alias ctool="/Users/tupton/code/automaton/bin/ctool"
+[[ -e "$HOME/code/automaton/bin/ctool" ]] && alias ctool="$HOME/code/automaton/bin/ctool"
 [[ -e "/usr/local/bin/terminal-notifier" ]] && alias n="/usr/local/bin/terminal-notifier -activate com.googlecode.iterm2 -message"
 alias ls="ls -FG"
 
@@ -98,9 +98,6 @@ npm-exec() {
     fi
 }
 
-# Load RVM into a shell session as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 export PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$PATH"
 
 if [[ -e "/usr/local/bin/brew" ]]; then
@@ -111,11 +108,11 @@ if [[ -e "/usr/local/bin/brew" ]]; then
     source $(/usr/local/bin/brew --prefix)/etc/profile.d/z.sh
 fi
 
-if [[ -f ~/.fzf.zsh ]]; then
+if [[ -f "$HOME/.fzf.zsh" ]]; then
     source ~/.fzf.zsh
 fi
 
-[[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
+[[ -d "/usr/local/share/zsh-completions" ]] && fpath=("/usr/local/share/zsh-completions" $fpath)
 
 if [[ -e "/usr/libexec/java_home" ]]; then
     export JAVA_HOME="$(/usr/libexec/java_home)"

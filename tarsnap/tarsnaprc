@@ -1,6 +1,3 @@
-# Main keyfile
-keyfile /var/root/tarsnap.key
-
 # Tarsnap cache directory
 cachedir /usr/local/tarsnap-cache
 

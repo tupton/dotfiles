@@ -86,12 +86,10 @@ install-vim-init:
 			"$(HOME)"/.vim/undodir
 
 install-vim-vundle :
-	if [ ! -d "$(HOME)"/.vim/bundle/Vundle.vim ]; then \
-		git clone https://github.com/gmarik/Vundle.vim "$(HOME)"/.vim/bundle/Vundle.vim; \
-	fi
+	vim/install-vundle
 
 install-vim-plugins :
-	vim +PluginInstall +qall
+	vim/install-plugins
 
 install-zsh : install-zsh-config \
 		install-oh-my-zsh
@@ -100,6 +98,4 @@ install-zsh-config :
 	install -m 0644 -- zsh/zshrc "$(HOME)"/.zshrc
 
 install-oh-my-zsh :
-	if [ ! -d "$(HOME)"/.oh-my-zsh ]; then \
-		git clone https://github.com/robbyrussell/oh-my-zsh.git "$(HOME)"/.oh-my-zsh; \
-	fi
+	zsh/install-oh-my-zsh

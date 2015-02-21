@@ -8,7 +8,7 @@ all :
 	@echo "If you're happy with what will happen, then run \`make install\`."
 
 clean :
-	@:
+	@rm -f git/gitconfig
 
 distclean :
 	@:

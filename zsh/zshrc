@@ -112,9 +112,9 @@ if [[ -f "$HOME/.fzf.zsh" ]]; then
     source ~/.fzf.zsh
 fi
 
-[[ -d "/usr/local/share/zsh-completions" ]] && fpath=("/usr/local/share/zsh-completions" $fpath)
+[[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
-if [[ -e "/usr/libexec/java_home" ]]; then
+if [[ -e /usr/libexec/java_home ]]; then
     export JAVA_HOME="$(/usr/libexec/java_home)"
 fi
 

@@ -28,5 +28,8 @@ lsopts() {
 # Alias ls with these options
 alias ls="ls $(lsopts)"
 
+export CLICOLOR=true
+export LSCOLORS="exfxcxdxbxegedabagacad"
+
 # Unset helper function
 unset -f lsopts

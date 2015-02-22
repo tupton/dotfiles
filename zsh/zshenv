@@ -1,0 +1,29 @@
+# `cd $0` if no other match; e.g. > code => > cd code
+setopt AUTO_CD
+
+# Allow comments in interactive mode, i.e. on the command line
+setopt INTERACTIVE_COMMENTS
+
+# Bigger history
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+
+# -R -- properly display color escape sequences (was on by default; necessary to include when changing)
+# -s -- squeeze consecutive blank lines into one line
+# -X -- don't clear the screen on exit
+# -F -- immediately quit if the output fits on one screen; useful for `git diff` and short man pages
+export LESS="-R -s -X -F"
+
+# Use vim if it's available
+hash vim 2>/dev/null && export EDITOR=vim
+
+# Explicit JAVA_HOME, for OS X
+[[ -e /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
+
+# Path
+typeset -U path
+path=(. "$path[@]")
+hash npm 2>/dev/null && path+=("$(npm bin -g)")
+hash brew 2>/dev/null && path+=("$(brew --prefix)"/bin)
+export PATH

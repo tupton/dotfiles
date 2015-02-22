@@ -83,10 +83,12 @@ export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
-# aliases
-[[ -e "$HOME/code/automaton/bin/ctool" ]] && alias ctool="$HOME/code/automaton/bin/ctool"
-[[ -e "/usr/local/bin/terminal-notifier" ]] && alias n="/usr/local/bin/terminal-notifier -activate com.googlecode.iterm2 -message"
-alias ls="ls -FG"
+if [[ -d "$HOME"/.zshrc.d ]]; then
+    for config in "$HOME"/.zshrc.d/*.zsh; do
+        source "$config"
+    done
+fi
+unset -v config
 
 # functions
 gt() { cd $(git rev-parse --show-toplevel) }
@@ -112,9 +114,9 @@ if [[ -f "$HOME/.fzf.zsh" ]]; then
     source ~/.fzf.zsh
 fi
 
-[[ -d "/usr/local/share/zsh-completions" ]] && fpath=("/usr/local/share/zsh-completions" $fpath)
+[[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
-if [[ -e "/usr/libexec/java_home" ]]; then
+if [[ -e /usr/libexec/java_home ]]; then
     export JAVA_HOME="$(/usr/libexec/java_home)"
 fi
 

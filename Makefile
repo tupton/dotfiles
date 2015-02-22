@@ -94,7 +94,11 @@ install-vim-plugins :
 install-zsh : install-zsh-config \
 		install-oh-my-zsh
 
-install-zsh-config :
+install-zshd :
+	install -m 0755 -d -- "$(HOME)"/.zshrc.d
+	install -m 0644 -- zsh/zshrc.d/* "$(HOME)"/.zshrc.d
+
+install-zsh-config : install-zshd
 	install -m 0644 -- zsh/zshrc "$(HOME)"/.zshrc
 
 install-oh-my-zsh :

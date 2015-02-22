@@ -83,6 +83,8 @@ export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
+export PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$PATH"
+
 if [[ -d "$HOME"/.zshrc.d ]]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do
         source "$config"
@@ -90,17 +92,6 @@ if [[ -d "$HOME"/.zshrc.d ]]; then
 fi
 unset -v config
 
-# functions
-gt() { cd $(git rev-parse --show-toplevel) }
-npm-exec() {
-    if hash npm 2>/dev/null; then
-        local bin="$1"
-        shift
-        "$(npm bin)"/"$bin" "$@"
-    fi
-}
-
-export PATH=".:/usr/local/share/npm/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:/usr/local/sbin:$PATH"
 
 if [[ -e "/usr/local/bin/brew" ]]; then
     # python site-packages

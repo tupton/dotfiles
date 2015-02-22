@@ -14,12 +14,10 @@ distclean :
 	@:
 
 install : install-ack \
-		install-bash \
 		install-git \
 		install-lein \
 		install-python \
 		install-readline \
-		install-tmux \
 		install-vim \
 		install-zsh
 
@@ -100,7 +98,6 @@ install-zshd :
 
 install-zsh-config : install-zshd
 	install -m 0644 -- zsh/zshrc "$(HOME)"/.zshrc
-	install -m 0644 -- zsh/zshenv "$(HOME)"/.zshenv
 
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh

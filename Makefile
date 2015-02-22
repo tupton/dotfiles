@@ -32,7 +32,7 @@ install-bash :
 
 install-dotjs :
 	install -m 0755 -d -- "$(HOME)"/.js
-	find dotjs -type f -maxdepth 1 -name "*.js" -exec install -m 0644 -- "{}" "$(HOME)"/.js \;
+	install -m 0644 -- dotjs/*.js "$(HOME)"/.js
 
 create-gitconfig:
 	git/setup

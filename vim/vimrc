@@ -1,8 +1,6 @@
 " .vimrc
 
 " {{{ Vundle
-" Of course
-set nocompatible
 
 " Required Vundle setup
 filetype off
@@ -86,6 +84,9 @@ Plugin 'luochen1990/rainbow'
 " iTerm2 and tmux integration
 Plugin 'sjl/vitality.vim'
 
+" Lint vimscript with vint; requires vint: pip install vim-vint
+Plugin 'todesking/vint-syntastic'
+
 call vundle#end()
 
 syntax enable
@@ -96,13 +97,14 @@ filetype plugin indent on
 
 " Set the terminal font encoding
 set encoding=utf-8
+scriptencoding utf-8
 set termencoding=utf-8
 
 " Manage multiple buffers
 set hidden
 
 " Map leader to ,
-let mapleader=","
+let mapleader=','
 
 " Omni completion
 set omnifunc=syntaxcomplete#Complete
@@ -113,7 +115,7 @@ set updatetime=750
 " }}}
 " {{{ Ack
 " Skip normal config, show filenames, no color, one result per line, show column numbers, smart case
-let g:ackprg="ack --noenv -H --nocolor --nogroup --column --smart-case --after=0 --before=0"
+let g:ackprg='ack --noenv -H --nocolor --nogroup --column --smart-case --after=0 --before=0'
 
 " }}}
 " {{{ Airline
@@ -153,7 +155,7 @@ let g:airline_theme_patch_func = 'AirlineThemeModified'
 let g:airline#extensions#tabline#enabled = 1
 " }}}
 " {{{ Autocommands
-if has("autocmd")
+if has('autocmd')
     " Clear existing autocommands before defining them, in case this file is loaded again
     autocmd!
 
@@ -163,8 +165,8 @@ if has("autocmd")
         " Jump to last cursor position unless it's invalid or in an event handler or
         " a git commit
         au BufReadPost *
-          \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") |
-          \   exe "normal! g`\"" |
+          \ if &filetype !~ '^git\c' && line('\'"') > 0 && line('\'"') <= line('$') |
+          \   exe 'normal! g`"' |
           \ endif
     augroup END
 
@@ -195,14 +197,14 @@ endif
 " {{{ Backups
 " Skip backup entirely. It's annoying.
 set nobackup
-if has("writebackup")
+if has('writebackup')
     set nowritebackup
 endif
 
 " }}}
 " {{{ Commands
 " Note that these options don't really matter when using vim-powerline.
-if has("cmdline_info")
+if has('cmdline_info')
     " Show line and column information
     set ruler
 
@@ -223,7 +225,7 @@ set diffopt+=vertical
 " }}}
 " {{{ Folding
 " Fold with triple curly braces, fill with spaces
-if has("folding")
+if has('folding')
     set foldenable
     set foldmethod=marker
     set foldopen=hor,search,tag,undo
@@ -256,7 +258,7 @@ set textwidth=100
 set nowrap
 
 " Highlight the first column after the text width
-if exists("&colorcolumn")
+if exists('&colorcolumn')
     set colorcolumn=+1
 endif
 
@@ -285,18 +287,22 @@ endif
 set formatoptions+=t,c,r,o,n
 
 " Delete comment character when joining commented lines
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j
 endif
 
 " Use only 1 space after "." when joining lines instead of 2
 set nojoinspaces
 
-au FileType c,cpp,h set cindent formatoptions+=ro
-au FileType xhtml,xml,html set textwidth=0
-au FileType make set noexpandtab shiftwidth=8
-au FileType python set expandtab shiftwidth=4 softtabstop=4 tabstop=4 autoindent
-au FileType javascript set tabstop=4 shiftwidth=4 expandtab textwidth=100
+augroup vimrc
+    autocmd!
+augroup END
+
+au vimrc FileType c,cpp,h set cindent formatoptions+=ro
+au vimrc FileType xhtml,xml,html set textwidth=0
+au vimrc FileType make set noexpandtab shiftwidth=8
+au vimrc FileType python set expandtab shiftwidth=4 softtabstop=4 tabstop=4 autoindent
+au vimrc FileType javascript set tabstop=4 shiftwidth=4 expandtab textwidth=100
 
 " }}}
 " {{{ Fugitive
@@ -360,7 +366,7 @@ nnoremap <right> <nop>
 " nmap <F6> :tabn<CR>
 
 " Bind dumb uppercase commands to their useful lowercase equivalents
-if has("user_commands")
+if has('user_commands')
     command! -bang E e<bang>
     command! -bang Q q<bang>
     command! -bang W w<bang>
@@ -391,7 +397,7 @@ nnoremap <leader>dp :diffput<cr>
 " {{{ Line Numbers
 " Show line numbers
 set number
-if exists("&relativenumber")
+if exists('&relativenumber')
     set relativenumber
 endif
 
@@ -462,7 +468,7 @@ nnoremap <C-y> 5<C-y>
 
 " }}}
 " {{{ Search
-if has("extra_search")
+if has('extra_search')
     " Highlight searches
     set hlsearch
     nnoremap <leader>h :nohlsearch<CR>
@@ -481,7 +487,7 @@ endif
 
 " }}}
 " {{{ Spelling
-if has("spell")
+if has('spell')
     set spelllang=en_us
     nnoremap <leader>sp :set spell!<CR>
 endif
@@ -518,6 +524,8 @@ let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E1
 " Disable shellcheck for zsh
 let g:syntastic_zsh_checkers = ['zsh']
 
+let g:syntastic_vim_checkers=['vint']
+
 " On by default, turn it off for html
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
@@ -541,7 +549,7 @@ set visualbell t_vb=
 " }}}
 " {{{ Undo
 " -- see http://amix.dk/blog/post/19548
-if has("persistent_undo")
+if has('persistent_undo')
     set undodir=~/.vim/undodir
     set undofile
 
@@ -571,18 +579,18 @@ set switchbuf=useopen,usetab
 
 " }}}
 " {{{ Wildmenu
-if has("wildmenu")
+if has('wildmenu')
     " Bash-like tab completion for commands
     set wildmenu
     set wildmode=longest:list
     set wildchar=<Tab>
-    if has("wildignore")
+    if has('wildignore')
         set wildignore+=*.a,*.o,*.pyc
         set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
         set wildignore+=.DS_Store,.git,.hg,.svn
         set wildignore+=*~,*.swp,*.tmp
     endif
-    if exists("&wildignorecase")
+    if exists('&wildignorecase')
         set wildignorecase
     endif
 endif

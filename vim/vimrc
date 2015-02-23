@@ -104,7 +104,7 @@ set termencoding=utf-8
 set hidden
 
 " Map leader to ,
-let mapleader=','
+let g:mapleader=','
 
 " Omni completion
 set omnifunc=syntaxcomplete#Complete

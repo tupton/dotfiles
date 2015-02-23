@@ -28,9 +28,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^Q' push-input
 
 # edit command in EDITOR
-autoload edit-command-line
+autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey '^X^E' edit-command-line
 
 # Fix some keys -- something about iTerm2 and zsh makes this necessary. To generate:
 # ❯ autoload zkbd && zkbd

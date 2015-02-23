@@ -419,13 +419,6 @@ silent! runtime macros/matchit.vim
 set shortmess+=aI
 
 " }}}
-" {{{ NERDTree
-map <F7> :NERDTreeToggle<CR>
-
-" Change the working directory to the top NERDTree directory
-let NERDTreeChDirMode = 2
-
-" }}}
 " {{{ Paste
 set nopaste
 nnoremap <leader>p :set paste!<CR>

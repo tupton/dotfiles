@@ -160,36 +160,36 @@ if has('autocmd')
     autocmd!
 
     augroup last_cursor
-        au!
+        autocmd!
 
         " Jump to last cursor position unless it's invalid or in an event handler or
         " a git commit
-        au BufReadPost *
+        autocmd BufReadPost *
           \ if &filetype !~ '^git\c' && line('\'"') > 0 && line('\'"') <= line('$') |
           \   exe 'normal! g`"' |
           \ endif
     augroup END
 
     augroup cursor_highlight
-        au!
+        autocmd!
 
         " Only show cursorline in active windows
-        au WinLeave * set nocursorline colorcolumn=""
-        au WinEnter * set cursorline colorcolumn=+1
+        autocmd WinLeave * set nocursorline colorcolumn=""
+        autocmd WinEnter * set cursorline colorcolumn=+1
     augroup END
 
     augroup coffescript
-        au!
+        autocmd!
 
         " Automatically set coffeescript filetype; necessary because of some vundle filetype issue
-        au BufNewFile,BufRead *.coffee setlocal filetype=coffee
+        autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
     augroup END
 
     augroup markdown
-        au!
+        autocmd!
 
         " Automatically use github-flavored markdown
-        au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+        autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
     augroup END
 endif
 
@@ -298,11 +298,11 @@ augroup vimrc
     autocmd!
 augroup END
 
-au vimrc FileType c,cpp,h set cindent formatoptions+=ro
-au vimrc FileType xhtml,xml,html set textwidth=0
-au vimrc FileType make set noexpandtab shiftwidth=8
-au vimrc FileType python set expandtab shiftwidth=4 softtabstop=4 tabstop=4 autoindent
-au vimrc FileType javascript set tabstop=4 shiftwidth=4 expandtab textwidth=100
+autocmd vimrc FileType c,cpp,h set cindent formatoptions+=ro
+autocmd vimrc FileType xhtml,xml,html set textwidth=0
+autocmd vimrc FileType make set noexpandtab shiftwidth=8
+autocmd vimrc FileType python set expandtab shiftwidth=4 softtabstop=4 tabstop=4 autoindent
+autocmd vimrc FileType javascript set tabstop=4 shiftwidth=4 expandtab textwidth=100
 
 " }}}
 " {{{ Fugitive

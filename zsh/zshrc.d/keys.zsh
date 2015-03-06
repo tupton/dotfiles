@@ -34,8 +34,8 @@ bindkey '^X^E' edit-command-line
 
 # Fix some keys -- something about iTerm2 and zsh makes this necessary. To generate:
 # ❯ autoload zkbd && zkbd
-if [[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
-    source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+if [[ -f "$HOME"/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
+    source "$HOME"/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
     [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
     [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
     [[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char

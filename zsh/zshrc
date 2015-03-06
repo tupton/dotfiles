@@ -57,6 +57,7 @@ export LESS="-R -s -X -F"
 
 # Use vim if it's available
 hash vim 2>/dev/null && export EDITOR=vim
+bindkey -v
 
 # Explicit JAVA_HOME, for OS X
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"

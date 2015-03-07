@@ -1,6 +1,6 @@
 #! /usr/bin/env zsh
 
 # Clone Vundle, but only if it's not present already
-if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+if [[ ! -d "$HOME/.vim/bundle/Vundle.vim" ]]; then
     git clone https://github.com/gmarik/Vundle.vim "$HOME/.vim/bundle/Vundle.vim"
 fi

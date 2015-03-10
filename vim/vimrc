@@ -87,6 +87,9 @@ Plugin 'sjl/vitality.vim'
 " Lint vimscript with vint; requires vint: pip install vim-vint
 Plugin 'todesking/vint-syntastic'
 
+" netrw improvements
+Plugin 'tpope/vim-vinegar'
+
 call vundle#end()
 
 syntax enable

@@ -168,7 +168,7 @@ if has('autocmd')
         " Jump to last cursor position unless it's invalid or in an event handler or
         " a git commit
         autocmd BufReadPost *
-          \ if &filetype !~ '^git\c' && line('\'"') > 0 && line('\'"') <= line('$') |
+          \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line('$') |
           \   exe 'normal! g`"' |
           \ endif
     augroup END

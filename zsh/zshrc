@@ -64,7 +64,7 @@ bindkey -v
 
 # Path
 typeset -U path
-path=(. "$path[@]")
+path=(. /usr/local/bin "$path[@]")
 hash npm 2>/dev/null && path+=("$(npm bin -g)")
 hash brew 2>/dev/null && path+=("$(brew --prefix)"/bin)
 export PATH

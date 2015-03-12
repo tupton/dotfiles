@@ -1,18 +1,20 @@
 # Return appropriate options for ls
 lsopts() {
 
+    local lshelp lsopts colors
+
     # Snarf the output of `ls --help` into a variable
-    local lshelp=$(ls --help 2>/dev/null)
+    lshelp=$(ls --help 2>/dev/null)
 
     # Start collecting available options
-    local -a lsopts
+    lsopts=()
 
     # Use file type indicators
     lsopts+=(-F)
 
     # If the --color option is available and we have a terminal that supports
     # at least eight colors, add --color=auto to the options
-    local colors=$(tput colors)
+    colors=$(tput colors)
     if ((colors >= 8)); then
         if [[ $lshelp == *--color* ]]; then
             lsopts+=(--color=auto)
@@ -22,7 +24,7 @@ lsopts() {
     fi
 
     # Print the options as a single string, space-delimited
-    printf "%s" "${lsopts[*]}"
+    echo -n "${lsopts[*]}"
 }
 
 # Alias ls with these options

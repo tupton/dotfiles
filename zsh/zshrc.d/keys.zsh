@@ -29,11 +29,8 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
-# Fix some keys -- something about iTerm2 and zsh makes this necessary. To generate:
-# ❯ autoload zkbd && zkbd
-if [[ -f "$HOME"/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
-    source "$HOME"/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
-    [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
-    [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
-    [[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
-fi
+# home, end, delete, backspace
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char

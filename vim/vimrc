@@ -90,6 +90,9 @@ Plugin 'todesking/vint-syntastic'
 " netrw improvements
 Plugin 'tpope/vim-vinegar'
 
+" argument manipulation
+Plugin 'PeterRincker/vim-argumentative'
+
 call vundle#end()
 
 syntax enable

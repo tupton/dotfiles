@@ -581,9 +581,8 @@ if has('wildmenu')
     set wildmode=longest:list
     set wildchar=<Tab>
     if has('wildignore')
-        set wildignore+=*.a,*.o,*.pyc
+        set wildignore+=*.a,*.o,*.pyc,.DS_Store
         set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-        set wildignore+=.DS_Store,.git,.hg,.svn
         set wildignore+=*~,*.swp,*.tmp
     endif
     if exists('&wildignorecase')

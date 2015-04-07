@@ -28,6 +28,10 @@ function prompt_char() {
     git rev-parse > /dev/null 2>&1 && echo "%F{cyan}±%f" || echo "%F{yellow}○%f"
 }
 
+function ctool_instances() {
+    hash ctool 2> /dev/null && echo " $(ctool list | awk '{ s += $2 } END { print s }')¢" || echo ""
+}
+
 setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
@@ -89,5 +93,5 @@ function +vi-git-tagname() {
 
 precmd() { vcs_info }
 
-PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b ${vcs_info_msg_0_}%E
+PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b%F{red}$(ctool_instances)%f ${vcs_info_msg_0_}%E
 %(?.%F{blue}.%F{red})❯%f '

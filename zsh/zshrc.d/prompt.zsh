@@ -29,7 +29,10 @@ function prompt_char() {
 }
 
 function ctool_instances() {
-    hash ctool 2> /dev/null && echo " $(ctool list | awk '{ s += $2 } END { print s }')¢" || echo ""
+    if hash ctool 2>/dev/null; then
+        local instances="$(( $(ctool list | awk '{ s += $2 } END { print s }') ))"
+        [[ instances -gt 0 ]] && echo " $instances¢"
+    fi
 }
 
 setopt prompt_subst

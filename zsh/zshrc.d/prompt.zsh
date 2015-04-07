@@ -31,7 +31,7 @@ function prompt_char() {
 function ctool_instances() {
     if hash ctool 2>/dev/null; then
         local instances="$(( $(ctool list | awk '{ s += $2 } END { print s }') ))"
-        [[ instances -gt 0 ]] && echo " $instances¢"
+        [[ instances -gt 0 ]] && echo " %B%F{black}$instances¢%f%b"
     fi
 }
 
@@ -96,5 +96,5 @@ function +vi-git-tagname() {
 
 precmd() { vcs_info }
 
-PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b%F{red}$(ctool_instances)%f ${vcs_info_msg_0_}%E
+PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b$(ctool_instances) ${vcs_info_msg_0_}%E
 %(?.%F{blue}.%F{red})❯%f '

@@ -31,7 +31,7 @@ function prompt_char() {
 function ctool_instances() {
     if hash ctool 2>/dev/null; then
         local instances="$(( $(ctool list | awk '{ s += $2 } END { print s }') ))"
-        [[ instances -gt 0 ]] && echo " %B%F{black}$instances¢%f%b"
+        [[ "$instances" -gt 0 ]] && echo " %B%F{black}$instances¢%f%b"
     fi
 }
 

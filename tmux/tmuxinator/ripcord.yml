@@ -19,7 +19,11 @@ root: ~/code/ripcord
 tmux_command: tmux -2
 
 windows:
-  - editor: cd opscenterd
+  - editor:
+      layout: c090,215x95,0,0[215x8,0,0,10,215x86,0,9,0]
+      panes:
+        - cd opscenterd && npm-exec gulp watch
+        - cd opscenterd
   - opscenter:
       layout: even-vertical
       panes:

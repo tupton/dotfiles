@@ -527,6 +527,7 @@ let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E1
 " Disable shellcheck for zsh
 let g:syntastic_zsh_checkers = ['zsh']
 
+" Use vint for vim style
 let g:syntastic_vim_checkers=['vint']
 
 " On by default, turn it off for html
@@ -537,12 +538,17 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
+let g:syntastic_style_error_symbol = '☡'
+let g:syntastic_style_warning_symbol = '¡'
 
 " Check on buffer open
 let g:syntastic_check_on_open = 1
 
 " Aggregate errors for multiple checkers
 let g:syntastic_aggregate_errors = 1
+
+" Don't check on write+quit
+let g:syntastic_check_on_wq = 0
 " }}}
 " {{{ Terminal
 

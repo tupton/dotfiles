@@ -544,6 +544,9 @@ let g:syntastic_style_warning_symbol = '¡'
 " Check on buffer open
 let g:syntastic_check_on_open = 1
 
+" Always put errors in the location list
+let g:syntastic_always_populate_loc_list = 1
+
 " Aggregate errors for multiple checkers
 let g:syntastic_aggregate_errors = 1
 

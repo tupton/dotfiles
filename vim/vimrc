@@ -517,7 +517,7 @@ set updatecount=0
 " }}}
 " {{{ Syntastic
 " Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint', 'jscs', 'eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jscs']
 let g:syntastic_javascript_eslint_args = '--rulesdir "$HOME"/.eslint_rules'
 
 " Use flake8

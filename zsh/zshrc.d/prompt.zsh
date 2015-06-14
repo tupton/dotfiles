@@ -96,5 +96,17 @@ function +vi-git-tagname() {
 
 precmd() { vcs_info }
 
-PROMPT='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b$(ctool_instances) ${vcs_info_msg_0_}%E
-%(?.%F{blue}.%F{red})❯%f '
+prompt_leader='%(?.%F{blue}.%F{red})❯%f '
+
+__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path "${PWD/#$HOME/~}")%f%b$(ctool_instances) ${vcs_info_msg_0_}%E
+${prompt_leader}'
+
+function simple_prompt() {
+    PROMPT=$prompt_leader
+}
+
+function reset_prompt() {
+    PROMPT=$__prompt
+}
+
+reset_prompt

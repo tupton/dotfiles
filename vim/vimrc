@@ -152,12 +152,12 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
-" Orange modified status
+" modified status same color as tab line
 function! AirlineThemeModified(palette)
-  let a:palette.normal_modified.airline_c =  ['#93a1a1', '#cb4b16', 254, 166, '']
-  let a:palette.insert_modified.airline_c =  ['#93a1a1', '#cb4b16', 254, 166, '']
-  let a:palette.visual_modified.airline_c =  ['#93a1a1', '#cb4b16', 254, 166, '']
-  let a:palette.inactive_modified.airline_c =['#cb4b16', '', 166, '', '']
+  let a:palette.normal_modified.airline_c =  ['#eee8d5', '#b58900', 7, 3, 'bold']
+  let a:palette.insert_modified.airline_c =  ['#eee8d5', '#b58900', 7, 3, 'bold']
+  let a:palette.visual_modified.airline_c =  ['#eee8d5', '#b58900', 7, 3, 'bold']
+  let a:palette.inactive_modified.airline_c =['#b58900', '', 3, '', 'bold']
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemeModified'
 

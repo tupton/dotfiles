@@ -18,7 +18,7 @@ function user_name() {
 function compact_path() {
     local cp="/usr/local/bin/compact_path"
     if [[ -e "$cp" ]]; then
-        echo $("$cp" "$1" 20)
+        echo $("$cp" --trigger=20 "$1")
     else
         echo "$1"
     fi

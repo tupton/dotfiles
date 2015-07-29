@@ -352,13 +352,6 @@ nmap <silent> <leader>sv :source $MYVIMRC<CR>
 
 " Annoyances
 
-" Use :help instead
-nnoremap <F1> <nop>
-" No ex mode
-nnoremap Q <nop>
-" No man pages because I don't write C or many shell scripts
-nnoremap K <nop>
-
 " No arrow keys
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -391,13 +384,13 @@ endif
 nnoremap Y y$
 
 " Disable going to Ex mode
-map Q <Nop>
+noremap Q <nop>
 
-" Remove annoying F1 help
+" Remove annoying F1 help; use :help instead
 noremap <F1> <nop>
 
-" Disable trying to look up things that Google is better for
-nnoremap K <no>
+" No man pages because I don't write C or many shell scripts
+noremap K <nop>
 
 " Shortcuts for diff
 nnoremap <leader>dg :diffget<cr>

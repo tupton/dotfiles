@@ -60,12 +60,12 @@ function +vi-git-aheadbehind() {
 
     # for git prior to 1.7
     # ahead=$(git rev-list origin/${branch_name}..HEAD | wc -l)
-    ahead=$(git rev-list ${branch_name}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    ahead=${$(git rev-list ${branch_name}@{upstream}..HEAD 2>/dev/null | wc -l)// /}
     (( $ahead )) && gitstatus+=( "%B%F{magenta}↑${ahead}%f%b" )
 
     # for git prior to 1.7
     # behind=$(git rev-list HEAD..origin/${branch_name} | wc -l)
-    behind=$(git rev-list HEAD..${branch_name}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
+    behind=${$(git rev-list HEAD..${branch_name}@{upstream} 2>/dev/null | wc -l)// /}
     (( $behind )) && gitstatus+=( "%F{magenta}↓${behind}%f" )
 
     hook_com[misc]+=${(j::)gitstatus}

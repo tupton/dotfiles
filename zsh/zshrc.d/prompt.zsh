@@ -46,8 +46,8 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-re
 zstyle ':vcs_info:*' enable git
 
 function +vi-git-untracked() {
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' && \
-            $(git ls-files --others --exclude-standard | sed q | wc -l | tr -d ' ') != 0 ]]; then
+    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == 'true' && \
+            -n $(git ls-files --others --exclude-standard | sed q) ]]; then
         hook_com[unstaged]+="%F{yellow}?%f"
     fi
 }

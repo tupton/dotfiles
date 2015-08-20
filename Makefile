@@ -107,7 +107,7 @@ test : test-setup test-zsh test-bash
 
 test-setup :
 		@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
-				if [[ -f "$$setup" ]] && ! zsh --no-exec "$$setup" ; then \
+				if [ -f "$$setup" ] && ! zsh --no-exec "$$setup" ; then \
 						exit 1 ; \
 				fi \
 		done
@@ -115,7 +115,7 @@ test-setup :
 
 test-zsh :
 		@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh ; do \
-				if [[ -f "$$zsh" ]] && ! zsh --no-exec "$$zsh" ; then \
+				if [ -f "$$zsh" ] && ! zsh --no-exec "$$zsh" ; then \
 						exit 1 ; \
 				fi \
 		done
@@ -123,7 +123,7 @@ test-zsh :
 
 test-bash :
 		@for bash in bash/* ; do \
-				if [[ -f "$$bash" ]] && ! bash -n "$$bash" ; then \
+				if [ -f "$$bash" ] && ! bash -n "$$bash" ; then \
 						exit 1 ; \
 				fi \
 		done

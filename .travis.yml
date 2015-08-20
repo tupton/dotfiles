@@ -1,3 +1,6 @@
 language: zsh
-install: apt-get install zsh
+addons:
+  apt:
+    packages:
+    - zsh
 script: make test

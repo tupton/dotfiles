@@ -1,0 +1,2 @@
+language: zsh
+script: make test

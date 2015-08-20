@@ -1,7 +1,8 @@
 .PHONY: all \
 		clean \
 		distclean \
-		install
+		install \
+		test
 
 all :
 	@echo "Run \`make -n install\` and read the output carefully."
@@ -101,3 +102,29 @@ install-zsh-config : install-zshd
 
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
+
+test : test-setup test-zsh test-bash
+
+test-setup :
+		@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
+				if [[ -f "$$setup" ]] && ! zsh --no-exec "$$setup" ; then \
+						exit 1 ; \
+				fi \
+		done
+		@echo "All setup scripts parsed successfully."
+
+test-zsh :
+		@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh ; do \
+				if [[ -f "$$zsh" ]] && ! zsh --no-exec "$$zsh" ; then \
+						exit 1 ; \
+				fi \
+		done
+		@echo "All zsh scripts parsed succesfully."
+
+test-bash :
+		@for bash in bash/* ; do \
+				if [[ -f "$$bash" ]] && ! bash -n "$$bash" ; then \
+						exit 1 ; \
+				fi \
+		done
+		@echo "All bash scripts parsed successfully."

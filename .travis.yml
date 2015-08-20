@@ -1,2 +1,3 @@
 language: zsh
+install: apt-get install zsh
 script: make test

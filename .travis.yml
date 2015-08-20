@@ -3,4 +3,5 @@ addons:
   apt:
     packages:
     - zsh
+before_script: zsh --version
 script: make test

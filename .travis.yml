@@ -1,7 +1,7 @@
 language: zsh
-addons:
-  apt:
-    packages:
-    - zsh
+before_install:
+- mkdir bin
+- curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx ; cd zsh-5.0.7 ; ./configure --prefix=./bin ; make ; make install
+- export PATH="./bin:$PATH"
 before_script: zsh --version
 script: make test

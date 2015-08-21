@@ -103,7 +103,7 @@ install-zsh-config : install-zshd
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
 
-test : test-setup test-zsh test-bash
+test : test-setup test-zsh test-bash test-vimrc
 
 test-setup :
 		@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
@@ -128,3 +128,11 @@ test-bash :
 				fi \
 		done
 		@echo "All bash scripts parsed successfully."
+
+test-vimrc :
+	@for vim in vim/vimrc vim/gvimrc ; do \
+		if [ -f "$$vim" ] && ! vint "$$vim" ; then \
+			exit 1 ; \
+		fi \
+	done
+	@echo "All vim config files linted successfully."

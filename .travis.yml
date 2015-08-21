@@ -5,7 +5,12 @@ addons:
     - build-essential
 before_install:
 - mkdir $(pwd)/bin
-- curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx ; cd zsh-5.0.7 ; ./configure --prefix=$(pwd)/bin ; make ; make install
+- curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx
+- cd zsh-5.0.7
+- ./configure --prefix=$(pwd)/bin
+- make
+- make install
+- cd -
 - export PATH="$(pwd)/bin:$PATH"
 before_script: zsh --version
 script: make test

@@ -14,3 +14,4 @@
 # Additional types
 --type-set=coffee:ext:coffee
 --type-set=clj:ext:clj
+--type-set=md:ext:md,markdown

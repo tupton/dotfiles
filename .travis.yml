@@ -1,4 +1,4 @@
-language: zsh
+language: sh
 addons:
   apt:
     packages:

@@ -1,5 +1,7 @@
 # Dotfiles
 
+[![Build Status](https://travis-ci.org/tupton/dotfiles.svg?branch=master)](https://travis-ci.org/tupton/dotfiles)
+
 A collection of config files that I use.
 
 ## Installation

@@ -5,8 +5,9 @@ addons:
     - build-essential
 before_install:
 - export LOCAL="$(mktemp --directory --tmpdir=${TMPDIR:/tmp} local.bin.XXXXXX)"
-- curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx
-- cd zsh-5.0.7
+- export DEP_ZSH_VERSION="zsh-5.0.8"
+- curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.gz | tar zx
+- cd DEP_ZSH_VERSION
 - ./configure --prefix=$LOCAL
 - make
 - make install

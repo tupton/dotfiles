@@ -4,14 +4,15 @@ addons:
     packages:
     - build-essential
 before_install:
-- mkdir $(pwd)/bin
+- export BIN="$(pwd)/bin"
+- mkdir $BIN
 - curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx
 - cd zsh-5.0.7
-- ./configure --prefix=$(pwd)/bin
+- ./configure --prefix=$BIN
 - make
 - make install
 - cd -
-- export PATH="$(pwd)/bin:$PATH"
+- export PATH="$BIN:$PATH"
 before_script:
 - ls -al $(pwd)/bin
 - zsh --version

@@ -1,4 +1,8 @@
 language: zsh
+addons:
+  apt:
+    packages:
+    - build-essential
 before_install:
 - mkdir $(pwd)/bin
 - curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx ; cd zsh-5.0.7 ; ./configure --prefix=$(pwd)/bin ; make ; make install

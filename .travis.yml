@@ -12,7 +12,4 @@ before_install:
 - make install
 - cd -
 - export PATH="$LOCAL/bin:$PATH"
-before_script:
-- ls -al $LOCAL/bin
-- zsh --version
 script: make test

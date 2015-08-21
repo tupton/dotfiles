@@ -5,7 +5,7 @@
 " Required Vundle setup
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call g:vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
@@ -96,7 +96,7 @@ Plugin 'PeterRincker/vim-argumentative'
 " manipulate delimiters
 Plugin 'tpope/vim-surround'
 
-call vundle#end()
+call g:vundle#end()
 
 syntax enable
 filetype plugin indent on
@@ -153,13 +153,13 @@ let g:airline_mode_map = {
   \ }
 
 " modified status same color as tab line
-function! AirlineThemeModified(palette)
+function! g:AirlineThemeModified(palette)
   let a:palette.normal_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
   let a:palette.insert_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
   let a:palette.visual_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
   let a:palette.inactive_modified.airline_c =['#b58900', '', 136, '', 'bold']
 endfunction
-let g:airline_theme_patch_func = 'AirlineThemeModified'
+let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 
 let g:airline#extensions#tabline#enabled = 1
 " }}}

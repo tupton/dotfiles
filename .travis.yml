@@ -1,4 +1,4 @@
-language: sh
+language: python
 addons:
   apt:
     packages:

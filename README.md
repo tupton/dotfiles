@@ -31,6 +31,19 @@ Look at the `Makefile` to see which dotfiles are installed by default and which 
 separate task. For example, TextMate and tarsnap configs only really apply to my local machine, so
 they are not installed by default.
 
+## Tests
+
+There is a `test` target in the Makefile. Not everything is tested, but I've attempted to verify the files that can be tested. If you know of a way to verify or test other dotfiles, please open an issue or let me know.
+
+- All `zsh` and `bash` config files and scripts are parsed by their respective shells. This includes all the `zsh` installation script helpers.
+- All `vim` config files are linted by [vim-vint].
+- All [dotjs] files are linted by [eslint] and [jscs].
+
+  [vim-vint]: https://github.com/Kuniwak/vint
+  [dotjs]: https://github.com/tupton/dotjs
+  [eslint]: http://eslint.org/
+  [jscs]: http://jscs.info/
+
 ## Inspiration and Thanks
 
 https://github.com/tejr/dotfiles - Makefile and overall project structure

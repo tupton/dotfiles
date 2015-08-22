@@ -1,0 +1,305 @@
+{
+    "esnext": true,
+
+    // Autofixed: whitespace rules, EOF rule, and validateIndentation
+    // These rules will be fixed automatically by JSCS when run with the -x flag
+
+    /**
+     * Disallows placing keywords on a new line.
+     */
+    "disallowKeywordsOnNewLine": [
+        "else",
+        "catch"
+    ],
+
+    /**
+     * Disallows multiple blank lines in a row.
+     */
+    "disallowMultipleLineBreaks": true,
+
+    /**
+     * Requires newline before opening curly brace of all block statements.
+     */
+    "disallowNewlineBeforeBlockStatements": true,
+
+    /**
+     * Requires putting certain operators on the next line rather than on the current line before a line break.
+     * If a chained expression spans lines, the period that calls the next method should be on the new line
+     */
+    "disallowOperatorBeforeLineBreak": [
+        "."
+    ],
+
+    /**
+     * Disallows space after keyword.
+     */
+    "disallowSpaceAfterKeywords": [
+        "default"
+    ],
+
+    /**
+     * Disallows space after object keys.
+     */
+    "disallowSpaceAfterObjectKeys": true,
+
+    /**
+     * Requires sticking prefix unary operators to the right.
+     * E.g. !x
+     */
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+
+    /**
+     * Requires sticking postfix unary operators to the left.
+     * E.g. x++
+     */
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+
+    /**
+     * These enforce the following pattern of spaces in function declarations. Basically, no space
+     * before the parentheses that contain arguments, and one space between the arguments and the
+     * opening brace of the function body.
+     *
+     *     function foo() {
+     *         ...
+     *     }
+     *
+     *     var a = function() {
+     *         ...
+     *     };
+     *
+     *     var b = function b() {
+     *         ...
+     *     };
+     *
+     *     var obj = {
+     *         method: function() {
+     *             ...
+     *         }
+     *     };
+     *
+     *     doAsyncThing.then(function(result) {
+     *         ...
+     *     });
+     */
+    "disallowSpacesInFunction": { "beforeOpeningRoundBrace": true },
+    "requireSpacesInFunction": { "beforeOpeningCurlyBrace": true },
+
+    /**
+     * Disallows space before () in call expressions.
+     */
+    "disallowSpacesInCallExpression": true,
+
+    /**
+     * Requires blocks to begin and end with a newline
+     */
+    "requireBlocksOnNewline": true,
+
+    /**
+     * Requires commas as last token on a line in lists.
+     */
+    "requireCommaBeforeLineBreak": true,
+
+    /**
+     * Requires placing line feed at file end.
+     */
+    "requireLineFeedAtFileEnd": true,
+
+    /**
+     * Requires operators to appear before line breaks and not after.
+     */
+    "requireOperatorBeforeLineBreak": true,
+
+    /**
+     * Requires space after keyword.
+     */
+    "requireSpaceAfterKeywords": [
+        "do",
+        "for",
+        "if",
+        "else",
+        "switch",
+        "case",
+        "try",
+        "catch",
+        "void",
+        "while",
+        "with",
+        "return",
+        "typeof"
+    ],
+
+    /**
+     * Requires space before keyword.
+     */
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "while",
+        "catch"
+    ],
+
+    /**
+     * Requires space(s) before block statements (for loops, control structures).
+     */
+    "requireSpaceBeforeBlockStatements": true,
+
+    /**
+     * Requires space after object keys.
+     */
+    "requireSpaceBeforeObjectValues": true,
+
+    /**
+     * Ensure there are spaces after argument separators in call expressions.
+     */
+    "requireSpaceBetweenArguments": true,
+
+    /**
+     * Requires space before and/or after ? or : in conditional expressions.
+     */
+    "requireSpacesInConditionalExpression": true,
+
+    /**
+     * Requires spaces inbetween for statement.
+     */
+    "requireSpacesInForStatement": true,
+
+    /**
+     * Disallows multiple indentation characters (tabs or spaces) between identifiers, keywords, and any other token
+     */
+    "disallowMultipleSpaces": true,
+
+    /**
+     * Requires placing line feed after assigning a variable.
+     */
+    "requireLineBreakAfterVariableAssignment": true,
+
+    /**
+     * Validates indentation for switch statements and block statements
+     */
+    "validateIndentation": 4,
+
+    /**
+     * Enable validation of separators between function parameters. Will ignore newlines.
+     */
+    "validateParameterSeparator": ", ",
+
+    /**
+     * Disallows an extra comma following the final element of an array or object literal.
+     * Covered by eslint because this could be an error.
+     * "disallowTrailingComma": false,
+     */
+
+    /**
+     * Requires all lines to end on a non-whitespace character
+     */
+    "disallowTrailingWhitespace": true,
+
+    // Manual Fix
+    // These rules must be fixed manually
+
+    /**
+     * Disallows keywords in your comments, such as TODO or FIXME
+     */
+    "disallowKeywordsInComments": true,
+
+    /**
+     * Requires that a line comment (//) be followed by a space.
+    "requireSpaceAfterLineComment": true,
+
+    /**
+     * Disallows implicit type conversion.
+     */
+    "disallowImplicitTypeConversion": [],
+
+    /**
+     * Disallows quoted keys in object if possible.
+     */
+    "disallowQuotedKeysInObjects": "allButReserved",
+
+    /**
+     * Disallows empty blocks (except for catch blocks).
+     * Covered by eslint since this could be an error.
+     * "disallowEmptyBlocks": false,
+     */
+
+    /**
+     * Requires member expressions to use dot notation when possible
+     */
+    "requireDotNotation": true,
+
+    /**
+     * Requires parentheses around immediately invoked function expressions.
+     */
+    "requireParenthesesAroundIIFE": true,
+
+    /**
+     * the listed keywords require the use of braces
+     * Requires curly braces after statements.
+     */
+    "requireCurlyBraces": true,
+
+    /**
+     * Requires lines to not contain both spaces and tabs consecutively, or spaces after tabs only for alignment if "smart"
+     */
+    "disallowMixedSpacesAndTabs": true,
+
+    /**
+     * Disallows strings that span multiple lines without using concatenation.
+     * Covered by eslint because this could be an error, and Javascript is buggy about handling this
+     * "disallowMultipleLineStrings": false,
+     */
+
+    /**
+     * Requires semicolon
+     */
+    "requireSemicolons": true,
+
+    /**
+     * Option to check line break characters
+     */
+    "validateLineBreaks": "LF",
+
+    /**
+     * Requires all quote marks to be either the supplied value, or consistent if true.
+     */
+    "validateQuoteMarks": { "mark": "'", "escape": true },
+
+    "jsDoc": {
+        /**
+         * Ensures tag names are valid
+         */
+        "checkAnnotations": true,
+
+        /**
+         * Ensures param names in jsdoc and in function declaration are equal
+         */
+        "checkParamNames": true,
+
+        /**
+         * Reports redundant params in jsdoc
+         * Use @abstract for our abstract functions that contain @param tags.
+         */
+        "checkRedundantParams": true,
+
+        /**
+         * Ensures params in jsdoc contains type
+         */
+        "requireParamTypes": true,
+
+        /**
+         * Report statements for functions with no return
+         * Does not flag functions that do not have a return statement
+         * Use @abstract for our abstract functions that contain @return tags.
+         */
+        "checkRedundantReturns": true,
+
+        /**
+         * Ensures returns in jsdoc contains type
+         */
+        "requireReturnTypes": true,
+
+        /**
+         * Ensures jsdoc block exist
+         */
+        "enforceExistence": true
+    }
+}

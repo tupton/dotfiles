@@ -40,8 +40,11 @@ install-git : create-gitconfig
 	install -m 0644 -- git/gitconfig "$(HOME)"/.gitconfig
 	install -m 0644 -- git/gitignore-global "$(HOME)"/.gitignore-global
 
-install-jshint :
-	install -m 0644 -- jshint/jshintrc "$(HOME)"/.jshintrc
+install-eslint :
+	install -m 0644 -- eslint/eslintrc "$(HOME)"/.eslintrc
+
+install-jscs :
+	install -m 0644 -- jscs/jscsrc "$(HOME)"/.jscsrc
 
 install-lein :
 	install -m 0755 -d -- "$(HOME)"/.lein

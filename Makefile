@@ -110,30 +110,34 @@ test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
-			if [ -f "$$setup" ] && ! zsh --no-exec "$$setup" ; then \
-					exit 1 ; \
-			fi \
+		echo "Parsing $$setup" ; \
+		if [ -f "$$setup" ] && ! zsh --no-exec "$$setup" ; then \
+			exit 1 ; \
+		fi \
 	done
 	@echo "All setup scripts parsed successfully."
 
 test-zsh :
 	@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh ; do \
-			if [ -f "$$zsh" ] && ! zsh --no-exec "$$zsh" ; then \
-					exit 1 ; \
-			fi \
+		echo "Parsing $$zsh" ; \
+		if [ -f "$$zsh" ] && ! zsh --no-exec "$$zsh" ; then \
+			exit 1 ; \
+		fi \
 	done
 	@echo "All zsh scripts parsed succesfully."
 
 test-bash :
 	@for bash in bash/* ; do \
-			if [ -f "$$bash" ] && ! bash -n "$$bash" ; then \
-					exit 1 ; \
-			fi \
+		echo "Parsing $$bash" ; \
+		if [ -f "$$bash" ] && ! bash -n "$$bash" ; then \
+			exit 1 ; \
+		fi \
 	done
 	@echo "All bash scripts parsed successfully."
 
 test-vimrc :
 	@for vim in vim/vimrc vim/gvimrc ; do \
+		echo "Linting $$vim"
 		if [ -f "$$vim" ] && ! vint "$$vim" ; then \
 			exit 1 ; \
 		fi \

@@ -1,8 +1,8 @@
 .PHONY: all \
-		clean \
-		distclean \
-		install \
-		test
+	clean \
+	distclean \
+	install \
+	test
 
 all :
 	@echo "Run \`make -n install\` and read the output carefully."
@@ -15,12 +15,12 @@ distclean :
 	@:
 
 install : install-ack \
-		install-git \
-		install-lein \
-		install-python \
-		install-readline \
-		install-vim \
-		install-zsh
+	install-git \
+	install-lein \
+	install-python \
+	install-readline \
+	install-vim \
+	install-zsh
 
 install-ack :
 	install -m 0644 -- ack/ackrc "$(HOME)"/.ackrc
@@ -68,12 +68,12 @@ install-tmux :
 	install -m 0644 -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
 
 install-vim : install-vim-config \
-		install-vim-init \
-		install-vim-vundle \
-		install-vim-plugins
+	install-vim-init \
+	install-vim-vundle \
+	install-vim-plugins
 
 install-gvim : install-vim \
-		install-gvim-config
+	install-gvim-config
 
 install-vim-config :
 	install -m 0644 -- vim/vimrc "$(HOME)"/.vimrc
@@ -83,9 +83,9 @@ install-gvim-config :
 
 install-vim-init:
 	install -m 0755 -d -- \
-			"$(HOME)"/.vim/bundle \
-			"$(HOME)"/.vim/swap \
-			"$(HOME)"/.vim/undodir
+		"$(HOME)"/.vim/bundle \
+		"$(HOME)"/.vim/swap \
+		"$(HOME)"/.vim/undodir
 
 install-vim-vundle :
 	vim/install-vundle
@@ -94,7 +94,7 @@ install-vim-plugins :
 	vim/install-plugins
 
 install-zsh : install-zsh-config \
-		install-oh-my-zsh
+	install-oh-my-zsh
 
 install-zshd :
 	install -m 0755 -d -- "$(HOME)"/.zshrc.d

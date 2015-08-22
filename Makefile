@@ -106,7 +106,7 @@ install-zsh-config : install-zshd
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
 
-test : test-setup test-zsh test-bash test-vimrc
+test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
@@ -139,3 +139,7 @@ test-vimrc :
 		fi \
 	done
 	@echo "All vim config files linted successfully."
+
+test-dotjs :
+	@npm test || exit 1
+	@echo "All dotjs files linted successfully."

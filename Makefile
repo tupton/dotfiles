@@ -137,7 +137,7 @@ test-bash :
 
 test-vimrc :
 	@for vim in vim/vimrc vim/gvimrc ; do \
-		echo "Linting $$vim"
+		echo "Linting $$vim" ; \
 		if [ -f "$$vim" ] && ! vint "$$vim" ; then \
 			exit 1 ; \
 		fi \

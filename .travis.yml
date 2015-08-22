@@ -1,10 +1,9 @@
-language: shell
+language: python
 addons:
   apt:
     packages:
     - build-essential
 before_install:
-# zsh
 - export LOCAL="$(mktemp --directory --tmpdir=${TMPDIR:/tmp} local.bin.XXXXXX)"
 - export DEP_ZSH_VERSION="zsh-5.0.8"
 - curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.gz | tar zx
@@ -14,12 +13,5 @@ before_install:
 - make install
 - cd -
 - export PATH="$LOCAL/bin:$PATH"
-# virtualenv
-- source ~/virtualenv/python2.7/bin/activate
 install: pip install -r requirements.txt
-before_script:
-- python --version
-- pip --version
-- zsh --version
-- bash --version
 script: make test

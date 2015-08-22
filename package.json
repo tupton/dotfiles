@@ -1,0 +1,29 @@
+{
+  "name": "tupton-dotfiles",
+  "version": "1.0.0",
+  "description": "A collection of config files that I use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test-eslint && npm run test-jscs",
+    "test-eslint": "eslint --no-eslintrc --config eslint/eslintrc dotjs",
+    "test-jscs": "jscs --config jscs/jscsrc dotjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tupton/dotfiles.git"
+  },
+  "keywords": [
+    "dotfiles",
+    "config"
+  ],
+  "author": "Thomas Upton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tupton/dotfiles/issues"
+  },
+  "homepage": "https://github.com/tupton/dotfiles#readme",
+  "devDependencies": {
+    "eslint": "^1.2.1",
+    "jscs": "^2.1.0"
+  }
+}

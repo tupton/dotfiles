@@ -44,6 +44,11 @@ There is a `test` target in the Makefile. Not everything is tested, but I've att
   [eslint]: http://eslint.org/
   [jscs]: http://jscs.info/
 
+
+You need `bash` and `zsh` installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you are have those two shells installed.
+
+In order to test the dotjs and vim config files, you need to install vim-vint, jscs, and eslint. There is a `requirements.txt` to help with vim-vint, and there is a `package.json` to help with the javascript linters. Simply run `pip install -r requirements.txt` and `npm install` to install these dependencies.
+
 ## Inspiration and Thanks
 
 https://github.com/tejr/dotfiles - Makefile and overall project structure

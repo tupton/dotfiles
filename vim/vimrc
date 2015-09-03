@@ -45,9 +45,6 @@ Plugin 'jelera/vim-javascript-syntax'
 " JSON syntax highlighting
 Plugin 'leshill/vim-json'
 
-" Fuzzy finding
-Plugin 'kien/ctrlp.vim'
-
 " Comment with gc
 Plugin 'tpope/vim-commentary'
 
@@ -95,6 +92,10 @@ Plugin 'PeterRincker/vim-argumentative'
 
 " manipulate delimiters
 Plugin 'tpope/vim-surround'
+
+" even better (and consistent) fuzzy finding
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 call g:vundle#end()
 

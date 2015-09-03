@@ -39,6 +39,8 @@ create-gitconfig:
 install-git : create-gitconfig
 	install -m 0644 -- git/gitconfig "$(HOME)"/.gitconfig
 	install -m 0644 -- git/gitignore-global "$(HOME)"/.gitignore-global
+	install -m 0755 -d -- "$(HOME)"/.local/bin
+	install -m 0755 -- git/git-* "$(HOME)"/.local/bin
 
 install-eslint :
 	install -m 0644 -- eslint/eslintrc "$(HOME)"/.eslintrc

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+local branch
+branch=$(git branch | sed "s/^[\* ] //" | fzf -0 -1 -q "$1")
+if [ -n "$branch" ]; then
+    echo "$branch"
+    git checkout "$branch"
+fi

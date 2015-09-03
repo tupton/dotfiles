@@ -69,7 +69,7 @@ bindkey -v
 
 # Path
 typeset -U path
-path=(. /usr/local/bin "$path[@]")
+path=(. "$HOME"/.local/bin /usr/local/bin "$path[@]")
 hash npm 2>/dev/null && path+=("$(npm bin -g)")
 hash brew 2>/dev/null && path+=("$(brew --prefix)"/bin)
 [ -d "$HOME"/code/automaton/bin ] && path+=("$HOME"/code/automaton/bin)

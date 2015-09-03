@@ -45,9 +45,14 @@ setopt AUTO_CD
 setopt INTERACTIVE_COMMENTS
 
 # Bigger history
-export HISTSIZE=10000
+export HISTSIZE=65535
 export SAVEHIST=$HISTSIZE
+# Save timestamps with history
 setopt EXTENDED_HISTORY
+# Ignore duplicate entries; older dupes are removed
+setopt HIST_IGNORE_DUPS
+# Ignore commands that begin with a space; useful for sensitive information
+setopt HIST_IGNORE_SPACE
 
 # -R -- properly display color escape sequences (was on by default; necessary to include when changing)
 # -s -- squeeze consecutive blank lines into one line

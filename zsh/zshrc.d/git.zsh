@@ -4,6 +4,6 @@ gt() {
 }
 
 # edit files changed in the working tree
-vt() {
+vimtree() {
     ${EDITOR:-vim} $(git pick-tree)
 }

@@ -426,7 +426,6 @@ set shortmess+=aI
 " }}}
 " {{{ Paste
 set nopaste
-nnoremap <leader>p :set paste!<CR>
 
 " }}}
 " {{{ Rainbow

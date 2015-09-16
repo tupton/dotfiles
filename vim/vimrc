@@ -117,9 +117,6 @@ set hidden
 let g:mapleader = ' '
 let g:maplocalleader = ' '
 
-" Omni completion
-set omnifunc=syntaxcomplete#Complete
-
 " More frequent updates for, e.g. signs.
 set updatetime=750
 

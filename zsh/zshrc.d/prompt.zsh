@@ -25,7 +25,10 @@ function compact_path() {
 }
 
 function prompt_char() {
-    git rev-parse > /dev/null 2>&1 && echo "%F{cyan}±%f" || echo "%F{yellow}○%f"
+    local char
+    char="○"
+    git rev-parse >/dev/null 2>&1 && char="±"
+    echo "%(1j.%{%F{magenta}%}.%{%F{cyan}%})$char%f"
 }
 
 function ctool_instances() {

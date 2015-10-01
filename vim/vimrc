@@ -113,7 +113,7 @@ set termencoding=utf-8
 " Manage multiple buffers
 set hidden
 
-" Map leader to ,
+" Map leader to <space>
 let g:mapleader = ' '
 let g:maplocalleader = ' '
 

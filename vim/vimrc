@@ -99,8 +99,8 @@ Plugin 'junegunn/fzf.vim'
 
 call g:vundle#end()
 
-syntax enable
 filetype plugin indent on
+syntax enable
 
 " }}}
 " {{{ Setup

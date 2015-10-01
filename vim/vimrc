@@ -421,10 +421,6 @@ silent! runtime macros/matchit.vim
 set shortmess+=aI
 
 " }}}
-" {{{ Paste
-set nopaste
-
-" }}}
 " {{{ Rainbow
 let g:rainbow_active = 1
 

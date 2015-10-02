@@ -50,7 +50,7 @@
         /**
          * enable computed object literal property names
          */
-        "objectLiteralComputedProperties": false,
+        "objectLiteralComputedProperties": true,
 
         /**
          * enable duplicate object literal properties in strict mode
@@ -60,12 +60,12 @@
         /**
          * enable object literal shorthand methods
          */
-        "objectLiteralShorthandMethods": false,
+        "objectLiteralShorthandMethods": true,
 
         /**
          * enable object literal shorthand properties
          */
-        "objectLiteralShorthandProperties": false,
+        "objectLiteralShorthandProperties": true,
 
         /**
          * enable octal literals

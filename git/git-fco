@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 local branch
-branch=$(git branch | sed "s/^[\* ] //" | fzf --extended --exit-0 --select-1 --query "$1")
+branch=$(git fb "$1")
 if [ -n "$branch" ]; then
     echo "$branch"
     git checkout "$branch"

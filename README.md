@@ -31,6 +31,8 @@ Look at the `Makefile` to see which dotfiles are installed by default and which 
 separate task. For example, TextMate and tarsnap configs only really apply to my local machine, so
 they are not installed by default.
 
+Use `make list` to see a list of all targets, including the test targets and any auxiliary helper targets. More on test targets follows.
+
 ## Tests
 
 There is a `test` target in the Makefile. Not everything is tested, but I've attempted to verify the files that can be tested. If you know of a way to verify or test other dotfiles, please open an issue or let me know.

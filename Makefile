@@ -2,18 +2,21 @@
 	clean \
 	distclean \
 	install \
+	list \
 	test
 
 all :
 	@echo "Run \`make -n install\` and read the output carefully."
 	@echo "If you're happy with what will happen, then run \`make install\`."
 
+list:
+	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
 clean :
 	@rm -f git/gitconfig
 
 distclean :
 	@:
-
 install : install-ack \
 	install-git \
 	install-lein \

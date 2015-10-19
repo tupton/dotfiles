@@ -28,9 +28,9 @@ windows:
       layout: even-vertical
       panes:
         - logs:
-            -
+            - cd
         - cassandra:
-            - cd ~/code/cassandra
+            - cd ~/code/bdp
         - opscenterd:
             - cd opscenterd
         - agent:

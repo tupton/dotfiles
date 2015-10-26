@@ -151,6 +151,9 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
 " modified status same color as tab line
 function! g:AirlineThemeModified(palette)
   let a:palette.normal_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
@@ -161,6 +164,15 @@ endfunction
 let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 
 let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_section_a = g:airline#section#create_left(['%v', 'crypt', 'iminsert'])
+let g:airline_section_z = g:airline#section#create(['%3p%%'.g:airline_symbols.space])
+
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning']
+\ ]
+
 " }}}
 " {{{ Autocommands
 if has('autocmd')

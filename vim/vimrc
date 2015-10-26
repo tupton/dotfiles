@@ -167,7 +167,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 let g:airline_section_a = g:airline#section#create_left(['%v', 'crypt', 'iminsert'])
-let g:airline_section_z = g:airline#section#create(['%3p%%'.g:airline_symbols.space])
+let g:airline_section_z = g:airline#section#create(['%3p%%'])
 
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],

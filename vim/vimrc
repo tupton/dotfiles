@@ -166,11 +166,10 @@ let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-let g:airline_section_a = g:airline#section#create_left(['%v', 'crypt', 'iminsert'])
-let g:airline_section_z = g:airline#section#create(['%3p%%'])
+let g:airline_section_z = g:airline#section#create(['%2v'.g:airline_symbols.space, '%3p%%'])
 
 let g:airline#extensions#default#layout = [
-    \ [ 'a', 'b', 'c' ],
+    \ [ 'b', 'c' ],
     \ [ 'x', 'z', 'warning']
 \ ]
 

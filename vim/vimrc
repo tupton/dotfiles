@@ -130,7 +130,7 @@ let g:ackprg='ack --noenv -H --nocolor --nogroup --column --smart-case --after=0
 
 " Unicode symbols for sections
 " The patched source code pro font provides these symbols
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " Short mode letters
 if !exists('g:airline_mode_map')

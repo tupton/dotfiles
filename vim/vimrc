@@ -154,12 +154,21 @@ let g:airline_mode_map = {
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-" modified status same color as tab line
+" Modified theme
+" * status same color as tab line
+" * inactive bg different than status and ruler
 function! g:AirlineThemeModified(palette)
-  let a:palette.normal_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
-  let a:palette.insert_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
-  let a:palette.visual_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
-  let a:palette.inactive_modified.airline_c =['#b58900', '', 136, '', 'bold']
+    if g:airline_theme ==? 'solarized'
+        let a:palette.normal_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
+        let a:palette.insert_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
+        let a:palette.visual_modified.airline_c =  ['#eee8d5', '#b58900', 254, 136, 'bold']
+        let a:palette.inactive_modified.airline_c =['#b58900', '', 136, '', 'bold']
+
+        for l:colors in values(a:palette.inactive)
+            let l:colors[2] = 241
+            let l:colors[3] = 235
+        endfor
+    endif
 endfunction
 let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 

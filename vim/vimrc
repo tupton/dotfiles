@@ -164,7 +164,8 @@ endfunction
 let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 
 let g:airline_section_z = g:airline#section#create(['%2v'.g:airline_symbols.space, '%3p%%'])
 

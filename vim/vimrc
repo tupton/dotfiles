@@ -127,30 +127,7 @@ let g:ackprg='ack --noenv -H --nocolor --nogroup --column --smart-case --after=0
 
 " }}}
 " {{{ Airline
-
-" Unicode symbols for sections
-" The patched source code pro font provides these symbols
-let g:airline_powerline_fonts = 0
-
-" Short mode letters
-if !exists('g:airline_mode_map')
-    let g:airline_mode_map = {}
-endif
-
-let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'i'  : 'I',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ '' : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
-  \ }
-
+" No separators between sections
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
@@ -172,12 +149,16 @@ function! g:AirlineThemeModified(palette)
 endfunction
 let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 
+" Enable buffers and numbers in the tab bar
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 
+" No line number in status; just column and percentage
 let g:airline_section_z = g:airline#section#create(['%2v'.g:airline_symbols.space, '%3p%%'])
 
+" No need for mode (or crypt, paste, iminsert, etc.) because of showmode
+" No need for file encoding or format
 let g:airline#extensions#default#layout = [
     \ [ 'b', 'c' ],
     \ [ 'x', 'z', 'warning']

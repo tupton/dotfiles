@@ -342,8 +342,8 @@ let g:gitgutter_diff_args = '-w'
 " Don't map any keys by default
 let g:gitgutter_map_keys = 0
 
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nnoremap ]h <Plug>GitGutterNextHunk
+nnoremap [h <Plug>GitGutterPrevHunk
 nnoremap <leader>hs <Plug>GitGutterStageHunk
 nnoremap <leader>hr <Plug>GitGutterRevertHunk
 

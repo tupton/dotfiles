@@ -344,6 +344,8 @@ let g:gitgutter_map_keys = 0
 
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
+nnoremap <leader>hs <Plug>GitGutterStageHunk
+nnoremap <leader>hr <Plug>GitGutterRevertHunk
 
 " }}}
 " {{{ History

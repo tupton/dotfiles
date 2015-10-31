@@ -74,7 +74,7 @@ install-tmux :
 
 install-vim : install-vim-config \
 	install-vim-init \
-	install-vim-vundle \
+	install-vim-plug \
 	install-vim-plugins
 
 install-gvim : install-vim \
@@ -88,12 +88,13 @@ install-gvim-config :
 
 install-vim-init:
 	install -m 0755 -d -- \
-		"$(HOME)"/.vim/bundle \
+		"$(HOME)"/.vim/autoload \
 		"$(HOME)"/.vim/swap \
-		"$(HOME)"/.vim/undodir
+		"$(HOME)"/.vim/undodir \
+		"$(HOME)"/.vim/plugged
 
-install-vim-vundle :
-	vim/install-vundle
+install-vim-plug :
+	vim/install-vim-plug
 
 install-vim-plugins :
 	vim/install-plugins

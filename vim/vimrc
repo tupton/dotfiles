@@ -1,103 +1,100 @@
 " .vimrc
 
-" {{{ Vundle
+" {{{ vim-plug
 
-" Required Vundle setup
-filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call g:vundle#begin()
+call g:plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " :Ack
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " Better status line
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 " ga for character descriptions
-Plugin 'tpope/vim-characterize'
+Plug 'tpope/vim-characterize'
 
 " :Gdiff, :Gcommit, etc.
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Markdown syntax
-Plugin 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown'
 
 " Add support for github-style fenced codeblocks in markdown
-Plugin 'jtratner/vim-flavored-markdown.git'
+Plug 'jtratner/vim-flavored-markdown'
 
 " Python syntax folding
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
 " Syntax, linting, etc.
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Clojure syntax
-Plugin 'vim-scripts/VimClojure'
+Plug 'vim-scripts/VimClojure'
 
 " Solarized theme
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " Javascript syntax
-Plugin 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax'
 
 " JSON syntax highlighting
-Plugin 'leshill/vim-json'
+Plug 'leshill/vim-json'
 
 " Comment with gc
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " Amazing mappings
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Repeat things
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
 " JSON pretty printing with gqaj
-Plugin 'tpope/vim-jdaddy'
+Plug 'tpope/vim-jdaddy'
 
 " git runtime files - highlight git config, commit, etc.
-Plugin 'tpope/vim-git'
+Plug 'tpope/vim-git'
 
 " Inline git status
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Coffeescript
-Plugin 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script'
 
 " YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " TernJS
-Plugin 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 
 " Open current Markdown buffer in Marked2
-Plugin 'itspriddle/vim-marked'
+Plug 'itspriddle/vim-marked'
 
 " Better rainbow parens
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 
 " iTerm2 and tmux integration
-Plugin 'sjl/vitality.vim'
+Plug 'sjl/vitality.vim'
 
 " Lint vimscript with vint; requires vint: pip install vim-vint
-Plugin 'todesking/vint-syntastic'
+Plug 'todesking/vint-syntastic'
 
 " netrw improvements
-Plugin 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 
 " argument manipulation
-Plugin 'PeterRincker/vim-argumentative'
+Plug 'PeterRincker/vim-argumentative'
 
 " manipulate delimiters
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " even better (and consistent) fuzzy finding
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
-call g:vundle#end()
+call g:plug#end()
 
 filetype plugin indent on
 syntax enable

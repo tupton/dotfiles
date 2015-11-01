@@ -20,7 +20,7 @@ tmux_command: tmux -2
 
 windows:
   - editor:
-      layout: 040d,215x95,0,0[215x18,0,0,0,215x76,0,19,3]
+      layout: 8906,215x70,0,0[215x15,0,0,0,215x54,0,16,3]
       panes:
         - cd opscenterd
         - cd opscenterd

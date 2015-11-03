@@ -130,7 +130,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.readonly = '🔒'
+let g:airline_symbols.readonly = '∅'
 
 " Modified theme
 " * status same color as tab line

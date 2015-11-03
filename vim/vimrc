@@ -500,8 +500,6 @@ set splitright
 " {{{ Status line
 " Always show the status line
 set laststatus=2
-" Disable this status line when using Powerline
-"set statusline=%-3.3n\ %f%(\ %r%)%(\ %#WarningMsg#%m%0*%)%=(%l/%L,\ %c)\ %P\ [%{&encoding}:%{&fileformat}]%(\ %w%)\ %y
 
 " }}}
 " {{{ Swap

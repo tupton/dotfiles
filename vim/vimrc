@@ -4,8 +4,6 @@
 
 call g:plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/Vundle.vim'
-
 " :Ack
 Plug 'mileszs/ack.vim'
 
@@ -195,7 +193,8 @@ if has('autocmd')
     augroup coffescript
         autocmd!
 
-        " Automatically set coffeescript filetype; necessary because of some vundle filetype issue
+        " Automatically set coffeescript filetype; necessary because the coffee filetype is defined
+        " by a plugin
         autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
     augroup END
 

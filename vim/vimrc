@@ -29,7 +29,16 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'scrooloose/syntastic'
 
 " Clojure syntax
-Plug 'vim-scripts/VimClojure'
+Plug 'guns/vim-clojure-static'
+
+" lein support
+Plug 'tpope/vim-salve'
+
+" nREPL
+Plug 'tpope/vim-fireplace'
+
+" clojure+syntastic
+Plug 'venantius/vim-eastwood'
 
 " Solarized theme
 Plug 'altercation/vim-colors-solarized'

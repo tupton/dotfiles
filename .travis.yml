@@ -14,8 +14,8 @@ before_install:
 - cd -
 - export PATH="$LOCAL/bin:$PATH"
 install:
-- pip install -r requirements.txt
-- npm install
+- pip install -r test-requirements.txt
+- npm install --only=dev
 before_script:
 - zsh --version
 - bash --version

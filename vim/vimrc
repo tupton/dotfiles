@@ -101,6 +101,9 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+" async build tasks
+Plug 'tpope/vim-dispatch'
+
 call g:plug#end()
 
 filetype plugin indent on

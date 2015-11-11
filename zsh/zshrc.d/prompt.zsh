@@ -31,13 +31,6 @@ function prompt_char() {
     echo "%(1j.%{%F{magenta}%}.%{%F{cyan}%})$char%f"
 }
 
-function ctool_instances() {
-    if hash ctool 2>/dev/null; then
-        local instances="$(( $(ctool list | awk '{ s += $2 } END { print s }') ))"
-        [[ "$instances" -gt 0 ]] && echo " %B%F{black}$instances¢%f%b"
-    fi
-}
-
 setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
@@ -101,7 +94,7 @@ precmd() { vcs_info }
 
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 
-__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path %~)%f%b$(ctool_instances) ${vcs_info_msg_0_}%E
+__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path %~)%f%b ${vcs_info_msg_0_}%E
 ${prompt_leader}'
 
 function simple_prompt() {

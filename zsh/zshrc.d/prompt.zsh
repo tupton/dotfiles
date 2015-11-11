@@ -97,12 +97,20 @@ prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 __prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path %~)%f%b ${vcs_info_msg_0_}%E
 ${prompt_leader}'
 
-function simple_prompt() {
+function prompt_simple() {
     PROMPT=$prompt_leader
 }
 
-function reset_prompt() {
+function prompt_reset() {
     PROMPT=$__prompt
 }
 
-reset_prompt
+function prompt!() {
+    if [[ $PROMPT == $__prompt ]]; then
+        prompt_simple
+    else
+        prompt_reset
+    fi
+}
+
+prompt_reset

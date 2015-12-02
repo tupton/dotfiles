@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env zsh
 
 if ! [[ -f "git/gitconfig" ]]; then
     local git_credential="cache"

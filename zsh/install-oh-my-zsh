@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env zsh
 
 # Clone oh-my-zsh, but only if it doesn't exist yet
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then

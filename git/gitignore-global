@@ -38,3 +38,6 @@ Thumbs.db
 target/
 .ant_targets
 doc/tags
+
+# local config
+profiles.clj

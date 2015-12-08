@@ -3,6 +3,7 @@
 local branch
 branch=$(git fb "$1")
 if [ -n "$branch" ]; then
-    echo "$branch"
+    PS4=''
+    set -x
     git checkout "$branch"
 fi

@@ -330,7 +330,7 @@ augroup vimrc
 
     autocmd FileType xhtml,xml,html set textwidth=0
     autocmd FileType make set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8
-    autocmd FileType markdown set textwidth=0 wrapmargin=0 wrap linebreak 
+    autocmd FileType markdown set textwidth=0 wrapmargin=0 wrap linebreak
     autocmd FileType clojure set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
 augroup END

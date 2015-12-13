@@ -104,6 +104,9 @@ Plug 'junegunn/fzf.vim'
 " async build tasks
 Plug 'tpope/vim-dispatch'
 
+" github integration
+Plug 'tpope/vim-rhubarb'
+
 call g:plug#end()
 
 filetype plugin indent on

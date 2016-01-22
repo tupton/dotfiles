@@ -44,10 +44,10 @@ Plug 'venantius/vim-eastwood'
 Plug 'altercation/vim-colors-solarized'
 
 " Javascript syntax
-Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/yajs.vim', { 'for': 'javascript'}
 
 " JSON syntax highlighting
-Plug 'leshill/vim-json'
+Plug 'elzr/vim-json'
 
 " Comment with gc
 Plug 'tpope/vim-commentary'

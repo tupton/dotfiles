@@ -8,7 +8,8 @@ call g:plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
 
 " Better status line
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " ga for character descriptions
 Plug 'tpope/vim-characterize'

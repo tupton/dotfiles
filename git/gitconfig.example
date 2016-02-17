@@ -31,6 +31,18 @@
     old = red
     new = green
     whitespace = red reverse
+[color "branch"]
+    current = reverse
+    local = yellow bold
+    remote = green bold
+[color "status"]
+    header = green bold
+    added = green
+    changed = red
+    untracked = cyan bold
+    branch = blue
+    nobranch = magenta
+    unmerged = red bold
 [branch]
     autosetuprebase = always
     autosetupmerge = always

@@ -26,7 +26,7 @@
     ui = auto
 [color "diff"]
     meta = yellow bold
-    commit = cyan
+    commit = blue
     frag = magenta bold
     old = red
     new = green
@@ -39,8 +39,8 @@
     header = green bold
     added = green
     changed = red
-    untracked = cyan bold
-    branch = blue
+    untracked = yellow bold
+    branch = cyan
     nobranch = magenta
     unmerged = red bold
 [branch]

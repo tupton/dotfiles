@@ -178,7 +178,7 @@ let g:airline_section_z = g:airline#section#create(['%2v'.g:airline_symbols.spac
 " No need for file encoding or format
 let g:airline#extensions#default#layout = [
     \ [ 'b', 'c' ],
-    \ [ 'z', 'warning']
+    \ [ 'z', 'error', 'warning']
 \ ]
 
 " }}}

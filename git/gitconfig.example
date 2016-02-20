@@ -39,7 +39,7 @@
     header = green bold
     added = green
     changed = red
-    untracked = yellow bold
+    untracked = magenta bold
     branch = cyan
     nobranch = magenta
     unmerged = red bold

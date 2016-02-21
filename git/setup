@@ -1,6 +1,17 @@
 #!/usr/bin/env zsh
 
-if ! [[ -f "git/gitconfig" ]]; then
+local uname=$(uname)
+local -a stat_command=("stat")
+if [[ "$uname" == "Linux" ]]; then
+    stat_command+=("-c" "%Y")
+elif [[ "$uname" == "Darwin" ]]; then
+    stat_command+=("-f" "%m")
+fi
+
+local example_modified=$("$stat_command[@]" git/gitconfig.example)
+local installed_modified=$("$stat_command[@]" "${HOME}"/.gitconfig)
+
+if [[ "$example_modified" -ge "$installed_modified" ]]; then
     local git_credential="cache"
     if [[ "$(uname -s)" == "Darwin" ]]; then
         git_credential="osxkeychain"

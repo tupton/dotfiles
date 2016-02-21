@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
 local uname=$(uname)
-local -a stat_command=("stat")
+typeset -a stat_command
+stat_command=("stat")
 if [[ "$uname" == "Linux" ]]; then
     stat_command+=("-c" "%Y")
 elif [[ "$uname" == "Darwin" ]]; then
@@ -10,6 +11,7 @@ fi
 
 local example_modified=$("$stat_command[@]" git/gitconfig.example)
 local installed_modified=$("$stat_command[@]" "${HOME}"/.gitconfig)
+unset stat_command
 
 if [[ "$example_modified" -ge "$installed_modified" ]]; then
     local git_credential="cache"

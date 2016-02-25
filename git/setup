@@ -13,21 +13,23 @@ local example_modified=$("$stat_command[@]" git/gitconfig.example)
 local installed_modified=$("$stat_command[@]" "${HOME}"/.gitconfig)
 unset stat_command
 
-if [[ "$example_modified" -ge "$installed_modified" ]]; then
-    local git_credential="cache"
-    if [[ "$(uname -s)" == "Darwin" ]]; then
-        git_credential="osxkeychain"
-    fi
-
-    local git_push_default="current"
-    local git_version="$(git --version | awk 'NR==1{print $3}')"
-    local git_major_version="${git_version[1]}"
-    if [[ "$git_major_version" -ge 2 ]]; then
-        git_push_default="simple"
-    fi
-
-    vared -p 'What is your GitHub author name? ' -c git_author
-    vared -p 'What is your GitHub author email? ' -c git_email
-
-    sed -e "s/AUTHORNAME/$git_author/g" -e "s/AUTHOREMAIL/$git_email/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/GIT_PUSH_DEFAULT/$git_push_default/g" git/gitconfig.example > git/gitconfig
+if [[ "$example_modified" -lt "$installed_modified" ]]; then
+    exit 0
 fi
+
+local git_credential="cache"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    git_credential="osxkeychain"
+fi
+
+local git_push_default="current"
+local git_version="$(git --version | awk 'NR==1{print $3}')"
+local git_major_version="${git_version[1]}"
+if [[ "$git_major_version" -ge 2 ]]; then
+    git_push_default="simple"
+fi
+
+vared -p 'What is your GitHub author name? ' -c git_author
+vared -p 'What is your GitHub author email? ' -c git_email
+
+sed -e "s/AUTHORNAME/$git_author/g" -e "s/AUTHOREMAIL/$git_email/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/GIT_PUSH_DEFAULT/$git_push_default/g" git/gitconfig.example > git/gitconfig

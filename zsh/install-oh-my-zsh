@@ -1,4 +1,8 @@
 #!/usr/bin/env zsh
 
 # Clone oh-my-zsh, but only if it doesn't exist yet
-[ -d "$HOME/.oh-my-zsh" ] && git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
+if [ -d "$HOME"/.oh-my-zsh ]; then
+    exit 0;
+fi
+
+git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME"/.oh-my-zsh

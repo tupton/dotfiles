@@ -519,8 +519,15 @@ endif
 " {{{ Splits
 
 " Intuitive split locations
-set splitbelow
 set splitright
+set splitbelow
+
+augroup helpfiles
+    autocmd!
+
+    " Always open help in vertical split
+    autocmd vimrc FileType help wincmd L
+augroup END
 
 " }}}
 " {{{ Status line

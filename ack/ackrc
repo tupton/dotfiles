@@ -16,3 +16,4 @@
 --type-set=clj:ext:clj
 --type-set=md:ext:md,markdown
 --type-set=cljs:ext:cljs
+--type-set=edn:ext:edn

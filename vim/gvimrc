@@ -1,2 +1,2 @@
 " Font face and size
-set guifont=Menlo\ Regular:h12
+set guifont=Source\ Code\ Pro:h12

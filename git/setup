@@ -24,7 +24,7 @@ fi
 
 local git_push_default="current"
 local git_version="$(git --version | awk 'NR==1{print $3}')"
-local git_major_version="${git_version[1]}"
+local git_major_version="${git_version:0:1}"
 if [[ "$git_major_version" -ge 2 ]]; then
     git_push_default="simple"
 fi

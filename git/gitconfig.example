@@ -15,6 +15,7 @@
     fa = fuzzy-add
     fb = fuzzy-branch
     fco = fuzzy-checkout
+    pt = pick-tree
 
 [merge]
     tool = vimdiff

@@ -12,6 +12,7 @@
     dump = cat-file -p
     diff = diff -F
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+    fa = fuzzy-add
 
 [merge]
     tool = vimdiff

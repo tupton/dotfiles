@@ -13,6 +13,7 @@
     diff = diff -F
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     fa = fuzzy-add
+    fb = fuzzy-branch
 
 [merge]
     tool = vimdiff

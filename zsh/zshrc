@@ -32,7 +32,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git github lein node npm osx python rake rvm ant command-not-found pip gitignore colored-man-pages colorize zsh-syntax-highlighting history-substring-search)
+plugins=(git lein osx rake ant command-not-found colored-man-pages colorize zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 

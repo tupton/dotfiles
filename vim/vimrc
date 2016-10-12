@@ -4,9 +4,6 @@
 
 call g:plug#begin('~/.vim/plugged')
 
-" :Ack
-Plug 'mileszs/ack.vim'
-
 " Better status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

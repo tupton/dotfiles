@@ -76,7 +76,7 @@ hash brew 2>/dev/null && path+=("$(brew --prefix)"/bin)
 export PATH
 
 # Homebrew doesn't write anything outside of `brew --prefix`
-# https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Homebrew-and-Python.md#site-packages-and-the-pythonpath
+# https://github.com/Homebrew/brew/blob/master/docs/Homebrew-and-Python.md#site-packages-and-the-pythonpath
 hash brew 2>/dev/null && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 [ -d "$HOME"/code/automaton ] && export PYTHONPATH="$HOME/code/automaton:$PYTHONPATH"
 export PYTHONPATH

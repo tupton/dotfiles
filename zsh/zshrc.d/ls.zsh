@@ -4,7 +4,7 @@ lsopts() {
     local lshelp lsopts colors
 
     # Snarf the output of `ls --help` into a variable
-    lshelp=$(ls --help 2>/dev/null)
+    lshelp=$(ls --help 2>&1)
 
     # Start collecting available options
     lsopts=()
@@ -16,7 +16,7 @@ lsopts() {
     # at least eight colors, add --color=auto to the options
     colors=$(tput colors)
     if ((colors >= 8)); then
-        if [[ $lshelp == *--color* ]]; then
+        if [[ "$lshelp" == "*--color*" ]]; then
             lsopts+=(--color=auto)
         else
             lsopts+=(-G)

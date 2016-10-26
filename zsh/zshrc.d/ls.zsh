@@ -13,7 +13,7 @@ lsopts() {
     # at least eight colors, add platform-specific option for color
     colors=$(tput colors)
     if ((colors >= 8)); then
-        if ls --help |& grep "\-\-color" 2>&1 >/dev/null; then
+        if command ls --help |& grep "\-\-color" 2>&1 >/dev/null; then
             lsopts+=(--color=auto)
         else
             lsopts+=(-G)

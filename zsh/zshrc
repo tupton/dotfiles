@@ -75,13 +75,11 @@ if hash brew 2>/dev/null; then
     hash node 2>/dev/null || path+=("$(brew --prefix)"/opt/node@6/bin)
 fi
 hash npm 2>/dev/null && path+=("$(npm bin -g)")
-[ -d "$HOME"/code/automaton/bin ] && path+=("$HOME"/code/automaton/bin)
 export PATH
 
 # Homebrew doesn't write anything outside of `brew --prefix`
 # https://github.com/Homebrew/brew/blob/master/docs/Homebrew-and-Python.md#site-packages-and-the-pythonpath
 hash brew 2>/dev/null && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
-[ -d "$HOME"/code/automaton ] && export PYTHONPATH="$HOME/code/automaton:$PYTHONPATH"
 export PYTHONPATH
 
 if [[ -d "$HOME"/.zshrc.d ]]; then

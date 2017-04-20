@@ -8,3 +8,6 @@ npm-exec() {
     shift
     "$(npm bin)"/"$bin" "$@"
 }
+
+hash npm 2>/dev/null && path+=("$(npm bin -g)")
+export PATH

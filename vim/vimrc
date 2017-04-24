@@ -364,6 +364,10 @@ let g:fzf_colors =
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <silent> <leader><Enter> :Buffers<cr>
 
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 " }}}
 " {{{ git-gutter
 " Escape grep so we don't have color codes

@@ -96,7 +96,7 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'tpope/vim-surround'
 
 " even better (and consistent) fuzzy finding
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': './install --bin --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 
 " async build tasks

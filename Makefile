@@ -112,6 +112,13 @@ install-zsh-config : install-zshd
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
 
+install-xdg-config :
+	install -m 0755 -d -- "$(HOME)"/.config
+
+install-karabiner-elements : install-xdg-config
+	install -m 0755 -d -- "$(HOME)"/.config/karabiner
+	install -m 0644 -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

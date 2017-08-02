@@ -116,8 +116,10 @@ install-xdg-config :
 	install -m 0755 -d -- "$(HOME)"/.config
 
 install-karabiner-elements : install-xdg-config
-	install -m 0755 -d -- "$(HOME)"/.config/karabiner
+	install -m 0755 -d -- "$(HOME)"/.config/karabiner/assets/complex_modifications
 	install -m 0644 -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
+	install -m 0644 -- Karabiner-Elements/caps-lock-to-control.json "$(HOME)"/.config/karabiner/assets/complex_modifications/caps-lock-to-control.json
+	install -m 0644 -- Karabiner-Elements/logitech-k350-switch-command-option.json "$(HOME)"/.config/karabiner/assets/complex_modifications/logitech-k350-switch-command-option.json
 
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 

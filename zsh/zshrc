@@ -67,16 +67,16 @@ bindkey -v
 # Explicit JAVA_HOME, for OS X
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
-# Path
-typeset -U path
-path=(. "$HOME"/.local/bin /usr/local/bin "$path[@]")
-
 if [[ -d "$HOME"/.zshrc.d ]]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do
         source "$config"
     done
 fi
 unset -v config
+
+# Path
+typeset -U path
+path=(. "$HOME"/.local/bin "$path[@]")
 
 # do this last in case any scripts touch the path
 export PATH

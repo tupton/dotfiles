@@ -1,7 +1,7 @@
 if hash brew 2>/dev/null; then
-    path+=("$(brew --prefix)"/bin)
-    hash node 2>/dev/null || path+=("$(brew --prefix)"/opt/node@6/bin)
-    hash thrift 2>/dev/null || path+=("$(brew --prefix)"/opt/thrift@0.90/bin)
+    hash node 2>/dev/null || PATH="$(brew --prefix)"/opt/node@6/bin:"$PATH"
+    hash thrift 2>/dev/null || PATH="$(brew --prefix)"/opt/thrift@l.90/bin:"$PATH"
+    PATH="$(brew --prefix)"/bin:"$PATH"
     export PATH
 fi
 

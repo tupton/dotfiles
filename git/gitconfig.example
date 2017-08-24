@@ -7,6 +7,7 @@
     ci = commit
     st = status
     br = branch
+    bn = rev-parse --abbrev-ref HEAD
     hist = log --pretty=format:\"%C(green)%h%C(cyan) %ar%Creset - %s%C(red)%d%C(yellow) [%an] %Creset\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p

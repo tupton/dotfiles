@@ -1,121 +1,126 @@
 {
     // http://eslint.org/docs/rules/
 
-    "ecmaFeatures": {
-        /**
-         * enable arrow functions
-         */
-        "arrowFunctions": true,
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+            /**
+             * enable arrow functions
+             */
+            "arrowFunctions": true,
 
-        /**
-         * enable binary literals
-         */
-        "binaryLiterals": false,
+            /**
+             * enable binary literals
+             */
+            "binaryLiterals": false,
 
-        /**
-         * enable let and const (aka block bindings)
-         */
-        "blockBindings": true,
+            /**
+             * enable let and const (aka block bindings)
+             */
+            "blockBindings": true,
 
-        /**
-         * enable es6 classes
-         */
-        "classes": false,
+            /**
+             * enable es6 classes
+             */
+            "classes": false,
 
-        /**
-         * enable default function parameters
-         */
-        "defaultParams": true,
+            /**
+             * enable default function parameters
+             */
+            "defaultParams": true,
 
-        /**
-         * enable destructuring for variables and params
-         */
-        "destructuring": true,
+            /**
+             * enable destructuring for variables and params
+             */
+            "destructuring": true,
 
-        /**
-         * enable for-of loops
-         */
-        "forOf": true,
+            /**
+             * enable for-of loops
+             */
+            "forOf": true,
 
-        /**
-         * enable generators
-         */
-        "generators": true,
+            /**
+             * enable generators
+             */
+            "generators": true,
 
-        /**
-         * enable modules and global strict mode
-         */
-        "modules": false,
+            /**
+             * enable modules and global strict mode
+             */
+            "modules": false,
 
-        /**
-         * enable computed object literal property names
-         */
-        "objectLiteralComputedProperties": true,
+            /**
+             * enable computed object literal property names
+             */
+            "objectLiteralComputedProperties": true,
 
-        /**
-         * enable duplicate object literal properties in strict mode
-         */
-        "objectLiteralDuplicateProperties": false,
+            /**
+             * enable duplicate object literal properties in strict mode
+             */
+            "objectLiteralDuplicateProperties": false,
 
-        /**
-         * enable object literal shorthand methods
-         */
-        "objectLiteralShorthandMethods": true,
+            /**
+             * enable object literal shorthand methods
+             */
+            "objectLiteralShorthandMethods": true,
 
-        /**
-         * enable object literal shorthand properties
-         */
-        "objectLiteralShorthandProperties": true,
+            /**
+             * enable object literal shorthand properties
+             */
+            "objectLiteralShorthandProperties": true,
 
-        /**
-         * enable octal literals
-         */
-        "octalLiterals": false,
+            /**
+             * enable octal literals
+             */
+            "octalLiterals": false,
 
-        /**
-         * enable the regular expression u flag
-         */
-        "regexUFlag": false,
+            /**
+             * enable the regular expression u flag
+             */
+            "regexUFlag": false,
 
-        /**
-         * enable the regular expression y flag
-         */
-        "regexYFlag": false,
+            /**
+             * enable the regular expression y flag
+             */
+            "regexYFlag": false,
 
-        /**
-         * enable rest function parameters
-         */
-        "restParams": true,
+            /**
+             * enable rest function parameters
+             */
+            "restParams": true,
 
-        /**
-         * enable spread operator
-         */
-        "spread": true,
+            /**
+             * enable spread operator
+             */
+            "spread": true,
 
-        /**
-         * enable super references inside functions
-         */
-        "superInFunctions": false,
+            /**
+             * enable super references inside functions
+             */
+            "superInFunctions": false,
 
-        /**
-         * enable template strings
-         */
-        "templateStrings": true,
+            /**
+             * enable template strings
+             */
+            "templateStrings": true,
 
-        /**
-         * enable code point escapes
-         */
-        "unicodeCodePointEscapes": false,
+            /**
+             * enable code point escapes
+             */
+            "unicodeCodePointEscapes": false,
 
-        /**
-         * allow return statements in the global scope
-         */
-        "globalReturn": false,
+            /**
+             * allow return statements in the global scope
+             */
+            "globalReturn": false,
 
-        /**
-         * enable JSX
-         */
-        "jsx": false
+            /**
+             * enable JSX
+             */
+            "jsx": false
+        }
     },
 
     "env": {
@@ -175,9 +180,9 @@
         "meteor": false,
 
         /**
-         * enable all ECMAScript 6 features except for modules
+         * enable all ECMAScript 6 features in the environment except for modules
          */
-        "es6": false
+        "es6": true
     },
 
     "globals": {
@@ -411,6 +416,11 @@
         "no-else-return": 1,
 
         /**
+         * disallow use of labels for anything other then loops and switches
+         */
+        "no-labels": [2, {"allowSwitch": true}],
+
+        /**
          * disallow comparisons to null without a type-checking operator (off by default)
          */
         "no-eq-null": 2,
@@ -449,11 +459,6 @@
          * disallow usage of __iterator__ property
          */
         "no-iterator": 2,
-
-        /**
-         * disallow use of labeled statements
-         */
-        "no-labels": 2,
 
         /**
          * disallow unnecessary nested blocks

@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/tupton/dotfiles#readme",
   "devDependencies": {
-    "eslint": "^1.2.1",
-    "jscs": "^2.1.0"
+    "eslint": "4.6.1",
+    "jscs": "3.0.7"
   }
 }

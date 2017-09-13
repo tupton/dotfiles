@@ -286,7 +286,7 @@ set nowrap
 if has('linebreak')
     set breakindent
     let &showbreak = '» '
-    set cpo+=n
+    set cpoptions+=n
 end
 
 " Highlight the first column after the text width

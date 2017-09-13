@@ -1,6 +1,4 @@
 {
-    "esnext": true,
-
     // Autofixed: whitespace rules, EOF rule, and validateIndentation
     // These rules will be fixed automatically by JSCS when run with the -x flag
 
@@ -33,9 +31,7 @@
     /**
      * Disallows space after keyword.
      */
-    "disallowSpaceAfterKeywords": [
-        "default"
-    ],
+    "disallowSpaceAfterKeywords": [],
 
     /**
      * Disallows space after object keys.
@@ -300,6 +296,6 @@
         /**
          * Ensures jsdoc block exist
          */
-        "enforceExistence": true
+        "enforceExistence": {"allExcept": ["arrow"]}
     }
 }

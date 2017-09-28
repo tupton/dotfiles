@@ -24,7 +24,7 @@ Plug 'jtratner/vim-flavored-markdown'
 Plug 'tmhedberg/SimpylFold'
 
 " Syntax, linting, etc.
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 
 " Clojure syntax
 Plug 'guns/vim-clojure-static'
@@ -181,6 +181,28 @@ let g:airline#extensions#default#layout = [
     \ [ 'z', 'error', 'warning']
 \ ]
 
+" Enable ALE status
+let g:airline#extensions#ale#enabled = 1
+" }}}
+" {{{ ALE
+" Be explicit about languages I care about
+let g:ale_linters = {
+\   'javascript': ['eslint', 'jscs'],
+\   'python': ['flake8'],
+\   'vim': ['vint']
+\}
+
+" Ignore specific flake8 errors and warnings
+let g:ale_python_flake8_options = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,E121,W801"'
+
+" Better sign symbols
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '!'
+let g:ale_sign_style_error = '☡'
+let g:ale_sign_style_warning = '¡'
+
+" Always show the sign column
+let g:ale_sign_column_always = 1
 " }}}
 " {{{ Autocommands
 if has('autocmd')
@@ -555,43 +577,6 @@ set laststatus=2
 set noswapfile
 set updatecount=0
 
-" }}}
-" {{{ Syntastic
-" Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-
-" Use flake8
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,E121,W801"'
-
-" Disable shellcheck for zsh
-let g:syntastic_zsh_checkers = ['zsh']
-
-" Use vint for vim style
-let g:syntastic_vim_checkers=['vint']
-
-" On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['html'] }
-
-" Better :sign interface symbols
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '!'
-let g:syntastic_style_error_symbol = '☡'
-let g:syntastic_style_warning_symbol = '¡'
-
-" Check on buffer open
-let g:syntastic_check_on_open = 1
-
-" Always put errors in the location list
-let g:syntastic_always_populate_loc_list = 1
-
-" Aggregate errors for multiple checkers
-let g:syntastic_aggregate_errors = 1
-
-" Don't check on write+quit
-let g:syntastic_check_on_wq = 0
 " }}}
 " {{{ Terminal
 

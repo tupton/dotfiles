@@ -639,6 +639,9 @@ endif
 " Split windows below and right -- default is above and left, which can be disorienting
 set splitbelow splitright
 
+" Keep window sizes when opening and closing windows
+set noequalalways
+
 " Better window management and navigation
 map <leader>w <C-w>w
 map <leader>W <C-w>W

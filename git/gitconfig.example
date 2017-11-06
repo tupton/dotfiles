@@ -1,6 +1,7 @@
 [user]
     name = AUTHORNAME
     email = AUTHOREMAIL
+    signingkey = 2C5F3AD67C62F81F
 
 [alias]
     co = checkout
@@ -69,3 +70,5 @@
     autocorrect = 1
 [diff-so-fancy]
     markEmptyLines = false
+[commit]
+    gpgsign = true

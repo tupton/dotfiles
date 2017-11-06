@@ -46,8 +46,8 @@ install-git : create-gitconfig
 	install -m 0755 -- git/git-* "$(HOME)"/.local/bin
 
 install-gpg :
-	install -m 0755 -d -- "$(HOME)"/.gnupg
-	install -m 0644 -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
+	install -m 0700 -d -- "$(HOME)"/.gnupg
+	install -m 0600 -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
 
 install-eslint :
 	install -m 0644 -- eslint/eslintrc "$(HOME)"/.eslintrc

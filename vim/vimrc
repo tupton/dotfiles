@@ -384,6 +384,16 @@ nnoremap <silent> <leader><Enter> :Buffers<cr>
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
+" Ripgrep with preview
+" :Rg --type py PATTERN
+" :Rg! PATTERN --smart-case DIR
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.<q-args>, 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%'),
+  \   <bang>0)
+
 " }}}
 " {{{ git-gutter
 " Escape grep so we don't have color codes
@@ -510,6 +520,10 @@ let g:rainbow_conf = {
     \       'css': 0,
     \   }
     \}
+" }}}
+" {{{ Ripgrep
+set grepprg =rg\ --vimgrep\ $*
+
 " }}}
 " {{{ Scrolling
 " Scrolling context; lines/columns of buffer while scrolling

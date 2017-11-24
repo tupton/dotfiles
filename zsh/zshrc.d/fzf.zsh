@@ -5,4 +5,6 @@ if [ -f "$HOME"/.fzf.zsh ]; then
     export FZF_DEFAULT_OPTS='--extended --preview="head -$LINES {}"'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_CTRL_R_OPTS='--no-preview'
+    export FZF_ALT_C_COMMAND='fd --hidden --no-ignore --type d'
+    export FZF_ALT_C_OPTS='--preview="command ls -al {}"'
 fi

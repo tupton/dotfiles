@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 local branch
-branch=$(git fb "$1")
+branch=$(git fb "$@")
 if [ -z "$branch" ]; then
     exit 0;
 fi

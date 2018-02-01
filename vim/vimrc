@@ -667,7 +667,11 @@ noremap <C-l> <C-w>l
 syntax on
 
 " {{{ Colors
-set background=dark
+if $ITERM_PROFILE =~? 'light'
+    set background=light
+else
+    set background=dark
+endif
 
 let g:solarized_termtrans = 1
 let g:solarized_underline = 0

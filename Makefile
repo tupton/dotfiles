@@ -125,6 +125,9 @@ install-karabiner-elements : install-xdg-config
 	install -m 0644 -- Karabiner-Elements/caps-lock-to-control.json "$(HOME)"/.config/karabiner/assets/complex_modifications/caps-lock-to-control.json
 	install -m 0644 -- Karabiner-Elements/logitech-k350-switch-command-option.json "$(HOME)"/.config/karabiner/assets/complex_modifications/logitech-k350-switch-command-option.json
 
+install-ripgrep : install-zsh
+	install -m 0644 -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

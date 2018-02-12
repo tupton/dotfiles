@@ -1,0 +1,23 @@
+# Explicitly show file paths above match groups; default but set it anyway
+--heading
+
+# Always show line numbers for matches
+--line-number
+
+# Do the right thing with color output
+--color=auto
+
+# Ignore case unless there are capital letters present
+--smart-case
+
+# Add some more types
+--type-add
+clj:include:clojure
+
+--type-add
+edn:*.edn
+
+--type-add
+gradle:*.gradle
+--type-add
+gr:include:gradle

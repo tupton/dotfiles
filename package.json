@@ -4,9 +4,8 @@
   "description": "A collection of config files that I use.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test-eslint && npm run test-jscs",
-    "test-eslint": "eslint --no-eslintrc --config eslint/eslintrc.json dotjs",
-    "test-jscs": "jscs --config jscs/jscsrc dotjs"
+    "test": "npm run test-eslint",
+    "test-eslint": "eslint --no-eslintrc --config eslint/eslintrc.json dotjs"
   },
   "repository": {
     "type": "git",

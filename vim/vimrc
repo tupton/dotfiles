@@ -464,9 +464,6 @@ noremap Q <nop>
 " Remove annoying F1 help; use :help instead
 noremap <F1> <nop>
 
-" No man pages because I don't write C or many shell scripts
-noremap K <nop>
-
 " Shortcuts for diff
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dp :diffput<cr>

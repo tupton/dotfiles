@@ -17,11 +17,12 @@ clean :
 
 distclean :
 	@:
-install : install-ack \
+install : install-dotjs \
 	install-git \
-	install-lein \
+	install-gpg \
 	install-python \
 	install-readline \
+	install-ripgrep \
 	install-vim \
 	install-zsh
 

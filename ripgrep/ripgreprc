@@ -10,6 +10,9 @@
 # Ignore case unless there are capital letters present
 --smart-case
 
+# Show context by default
+--context=3
+
 # Add some more types
 --type-add
 clj:include:clojure

@@ -658,6 +658,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 " }}}
+" {{{ YouCompleteMe
+let g:ycm_server_python_interpreter = '/usr/local/opt/python@2/bin/python2.7'
+" }}}
 
 " {{{ Epilog
 " Turn syntax on after everything else

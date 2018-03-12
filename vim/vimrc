@@ -63,7 +63,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kchmck/vim-coffee-script'
 
 " YouCompleteMe
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " TernJS
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
@@ -657,9 +657,6 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-" }}}
-" {{{ YouCompleteMe
-let g:ycm_server_python_interpreter = '/usr/local/opt/python@2/bin/python2.7'
 " }}}
 
 " {{{ Epilog

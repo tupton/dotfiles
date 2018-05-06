@@ -22,8 +22,8 @@ windows:
   - editor:
       layout: 8906,215x70,0,0[215x15,0,0,0,215x54,0,16,3]
       panes:
-        - cd opscenterd
-        - cd opscenterd
+        -
+        -
   - opscenter:
       layout: even-vertical
       panes:

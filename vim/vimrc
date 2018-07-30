@@ -102,6 +102,9 @@ Plug 'tpope/vim-rhubarb'
 " Dash.app integration (OS X only)
 Plug 'rizzatti/dash.vim'
 
+" Async interactive scratchpad
+Plug 'metakirby5/codi.vim'
+
 call g:plug#end()
 
 filetype plugin indent on

@@ -10,6 +10,7 @@
     br = branch
     bn = rev-parse --abbrev-ref HEAD
     hist = log --pretty=format:\"%C(green)%h%C(cyan) %ar%Creset - %s%C(red)%d%C(yellow) [%an] %Creset\" --graph --date=short
+    one = log --pretty=format:'%C(blue)%h %C(green)%<(12)%ad %C(auto,yellow)%<(12,trunc)%an %C(auto,magenta)%G?%C(auto)%d %s' --date=relative
     type = cat-file -t
     dump = cat-file -p
     diff = diff -F

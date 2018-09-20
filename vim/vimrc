@@ -409,10 +409,12 @@ let g:gitgutter_diff_args = '-w'
 " Don't map any keys by default
 let g:gitgutter_map_keys = 0
 
+" Re-add some useful mappings
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>hs <Plug>GitGutterStageHunk
+nmap <leader>ha <Plug>GitGutterStageHunk
 nmap <leader>hr <Plug>GitGutterRevertHunk
+nmap <leader>hd <Plug>GitGutterPreviewHunk
 
 " }}}
 " {{{ History

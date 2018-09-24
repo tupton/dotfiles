@@ -168,14 +168,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 
-" No line number in status; just column and percentage
-let g:airline_section_z = g:airline#section#create(['%2v'.g:airline_symbols.space, '%3p%%'])
-
 " No need for mode (or crypt, paste, iminsert, etc.) because of showmode
-" No need for file encoding or format
+" No need for file encoding
 let g:airline#extensions#default#layout = [
     \ [ 'b', 'c' ],
-    \ [ 'z', 'error', 'warning']
+    \ [ 'x', 'z', 'error', 'warning']
 \ ]
 
 " Enable ALE status
@@ -670,7 +667,7 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 " }}}
 
-" {{{ Epilog
+" {{{ Epilogue
 " Turn syntax on after everything else
 syntax on
 

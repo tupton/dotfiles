@@ -6,8 +6,7 @@ A collection of config files that I use.
 
 ## Installation
 
-Installing will overwrite anything in the way. Run `make -n` first. If you are happy with that
-output, you can test the dotfile environment with
+Installing will overwrite anything in the way. Run `make -n` first. If you are happy with that output, you can test the dotfile environment with
 
     ❯ TMP=$(mktemp -d /tmp/tmp.XXXXX)
     ❯ HOME=$TMP make install
@@ -27,9 +26,7 @@ or
 
 and so forth.
 
-Look at the `Makefile` to see which dotfiles are installed by default and which require running a
-separate task. For example, TextMate and tarsnap configs only really apply to my local machine, so
-they are not installed by default.
+Look at the `Makefile` to see which dotfiles are installed by default and which require running a separate task. For example, tarsnap configs only really apply to my local machine, so they are not installed by default.
 
 Use `make list` to see a list of all targets, including the test targets and any auxiliary helper targets. More on test targets follows.
 
@@ -39,22 +36,21 @@ There is a `test` target in the Makefile. Not everything is tested, but I've att
 
 - All `zsh` and `bash` config files and scripts are parsed by their respective shells. This includes all the `zsh` installation script helpers.
 - All `vim` config files are linted by [vim-vint].
-- All [dotjs] files are linted by [eslint] and [jscs].
+- All [dotjs] files are linted by [eslint].
 
   [vim-vint]: https://github.com/Kuniwak/vint
   [dotjs]: https://github.com/tupton/dotjs
   [eslint]: http://eslint.org/
-  [jscs]: http://jscs.info/
 
 
-You need `bash` and `zsh` installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you are have those two shells installed.
+You need `bash` and `zsh` installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you have at least those two shells installed.
 
-In order to test the dotjs and vim config files, you need to install vim-vint, jscs, and eslint. There is a `test-requirements.txt` to help with vim-vint, and there is a `package.json` to help with the javascript linters. Simply run `pip install -r test-requirements.txt` and `npm install --only=dev` to install these dependencies.
+In order to test the dotjs and vim config files, you need to install vim-vint and eslint. There is a `test-requirements.txt` to help with vim-vint, and there is a `package.json` to help with the javascript linters. Simply run `pip install -r test-requirements.txt` and `npm install --only=dev` to install these dependencies.
 
 Note that you *do not* need to install `pip` and `npm` requirements in order to install and use these dotfiles. These requirements are only used for running tests, hence their test- and dev-specific install commands.
 
 ## Inspiration and Thanks
 
-https://github.com/tejr/dotfiles - Makefile and overall project structure
+<https://github.com/tejr/dotfiles> - Makefile and overall project structure
 
-https://github.com/holman/dotfiles - Interactive, templated gitconfig
+<https://github.com/holman/dotfiles> - Interactive, templated gitconfig

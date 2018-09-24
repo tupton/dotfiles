@@ -67,6 +67,7 @@ bindkey -v
 # Explicit JAVA_HOME, for OS X
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
+# Path
 # Explicitly add /usr/local/bin to PATH first
 typeset -U path
 path=(/usr/local/bin "$path[@]")
@@ -78,8 +79,7 @@ if [[ -d "$HOME"/.zshrc.d ]]; then
 fi
 unset -v config
 
-# Path
-typeset -U path
+# add cwd and ~/.local/bin after including other config
 path=(. "$HOME"/.local/bin "$path[@]")
 
 # do this last in case any scripts touch the path

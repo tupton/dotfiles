@@ -4,18 +4,10 @@ bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
-# history with up/down arrows
-bindkey "$terminfo[kcuu1]" up-line-or-search      # start typing + [Up-Arrow] - fuzzy find history forward
-bindkey "$terminfo[kcud1]" down-line-or-search    # start typing + [Down-Arrow] - fuzzy find history backward
-
 # history substring search
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# bind P and N for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
 
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up

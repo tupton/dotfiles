@@ -63,7 +63,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kchmck/vim-coffee-script'
 
 " YouCompleteMe
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'command -v python3 && python3 install.py || ./install.py' }
 
 " TernJS
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }

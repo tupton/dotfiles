@@ -427,7 +427,7 @@ set history=1000
 " }}}
 " {{{ Key remaps
 " Completion
-inoremap <Nul> <C-X><C-P>
+inoremap <C-space> <C-X><C-P>
 
 " Edit and source this file
 nmap <silent> <leader>ev :split $MYVIMRC<CR>

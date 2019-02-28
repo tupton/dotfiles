@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test
+          name: Install zsh
           command: |
             export LOCAL="/home/circleci/.local"
             mkdir -p $LOCAL
@@ -17,13 +17,27 @@ jobs:
             make
             make install
             cd -
+      - run:
+          name: Install requirements
+          command: |
+            export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"
             pip install -r test-requirements.txt --user
             npm install --only=dev
+      - run:
+          name: Prit versions
+          command: |
+            export LOCAL="/home/circleci/.local"
+            export PATH="$LOCAL/bin:$PATH"
             zsh --version
             bash --version
             npm --version
             node --version
+      - run:
+          name: Test
+          command: |
+            export LOCAL="/home/circleci/.local"
+            export PATH="$LOCAL/bin:$PATH"
             make test
 workflows:
   version: 2

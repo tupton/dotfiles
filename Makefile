@@ -53,9 +53,6 @@ install-gpg :
 install-eslint :
 	install -m 0644 -- eslint/eslintrc "$(HOME)"/.eslintrc
 
-install-jscs :
-	install -m 0644 -- jscs/jscsrc "$(HOME)"/.jscsrc
-
 install-lein :
 	install -m 0755 -d -- "$(HOME)"/.lein
 	install -m 0644 -- lein/profiles.clj "$(HOME)"/.lein/profiles.clj

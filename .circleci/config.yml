@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install requirements
           command: |
-            pip install -r test-requirements.txt
+            pip install -r test-requirements.txt --user
             npm install --only=dev
       - run:
           name: Print versions

@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install zsh
+          name: Test
           command: |
             export LOCAL="$(mktemp --directory --tmpdir=${TMPDIR:-/tmp} local.XXXXXX)"
             export DEP_ZSH_VERSION="zsh-5.5.1"
@@ -17,21 +17,13 @@ jobs:
             make install
             cd -
             export PATH="$LOCAL/bin:$PATH"
-      - run:
-          name: Install requirements
-          command: |
             pip install -r test-requirements.txt --user
             npm install --only=dev
-      - run:
-          name: Print versions
-          command:
             zsh --version
             bash --version
             npm --version
             node --version
-      - run:
-          name: Test
-          command: make test
+            make test
 workflows:
   version: 2
   build_all:

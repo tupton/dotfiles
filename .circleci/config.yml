@@ -8,7 +8,8 @@ jobs:
       - run:
           name: Test
           command: |
-            export LOCAL="$(mktemp --directory --tmpdir=${TMPDIR:-/tmp} local.XXXXXX)"
+            export LOCAL="/home/circleci/.local"
+            mkdir -p $LOCAL
             export DEP_ZSH_VERSION="zsh-5.5.1"
             curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.gz | tar zx
             cd $DEP_ZSH_VERSION

@@ -24,11 +24,11 @@ jobs:
             npm install --only=dev
       - run:
           name: Print versions
+          command:
             zsh --version
             bash --version
             npm --version
             node --version
-
       - run:
           name: Test
           command: make test

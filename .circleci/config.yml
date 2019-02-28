@@ -18,14 +18,14 @@ jobs:
             make install
             cd -
       - run:
-          name: Install requirements
+          name: Install test requirements
           command: |
             export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"
             pip install -r test-requirements.txt --user
             npm install --only=dev
       - run:
-          name: Prit versions
+          name: Print versions
           command: |
             export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"

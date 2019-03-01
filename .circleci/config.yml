@@ -9,7 +9,7 @@ defaults: &defaults
           command: |
             export LOCAL="/home/circleci/.local"
             mkdir -p $LOCAL
-            curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.gz | tar zx
+            curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.xz | tar xz
             cd $DEP_ZSH_VERSION
             ./configure --prefix=$LOCAL
             make

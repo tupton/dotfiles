@@ -138,7 +138,7 @@ test-setup :
 	@echo "All setup scripts parsed successfully."
 
 test-zsh :
-	@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh ; do \
+	@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh git/git-* ; do \
 		echo "Parsing $$zsh" ; \
 		if [ -f "$$zsh" ] && ! zsh --no-exec "$$zsh" ; then \
 			exit 1 ; \

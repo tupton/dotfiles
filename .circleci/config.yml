@@ -1,46 +1,59 @@
 version: 2
-jobs:
-  build_zsh551:
-    docker:
+defaults: &defaults
+  docker:
       - image: circleci/python:2.7-node
-    steps:
+  steps: 
       - checkout
       - run:
           name: Install zsh
           command: |
             export LOCAL="/home/circleci/.local"
             mkdir -p $LOCAL
-            export DEP_ZSH_VERSION="zsh-5.5.1"
             curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.gz | tar zx
             cd $DEP_ZSH_VERSION
             ./configure --prefix=$LOCAL
             make
             make install
             cd -
-      - run:
-          name: Install test requirements
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            pip install -r test-requirements.txt --user
-            npm install --only=dev
-      - run:
-          name: Print versions
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            zsh --version
-            bash --version
-            npm --version
-            node --version
-      - run:
-          name: Test
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            make test
+    - run:
+        name: Install test requirements
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          pip install -r test-requirements.txt --user
+          npm install --only=dev
+    - run:
+        name: Print versions
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          zsh --version
+          bash --version
+          npm --version
+          node --version
+    - run:
+        name: Test
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          make test
+jobs:
+  build_zsh551:
+    environment:
+      DEP_ZSH_VERSION: zsh-5.5.1
+    <<: *defaults
+  build_zsh62:
+    environment:
+      DEP_ZSH_VERSION: zsh-5.6.2
+    <<: *defaults
+  build_zsh571:
+    environment:
+      DEP_ZSH_VERSION: zsh-5.7.1
+    <<: *defaults
 workflows:
   version: 2
   build_all:
     jobs:
       - build_zsh551
+      - build_zsh562
+      - build_zsh571

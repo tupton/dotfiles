@@ -42,7 +42,7 @@ jobs:
     environment:
       DEP_ZSH_VERSION: zsh-5.5.1
     <<: *defaults
-  build_zsh62:
+  build_zsh562:
     environment:
       DEP_ZSH_VERSION: zsh-5.6.2
     <<: *defaults

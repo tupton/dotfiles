@@ -1,6 +1,6 @@
 # Dotfiles
 
-[![Build Status](https://travis-ci.org/tupton/dotfiles.svg?branch=master)](https://travis-ci.org/tupton/dotfiles)
+[![CircleCI Build Status](https://circleci.com/gh/tupton/dotfiles/tree/master.svg?style=svg)](https://circleci.com/gh/tupton/dotfiles/tree/master)
 
 A collection of config files that I use.
 

@@ -62,12 +62,6 @@ Plug 'airblade/vim-gitgutter'
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
 
-" YouCompleteMe
-Plug 'Valloric/YouCompleteMe', { 'do': 'command -v python3 && python3 ./install.py \|\| ./install.py' }
-
-" TernJS
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-
 " Open current Markdown buffer in Marked2
 Plug 'itspriddle/vim-marked'
 
@@ -107,6 +101,9 @@ Plug 'metakirby5/codi.vim'
 
 " GraphQL syntax
 Plug 'jparise/vim-graphql'
+
+" CoC.nvim LSP
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 call g:plug#end()
 
@@ -661,6 +658,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 " }}}
+" {{{ CoC.nvim
+" Confirm first item with <cr>
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 " {{{ Epilogue
 " Turn syntax on after everything else

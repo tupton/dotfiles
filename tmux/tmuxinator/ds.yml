@@ -1,6 +1,6 @@
-# ~/.tmuxinator/ripcord.yml
+# ~/.tmuxinator/ds.yml
 
-name: ripcord
+name: ds
 root: ~/code/ripcord
 
 # Optional tmux socket
@@ -35,3 +35,13 @@ windows:
             - cd opscenterd
         - agent:
             - cd agent
+
+  - cloud:
+      layout: 9408,291x85,0,0[291x13,0,0,30,291x12,0,14,35,291x58,0,27,36]
+      panes:
+        - app:
+          - cd ~/code/cloud/self-service-ui
+        - test:
+          - cd ~/code/cloud/self-service-ui
+        - editor:
+          - cd ~/code/cloud/self-service-ui

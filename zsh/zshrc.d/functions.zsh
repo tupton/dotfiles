@@ -20,3 +20,7 @@ gif() {
     ffmpeg -i "$input" -i palette.png -filter_complex "[0:v] fps=15,scale=w=${width}:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$output"
     rm palette.png
 }
+
+pjq() {
+    pbpaste | jq '.' --color-output | less
+}

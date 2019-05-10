@@ -77,7 +77,8 @@ install-tmux :
 install-vim : install-vim-config \
 	install-vim-init \
 	install-vim-plug \
-	install-vim-plugins
+	install-vim-plugins \
+	install-vim-plugin-config
 
 install-gvim : install-vim \
 	install-gvim-config
@@ -100,6 +101,9 @@ install-vim-plug :
 
 install-vim-plugins :
 	vim/install-plugins
+
+install-vim-plugin-config :
+	install -m 0644 -- vim/coc-settings.json "$(HOME)"/.vim/coc-settings.json
 
 install-zsh : install-zsh-config \
 	install-oh-my-zsh

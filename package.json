@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test-eslint",
-    "test-eslint": "eslint --no-eslintrc --config eslint/eslintrc.json dotjs"
+    "test-eslint": "eslint --no-eslintrc --config eslint/eslintrc.js dotjs"
   },
   "repository": {
     "type": "git",

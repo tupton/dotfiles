@@ -1,214 +1,55 @@
-{
-                                    
-
+module.exports = {
     "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": 8,
         "ecmaFeatures": {
-               
-                                     
-               
             "arrowFunctions": true,
-
-               
-                                     
-               
             "binaryLiterals": false,
-
-               
-                                                        
-               
             "blockBindings": true,
-
-               
-                                 
-               
             "classes": false,
-
-               
-                                                 
-               
             "defaultParams": true,
-
-               
-                                                            
-               
             "destructuring": true,
-
-               
-                                  
-               
             "forOf": true,
-
-               
-                                
-               
             "generators": true,
-
-               
-                                                    
-               
             "modules": false,
-
-               
-                                                            
-               
             "objectLiteralComputedProperties": true,
-
-               
-                                                                        
-               
             "objectLiteralDuplicateProperties": false,
-
-               
-                                                      
-               
             "objectLiteralShorthandMethods": true,
-
-               
-                                                         
-               
             "objectLiteralShorthandProperties": true,
-
-               
-                                    
-               
             "octalLiterals": false,
-
-               
-                                                   
-               
             "regexUFlag": false,
-
-               
-                                                   
-               
             "regexYFlag": false,
-
-               
-                                              
-               
             "restParams": true,
-
-               
-                                     
-               
             "spread": true,
-
-               
-                                                       
-               
             "superInFunctions": false,
-
-               
-                                      
-               
             "templateStrings": true,
-
-               
-                                        
-               
             "unicodeCodePointEscapes": false,
-
-               
-                                                          
-               
             "globalReturn": false,
-
-               
-                         
-               
             "jsx": false
         }
     },
 
     "env": {
-           
-                                    
-           
         "browser": true,
-
-           
-                                                               
-           
         "node": true,
-
-           
-                                       
-           
         "worker": false,
-
-           
-                                                                                  
-           
         "amd": true,
-
-           
-                                                          
-           
         "mocha": false,
-
-           
-                                                                                    
-           
         "jasmine": false,
-
-           
-                                      
-           
         "phantomjs": true,
-
-           
-                                   
-           
         "jquery": false,
-
-           
-                                        
-           
         "prototypejs": false,
-
-           
-                                    
-           
         "shelljs": false,
-
-           
-                                  
-           
         "meteor": false,
-
-           
-                                                                                 
-           
         "es6": true
     },
 
     "globals": {
-           
-                          
-           
         "Orbited": false,
-
-           
-                        
-           
         "STOMPClient": false,
-
-           
-                                    
-           
         "dojoConfig": true,
-
-           
-                                      
-           
         "define": false,
-
-           
-                                      
-           
         "require": false
     },
 
@@ -216,7 +57,11 @@
                                                                           
     ],
 
-                                                     
+    "extends": [
+        "eslint:recommended"
+    ],
+
+    /*
     "rules": {
         "brace-style": 0,
         "no-multiple-empty-lines": 2,
@@ -410,5 +255,6 @@
         "no-bitwise": 1,
         "no-plusplus": 0
     }
+    */
 }
 

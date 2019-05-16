@@ -61,7 +61,6 @@ module.exports = {
         "eslint:recommended"
     ],
 
-    /*
     "rules": {
         "brace-style": 0,
         "no-multiple-empty-lines": 2,
@@ -255,6 +254,5 @@ module.exports = {
         "no-bitwise": 1,
         "no-plusplus": 0
     }
-    */
 }
 

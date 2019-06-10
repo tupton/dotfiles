@@ -232,9 +232,9 @@ if has('autocmd')
         " Automatically use github-flavored markdown
         autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 
-        autocmd! User GoyoEnter Limelight
-        autocmd! User GoyoLeave Limelight!!
-        autocmd! FileType ghmarkdown Goyo 110
+        autocmd User GoyoEnter Limelight
+        autocmd User GoyoLeave Limelight!!
+        autocmd FileType markdown Goyo 110
     augroup END
 endif
 

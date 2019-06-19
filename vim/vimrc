@@ -445,11 +445,6 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
-" Tab navigation
-" nmap <F4> :tabnew<CR>
-" nmap <F5> :tabp<CR>
-" nmap <F6> :tabn<CR>
-
 " Bind dumb uppercase commands to their useful lowercase equivalents
 if has('user_commands')
     command! -bang E e<bang>
@@ -550,7 +545,6 @@ nnoremap <C-y> 5<C-y>
 if has('extra_search')
     " Highlight searches
     set hlsearch
-    nnoremap <leader>h :nohlsearch<CR>
 
     " Be smart about searching case-sensitively
     set smartcase
@@ -558,7 +552,6 @@ if has('extra_search')
 
     " Search as you type
     set incsearch
-    nnoremap <leader>i :set incsearch!<CR>
 
     " Wrap around the file when searching
     set wrapscan
@@ -568,7 +561,6 @@ endif
 " {{{ Spelling
 if has('spell')
     set spelllang=en_us
-    nnoremap <leader>sp :set spell!<CR>
 endif
 
 " }}}
@@ -661,15 +653,6 @@ set splitbelow splitright
 " Keep window sizes when opening and closing windows
 set noequalalways
 
-" Better window management and navigation
-map <leader>w <C-w>w
-map <leader>W <C-w>W
-map <leader>_ <C-w>_
-
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 " }}}
 " {{{ CoC.nvim
 " Explicitly list installed extensions

@@ -201,6 +201,9 @@ let g:ale_sign_style_warning = '¡'
 
 " Always show the sign column
 let g:ale_sign_column_always = 1
+
+nmap <leader>ln <Plug>(ale_next_wrap)
+nmap <leader>lp <Plug>(ale_previous_wrap)
 " }}}
 " {{{ Autocommands
 if has('autocmd')

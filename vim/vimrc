@@ -664,6 +664,9 @@ let g:coc_global_extensions = ['coc-dictionary', 'coc-syntax', 'coc-tsserver', '
 " Confirm first item with <cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
+" Rename symbol under cursor
+nmap <leader>rn <Plug>(coc-rename)
+
 " {{{ Epilogue
 " Turn syntax on after everything else
 syntax on

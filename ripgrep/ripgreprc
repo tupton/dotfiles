@@ -24,3 +24,6 @@ edn:*.edn
 gradle:*.gradle
 --type-add
 gr:include:gradle
+
+--type-add
+gql:*.{gql,graphql}

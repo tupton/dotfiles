@@ -1,10 +1,9 @@
 if hash brew 2>/dev/null; then
-    PATH="$(brew --prefix ipython@5)"/bin:"$PATH"
-    PATH="$(brew --prefix node@10)"/bin:"$PATH"
-    PATH="$(brew --prefix ruby)"/bin:"$PATH"
-    PATH="$(gem environment gemdir)"/bin:"$PATH"
-    hash thrift 2>/dev/null || PATH="$(brew --prefix)"/opt/thrift@0.9/bin:"$PATH"
-    PATH="$PATH":"$(brew --prefix)"/bin
+    PATH=/usr/local/opt/ipython@5/bin:"$PATH"
+    PATH=/usr/local/opt/node@10/bin:"$PATH"
+    PATH=/usr/local/opt/ruby/bin:"$PATH"
+    PATH=/usr/local/lib/ruby/gems/2.6.0//bin:"$PATH"
+    hash thrift 2>/dev/null || PATH=/usr/local/opt/thrift@0.9/bin:"$PATH"
     export PATH
 
     unset PYTHONPATH

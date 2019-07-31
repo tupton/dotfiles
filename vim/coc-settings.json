@@ -1,3 +1,5 @@
 {
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": true,
+    "typescript.suggestionActions.enabled": false,
+    "javascript.suggestionActions.enabled": false
 }

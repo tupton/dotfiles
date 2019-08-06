@@ -601,6 +601,13 @@ set ttyfast
 set visualbell t_vb=
 
 " }}}
+" {{{ Text Objects
+" Line
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o0
+onoremap al :normal val<CR>
+" }}}
 " {{{ Undo
 " -- see http://amix.dk/blog/post/19548
 if has('persistent_undo')

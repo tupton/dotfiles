@@ -73,3 +73,6 @@
     markEmptyLines = false
 [commit]
     gpgsign = true
+[diff]
+    algorithm = histogram
+    indentHeuristic = true

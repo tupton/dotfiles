@@ -265,7 +265,7 @@ endif
 
 " }}}
 " {{{ Diff
-set diffopt+=vertical
+set diffopt+=vertical,algorithm:histogram,indent-heuristic
 " }}}
 " {{{ Folding
 " Fold with triple curly braces, fill with spaces

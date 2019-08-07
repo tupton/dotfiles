@@ -19,6 +19,7 @@
     fb = fuzzy-branch
     fco = fuzzy-checkout
     pt = pick-tree
+    dt = difftool
 
 [merge]
     tool = vimdiff
@@ -76,3 +77,6 @@
 [diff]
     algorithm = histogram
     indentHeuristic = true
+    tool = vimdiff
+[difftool]
+    prompt = false

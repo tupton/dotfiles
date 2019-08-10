@@ -673,6 +673,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 " Rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>df <Plug>(coc-definition)
 
 " {{{ Epilogue
 " Turn syntax on after everything else

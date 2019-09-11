@@ -239,6 +239,12 @@ if has('autocmd')
         autocmd User GoyoLeave Limelight!!
         autocmd FileType markdown Goyo 110
     augroup END
+
+    augroup golang
+        autocmd!
+
+        autocmd FileType go setlocal noexpandtab
+    augroup END
 endif
 
 " }}}

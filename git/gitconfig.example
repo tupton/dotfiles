@@ -35,15 +35,15 @@
 [color]
     ui = auto
 [color "diff"]
-    meta = yellow bold
-    commit = blue
+    meta = white
+    commit = yellow
     frag = magenta bold
-    old = red
+    old = red bold
     new = green
     whitespace = red reverse
 [color "diff-highlight"]
-    oldNormal = red
-    oldHighlight = red 52
+    oldNormal = red bold
+    oldHighlight = red bold 52
     newNormal = green
     newHighlight = green 22
 [color "branch"]

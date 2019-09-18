@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+set -e
+git log --all --find-renames --find-copies --name-only --format='format:' | sort | grep -v '^$' | uniq -c | sort -n

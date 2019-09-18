@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+churn() {
+    local base=${GIT_BASE:-origin/master}
+    grep -x -F -f <(git diff --name-only $base...HEAD) <(git log --all -M -C --name-only --format='format:' | sort | grep -v '^$') | uniq -c | sort -n
+}
+
+churn

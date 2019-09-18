@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+review-summary() {
+    local bars
+    if hash bars >/dev/null 2>&1; then
+        bars=bars
+    else
+        bars=cat
+    fi
+
+    echo "Diff Stats"
+    git diff --stat origin/master...HEAD
+    echo ""
+    echo "Diff Churn"
+    git diff-churn | $bars
+}
+
+review-summary

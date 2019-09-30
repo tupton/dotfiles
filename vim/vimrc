@@ -416,17 +416,17 @@ let g:gitgutter_diff_args = '-w'
 let g:gitgutter_map_keys = 0
 
 " Re-add some useful mappings
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>ha <Plug>GitGutterStageHunk
-nmap <leader>hr <Plug>GitGutterRevertHunk
-nmap <leader>hd <Plug>GitGutterPreviewHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap <leader>ha <Plug>(GitGutterStageHunk)
+nmap <leader>hr <Plug>(GitGutterRevertHunk)
+nmap <leader>hd <Plug>(GitGutterPreviewHunk)
 
 " Map hunk objects to ih and ah
-omap ih <Plug>GitGutterTextObjectInnerPending
-omap ah <Plug>GitGutterTextObjectOuterPending
-xmap ih <Plug>GitGutterTextObjectInnerVisual
-xmap ah <Plug>GitGutterTextObjectOuterVisual
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " }}}
 " {{{ History

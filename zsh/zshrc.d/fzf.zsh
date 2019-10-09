@@ -1,6 +1,9 @@
 # https://github.com/junegunn/fzf
 if [ -f "$HOME"/.fzf.zsh ]; then
     source "$HOME"/.fzf.zsh
+fi
+
+if hash 2>/dev/null fzf; then
     export FZF_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD 2>/dev/null || fd --hidden --no-ignore --type f 2>/dev/null'
     export FZF_DEFAULT_OPTS='--extended --preview=" [[ $(file --mime {}) =~ binary ]] &&
         echo {} is a binary file ||

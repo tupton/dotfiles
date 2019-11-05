@@ -68,9 +68,9 @@ bindkey -v
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Path
-# Explicitly add /usr/local/bin to PATH first
+# Explicitly add /usr/local/bin and sbin to PATH first
 typeset -U path
-path=(/usr/local/bin "$path[@]")
+path=(/usr/local/bin /usr/local/sbin "$path[@]")
 
 if [[ -d "$HOME"/.zshrc.d ]]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do

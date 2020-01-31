@@ -1,0 +1,30 @@
+# ~/.tmuxinator/ds.yml
+
+name: ds
+root: ~/code/insights-ui/insights-ui
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+tmux_command: tmux -2
+
+windows:
+  - insights:
+      layout: 9408,291x85,0,0[291x13,0,0,30,291x12,0,14,35,291x58,0,27,36]
+      panes:
+        - app:
+          - cd ~/code/insights-ui/insights-ui
+        - test:
+          - cd ~/code/insights-ui/insights-ui
+        - editor:
+          - cd ~/code/insights-ui/insights-ui

@@ -236,7 +236,7 @@ if has('autocmd')
         autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 
         autocmd User GoyoEnter Limelight
-        autocmd User GoyoLeave Limelight!!
+        autocmd User GoyoLeave Limelight!
         autocmd FileType markdown Goyo 110
     augroup END
 
@@ -506,7 +506,9 @@ set shortmess+=aI
 
 " }}}
 " {{{ Prose
-let g:limelight_conceal_ctermfg = 'black'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_paragraph_span = 1
+
 let g:goyo_width = 110
 
 " }}}

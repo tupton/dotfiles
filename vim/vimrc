@@ -696,7 +696,7 @@ let g:solarized_termtrans = 1
 let g:solarized_underline = 0
 silent! colorscheme solarized
 
-hi Folded term=standout ctermfg=3 ctermbg=none
+hi Folded term=standout ctermfg=3 ctermbg=NONE
 
 highlight link SignColumn LineNr
 highlight link GitGutterAdd DiffAdd

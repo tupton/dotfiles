@@ -169,8 +169,10 @@ let g:airline_theme_patch_func = 'g:AirlineThemeModified'
 
 " Enable buffers and numbers in the tab bar
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#buffers_label = ''
 
 " No need for mode (or crypt, paste, iminsert, etc.) because of showmode
 " No need for file encoding

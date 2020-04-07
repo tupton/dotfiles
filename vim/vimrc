@@ -497,6 +497,11 @@ set listchars=eol:¬,tab:▸·,trail:·,nbsp:_,extends:❯,precedes:❮
 nnoremap <leader>l :set list!<CR>
 
 " }}}
+" {{{ Markdown
+" Explicit syntax highlighting for fenced code blocks in markdown
+let g:markdown_fenced_languages = ['javascript', 'html', 'python', 'bash=sh']
+
+" }}}
 " {{{ Matching
 " Enable extended % matching
 silent! runtime macros/matchit.vim

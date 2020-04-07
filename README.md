@@ -8,9 +8,8 @@ A collection of config files that I use.
 
 Installing will overwrite anything in the way. Run `make -n` first. If you are happy with that output, you can test the dotfile environment with
 
-    ❯ TMP=$(mktemp -d /tmp/tmp.XXXXX)
-    ❯ HOME=$TMP make install
-    ❯ ls -al $TMP
+
+    ❯ TMP=$(mktemp -d -t HOME); HOME=$TMP make install && ls -al $TMP && unset TMP
 
 Install common, cross-platform dotfiles to `$HOME` with
 

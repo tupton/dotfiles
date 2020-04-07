@@ -27,52 +27,52 @@ install : install-dotjs \
 	install-zsh
 
 install-ack :
-	install -m 0644 -- ack/ackrc "$(HOME)"/.ackrc
+	cp -p -- ack/ackrc "$(HOME)"/.ackrc
 
 install-bash :
-	install -m 0644 -- bash/bashrc "$(HOME)"/.bashrc
-	install -m 0644 -- bash/bash_profile "$(HOME)"/.bash_profile
+	cp -p -- bash/bashrc "$(HOME)"/.bashrc
+	cp -p -- bash/bash_profile "$(HOME)"/.bash_profile
 
 install-dotjs :
-	install -m 0755 -d -- "$(HOME)"/.js
-	install -m 0644 -- dotjs/*.js "$(HOME)"/.js
+	mkdir -p -- "$(HOME)"/.js
+	cp -p -- dotjs/*.js "$(HOME)"/.js
 
 create-gitconfig:
 	git/setup
 
 install-git : create-gitconfig
-	install -m 0644 -- git/gitconfig "$(HOME)"/.gitconfig
-	install -m 0644 -- git/gitignore-global "$(HOME)"/.gitignore-global
-	install -m 0755 -d -- "$(HOME)"/.local/bin
-	install -m 0755 -- git/git-* "$(HOME)"/.local/bin
+	cp -p -- git/gitconfig "$(HOME)"/.gitconfig
+	cp -p -- git/gitignore-global "$(HOME)"/.gitignore-global
+	mkdir -p -- "$(HOME)"/.local/bin
+	cp -p -- git/git-* "$(HOME)"/.local/bin
 
 install-gpg :
-	install -m 0700 -d -- "$(HOME)"/.gnupg
-	install -m 0600 -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
+	mkdir -p -- "$(HOME)"/.gnupg
+	cp -p -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
 
 install-eslint :
-	install -m 0644 -- eslint/eslintrc "$(HOME)"/.eslintrc
+	cp -p -- eslint/eslintrc "$(HOME)"/.eslintrc
 
 install-lein :
-	install -m 0755 -d -- "$(HOME)"/.lein
-	install -m 0644 -- lein/profiles.clj "$(HOME)"/.lein/profiles.clj
+	mkdir -p -- "$(HOME)"/.lein
+	cp -p -- lein/profiles.clj "$(HOME)"/.lein/profiles.clj
 
 install-python :
-	install -m 0644 -- python/pythonrc "$(HOME)"/.pythonrc
+	cp -p -- python/pythonrc "$(HOME)"/.pythonrc
 
 install-readline :
-	install -m 0644 -- readline/inputrc "$(HOME)"/.inputrc
+	cp -p -- readline/inputrc "$(HOME)"/.inputrc
 
 install-tarsnap :
-	install -m 0644 -- tarsnap/tarsnaprc "$(HOME)"/.tarsnaprc
+	cp -p -- tarsnap/tarsnaprc "$(HOME)"/.tarsnaprc
 
 install-textmate :
-	install -m 0644 -- TextMate/tm_properties "$(HOME)"/.tm_properties
+	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 
 install-tmux :
-	install -m 0644 -- tmux/tmux.conf "$(HOME)"/.tmux.conf
-	install -m 0755 -d -- "$(HOME)"/.tmuxinator
-	install -m 0644 -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
+	cp -p -- tmux/tmux.conf "$(HOME)"/.tmux.conf
+	mkdir -p -- "$(HOME)"/.tmuxinator
+	cp -p -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
 
 install-vim : install-vim-config \
 	install-vim-init \
@@ -84,13 +84,13 @@ install-gvim : install-vim \
 	install-gvim-config
 
 install-vim-config :
-	install -m 0644 -- vim/vimrc "$(HOME)"/.vimrc
+	cp -p -- vim/vimrc "$(HOME)"/.vimrc
 
 install-gvim-config :
-	install -m 0644 -- vim/gvimrc "$(HOME)"/.gvimrc
+	cp -p -- vim/gvimrc "$(HOME)"/.gvimrc
 
 install-vim-init:
-	install -m 0755 -d -- \
+	mkdir -p -- \
 		"$(HOME)"/.vim/autoload \
 		"$(HOME)"/.vim/swap \
 		"$(HOME)"/.vim/undodir \
@@ -103,32 +103,32 @@ install-vim-plugins :
 	vim/install-plugins
 
 install-vim-plugin-config :
-	install -m 0644 -- vim/coc-settings.json "$(HOME)"/.vim/coc-settings.json
+	cp -p -- vim/coc-settings.json "$(HOME)"/.vim/coc-settings.json
 
 install-zsh : install-zsh-config \
 	install-oh-my-zsh
 
 install-zshd :
-	install -m 0755 -d -- "$(HOME)"/.zshrc.d
-	install -m 0644 -- zsh/zshrc.d/* "$(HOME)"/.zshrc.d
+	mkdir -p -- "$(HOME)"/.zshrc.d
+	cp -p -- zsh/zshrc.d/* "$(HOME)"/.zshrc.d
 
 install-zsh-config : install-zshd
-	install -m 0644 -- zsh/zshrc "$(HOME)"/.zshrc
+	cp -p -- zsh/zshrc "$(HOME)"/.zshrc
 
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
 
 install-xdg-config :
-	install -m 0755 -d -- "$(HOME)"/.config
+	mkdir -p -- "$(HOME)"/.config
 
 install-karabiner-elements : install-xdg-config
-	install -m 0755 -d -- "$(HOME)"/.config/karabiner/assets/complex_modifications
-	install -m 0644 -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
-	install -m 0644 -- Karabiner-Elements/caps-lock-to-control.json "$(HOME)"/.config/karabiner/assets/complex_modifications/caps-lock-to-control.json
-	install -m 0644 -- Karabiner-Elements/logitech-k350-switch-command-option.json "$(HOME)"/.config/karabiner/assets/complex_modifications/logitech-k350-switch-command-option.json
+	mkdir -p -- "$(HOME)"/.config/karabiner/assets/complex_modifications
+	cp -p -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
+	cp -p -- Karabiner-Elements/caps-lock-to-control.json "$(HOME)"/.config/karabiner/assets/complex_modifications/caps-lock-to-control.json
+	cp -p -- Karabiner-Elements/logitech-k350-switch-command-option.json "$(HOME)"/.config/karabiner/assets/complex_modifications/logitech-k350-switch-command-option.json
 
 install-ripgrep : install-zsh
-	install -m 0644 -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc
+	cp -p -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc
 
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 

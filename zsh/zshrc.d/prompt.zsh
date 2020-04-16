@@ -16,11 +16,12 @@ function user_name() {
 }
 
 function compact_path() {
-    local cp="/usr/local/bin/compact_path"
+    local cp="$HOME/.local/bin/compact_path"
     if [[ -e "$cp" ]]; then
-        echo $("$cp" --trigger=20 "$1")
+        local pwd="${PWD/#$HOME/~}"
+        echo $("$cp" --trigger=20 "$pwd")
     else
-        echo "$1"
+        echo "%~"
     fi
 }
 
@@ -94,7 +95,7 @@ precmd() { vcs_info }
 
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 
-__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path %~)%f%b ${vcs_info_msg_0_}%E
+__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path)%f%b ${vcs_info_msg_0_}%E
 ${prompt_leader}'
 
 function prompt_simple() {

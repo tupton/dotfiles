@@ -23,8 +23,8 @@ windows:
       layout: 9408,291x85,0,0[291x13,0,0,30,291x12,0,14,35,291x58,0,27,36]
       panes:
         - app:
-          - cd ~/code/
+          - cd ~/code/frontend-web
         - test:
-          - cd ~/code/
+          - cd ~/code/frontend-web
         - editor:
-          - cd ~/code/
+          - cd ~/code/frontend-web

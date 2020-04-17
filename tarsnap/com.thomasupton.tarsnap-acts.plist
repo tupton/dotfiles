@@ -6,7 +6,7 @@
 		<string>com.thomasupton.tarsnap-acts</string>
 		<key>ProgramArguments</key>
 		<array>
-			<string>/usr/local/bin/acts</string>
+            <string>/Users/tupton/.local/bin/acts</string>
 		</array>
 		<key>StandardErrorPath</key>
 		<string>/var/log/tarsnap-acts.log</string>

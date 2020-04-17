@@ -66,6 +66,23 @@ install-readline :
 install-tarsnap :
 	cp -p -- tarsnap/tarsnaprc "$(HOME)"/.tarsnaprc
 
+configure-tarsnap :
+	ln -s "$(HOME)"/.tarsnaprc /var/root/.tarsnaprc
+
+install-tarsnap-acts :
+	cp -p -- tarsnap/acts.conf /usr/local/etc/acts.conf
+
+configure-tarsnap-acts : configure-tarsnap-acts-launch-daemon \
+	configure-tarsnap-acts-newsyslog
+
+configure-tarsnap-acts-launch-daemon :
+	cp -p -- tarsnap/com.thomasupton.tarsnap-acts.plist /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist
+	launchctl unload /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist && launchctl load -w /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist
+
+configure-tarsnap-acts-newsyslog :
+	cp -p -- tarsnap/com.thomasupton.tarsnap-acts.conf /etc/newsyslog.d/com.thomasupton.tarsnap-acts.conf
+	newsyslog -nvv -f /etc/newsyslog.d/com.thomasupton.tarsnap-acts.conf
+
 install-textmate :
 	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 

@@ -7,7 +7,6 @@ if hash brew 2>/dev/null; then
         /usr/local/opt/php/bin \
         /usr/local/opt/python/libexec/bin \
         "$path[@]")
-    hash thrift 2>/dev/null || path=(/usr/local/opt/thrift@0.9/bin "$path[@]")
     export PATH
 
     unset PYTHONPATH

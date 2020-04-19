@@ -38,10 +38,6 @@ defaults: &defaults
             export PATH="$LOCAL/bin:$PATH"
             make test
 jobs:
-  build_zsh551:
-    environment:
-      DEP_ZSH_VERSION: zsh-5.5.1
-    <<: *defaults
   build_zsh562:
     environment:
       DEP_ZSH_VERSION: zsh-5.6.2
@@ -50,10 +46,14 @@ jobs:
     environment:
       DEP_ZSH_VERSION: zsh-5.7.1
     <<: *defaults
+  build_zsh58:
+    environment:
+      DEP_ZSH_VERSION: zsh-5.8
+    <<: *defaults
 workflows:
   version: 2
   build_all:
     jobs:
-      - build_zsh551
       - build_zsh562
       - build_zsh571
+      - build_zsh58

@@ -363,6 +363,7 @@ augroup vimrc
     autocmd FileType markdown set textwidth=0 wrapmargin=0 wrap linebreak
     autocmd FileType clojure set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " }}}

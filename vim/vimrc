@@ -302,9 +302,9 @@ set smarttab
 set expandtab
 
 " Tab width
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 set textwidth=100
 
@@ -360,10 +360,11 @@ augroup vimrc
 
     autocmd FileType xhtml,xml,html set textwidth=0
     autocmd FileType make set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8
-    autocmd FileType markdown set textwidth=0 wrapmargin=0 wrap linebreak
+    autocmd FileType markdown set textwidth=0 wrapmargin=0 wrap linebreak tabstop=4 softtabstop=4 shiftwidth=4
     autocmd FileType clojure set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType json set tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " }}}

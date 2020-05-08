@@ -521,6 +521,20 @@ silent! runtime macros/matchit.vim
 set shortmess+=aI
 
 " }}}
+" {{{ Prettier
+" Don't require the pragma to format
+let g:prettier#autoformat_require_pragma = 0
+
+" Format if a config is present
+let g:prettier#autoformat_config_present = 1
+
+" Run the formatting async
+let g:prettier#exec_cmd_async = 1
+
+" Show the errors in quickfix but don't focus it
+let g:prettier#quickfix_auto_focus = 0
+
+" }}}
 " {{{ Prose
 let g:limelight_conceal_ctermfg = 240
 let g:limelight_paragraph_span = 1

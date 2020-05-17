@@ -19,8 +19,8 @@ root: ~/code/
 tmux_command: tmux -2
 
 windows:
-  - shipwell:
-      layout: 9408,291x85,0,0[291x13,0,0,30,291x12,0,14,35,291x58,0,27,36]
+  - frontend-web:
+      layout: 831d,291x104,0,0[291x6,0,0,0,291x6,0,7,1,291x90,0,14,2]
       panes:
         - app:
           - cd ~/code/frontend-web
@@ -28,3 +28,12 @@ windows:
           - cd ~/code/frontend-web
         - editor:
           - cd ~/code/frontend-web
+  - shipwell-ui:
+      layout: 831d,291x104,0,0[291x6,0,0,0,291x6,0,7,1,291x90,0,14,2]
+      panes:
+        - app:
+          - cd ~/code/shipwell-ui
+        - test:
+          - cd ~/code/shipwell-ui
+        - editor:
+          - cd ~/code/shipwell-ui

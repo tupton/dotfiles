@@ -103,7 +103,7 @@ Plug 'metakirby5/codi.vim'
 Plug 'jparise/vim-graphql'
 
 " CoC.nvim LSP
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Prose
 Plug 'junegunn/goyo.vim'

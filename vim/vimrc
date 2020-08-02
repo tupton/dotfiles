@@ -199,6 +199,14 @@ let g:ale_linters = {
 \   'vim': ['vint']
 \}
 
+" Be explicit about fixers
+let g:ale_fixers = {
+\   'javascript': ['eslint']
+\}
+
+" Fix on save, like Prettier
+let g:ale_fix_on_save = 1
+
 " Ignore specific flake8 errors and warnings
 let g:ale_python_flake8_options = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,E121,W801"'
 

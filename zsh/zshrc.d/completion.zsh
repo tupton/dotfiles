@@ -1,2 +1,3 @@
 # Homebrew doesn't write anything outside of `brew --prefix`
-hash brew 2>/dev/null && [ -d /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
+# Add known homebrew prefix zsh completion directories.
+hash brew 2>/dev/null && fpath=(/usr/local/share/zsh-completions /usr/local/share/zsh/site-functions $fpath)

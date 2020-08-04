@@ -719,6 +719,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 " Rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)
+
+" Jump to definition of symbol under cursor
 nmap <leader>df <Plug>(coc-definition)
 
 " {{{ Epilogue

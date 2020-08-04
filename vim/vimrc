@@ -103,7 +103,7 @@ Plug 'metakirby5/codi.vim'
 Plug 'jparise/vim-graphql'
 
 " CoC.nvim LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose
 Plug 'junegunn/goyo.vim'

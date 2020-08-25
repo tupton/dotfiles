@@ -20,17 +20,8 @@ Plug 'tpope/vim-markdown'
 " Add support for github-style fenced codeblocks in markdown
 Plug 'jtratner/vim-flavored-markdown'
 
-" Python syntax folding
-Plug 'tmhedberg/SimpylFold'
-
 " Syntax, linting, etc.
 Plug 'w0rp/ale'
-
-" Clojure syntax
-Plug 'guns/vim-clojure-static'
-
-" lein support
-Plug 'tpope/vim-salve'
 
 " Solarized theme
 Plug 'altercation/vim-colors-solarized'
@@ -58,9 +49,6 @@ Plug 'tpope/vim-git'
 
 " Inline git status
 Plug 'airblade/vim-gitgutter'
-
-" Coffeescript
-Plug 'kchmck/vim-coffee-script'
 
 " Open current Markdown buffer in Marked2
 Plug 'itspriddle/vim-marked'
@@ -92,15 +80,6 @@ Plug 'tpope/vim-dispatch'
 
 " github integration
 Plug 'tpope/vim-rhubarb'
-
-" Dash.app integration (OS X only)
-Plug 'rizzatti/dash.vim'
-
-" Async interactive scratchpad
-Plug 'metakirby5/codi.vim'
-
-" GraphQL syntax
-Plug 'jparise/vim-graphql'
 
 " CoC.nvim LSP
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}

@@ -358,6 +358,7 @@ augroup END
 " {{{ Fugitive
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gcv :Gcommit -v<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gp :Git push<cr>

@@ -22,6 +22,11 @@
     pt = pick-tree
     dt = difftool
 
+    # Reviews
+    rs = diff-files-stat
+    hm = !git heatmap -b \"${REVIEW_BASE-origin/dev}\"
+    review = !git diff-files $(git diff-files-name --diff-filter=d)
+
 [merge]
     tool = vimdiff
 [mergetool]

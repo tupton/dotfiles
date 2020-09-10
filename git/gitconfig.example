@@ -23,9 +23,9 @@
     dt = difftool
 
     # Reviews
-    rs = diff-files-stat
+    rs = diff-review-stat
     hm = !git heatmap -b \"${REVIEW_BASE-origin/dev}\"
-    review = !git diff-files $(git diff-files-name --diff-filter=d)
+    review = !git diff-review $(git diff-review-names --diff-filter=d)
 
 [merge]
     tool = vimdiff

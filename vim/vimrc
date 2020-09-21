@@ -236,6 +236,13 @@ if has('autocmd')
 
         autocmd FileType go setlocal noexpandtab
     augroup END
+
+    augroup groovy
+        autocmd!
+
+        au BufReadPost Jenkinsfile set syntax=groovy
+        au BufReadPost Jenkinsfile set filetype=groovy
+    augroup END
 endif
 
 " }}}
@@ -352,6 +359,7 @@ augroup vimrc
     autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType json set tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType groovy set tabstop=4 softtabstop=4 shiftwidth=4
 augroup END
 
 " }}}

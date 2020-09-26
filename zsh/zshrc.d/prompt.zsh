@@ -95,7 +95,7 @@ function +vi-git-tagname() {
     [[ -n ${tag} ]] && hook_com[branch]="%B%F{red}${tag}%f%b"
 }
 
-precmd() { vcs_info }
+add-zsh-hook precmd vcs_info
 
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 

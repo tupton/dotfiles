@@ -34,13 +34,17 @@ function prompt_char() {
 
 setopt prompt_subst
 autoload -Uz vcs_info
-zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
-zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
-zstyle ':vcs_info:git*' actionformats "%b|%a "
-zstyle ':vcs_info:git*' formats "%b %c%u%m "
-zstyle ':vcs_info:git*' check-for-changes true
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
 zstyle ':vcs_info:*' enable git
+
+() {
+  local formats="%b %c%u"
+  zstyle ':vcs_info:git*' formats "$formats%m "
+  zstyle ':vcs_info:git*' actionformats "${formats} %F{white}%a%f "
+  zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
+  zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
+  zstyle ':vcs_info:git*' check-for-changes true
+  zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
+}
 
 function +vi-git-untracked() {
     if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == 'true' && \

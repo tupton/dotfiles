@@ -274,7 +274,7 @@ set diffopt+=vertical,algorithm:histogram,indent-heuristic
 " {{{ Folding
 " Fold with triple curly braces, fill with spaces
 if has('folding')
-    set foldenable
+    set nofoldenable
     set foldmethod=marker
     set foldopen=hor,search,tag,undo
     set fillchars=diff:\ ,fold:\ ,vert:\

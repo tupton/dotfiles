@@ -243,6 +243,12 @@ if has('autocmd')
         au BufReadPost Jenkinsfile set syntax=groovy
         au BufReadPost Jenkinsfile set filetype=groovy
     augroup END
+
+    augroup json
+      autocmd!
+
+      autocmd FileType json setlocal foldmethod=syntax
+    augroup END
 endif
 
 " }}}

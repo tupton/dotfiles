@@ -28,6 +28,7 @@ Plug 'altercation/vim-colors-solarized'
 
 " Javascript syntax
 Plug 'othree/yajs.vim', { 'for': 'javascript'}
+Plug 'maxmellon/vim-jsx-pretty'
 
 " JSON syntax highlighting
 Plug 'elzr/vim-json'

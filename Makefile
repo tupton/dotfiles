@@ -139,10 +139,7 @@ install-xdg-config :
 	mkdir -p -- "$(HOME)"/.config
 
 install-karabiner-elements : install-xdg-config
-	mkdir -p -- "$(HOME)"/.config/karabiner/assets/complex_modifications
 	cp -p -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
-	cp -p -- Karabiner-Elements/caps-lock-to-control.json "$(HOME)"/.config/karabiner/assets/complex_modifications/caps-lock-to-control.json
-	cp -p -- Karabiner-Elements/logitech-k350-switch-command-option.json "$(HOME)"/.config/karabiner/assets/complex_modifications/logitech-k350-switch-command-option.json
 
 install-ripgrep : install-zsh
 	cp -p -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc

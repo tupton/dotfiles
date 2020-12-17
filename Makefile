@@ -140,6 +140,7 @@ install-xdg-config :
 
 install-karabiner-elements : install-xdg-config
 	cp -p -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
+	cp -p -- Karabiner-Elements/karabiner.edn "$(HOME)"/.config/karabiner.edn
 
 install-ripgrep : install-zsh
 	cp -p -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc

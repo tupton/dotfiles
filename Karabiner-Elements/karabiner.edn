@@ -1,0 +1,31 @@
+{
+ :default true
+ :alone 500
+ :delay 200
+ :held 500
+ :sim 200
+ :simlayer-threshold 222
+
+ :devices {
+           :logitech_k350 [{:product_id 50475 :vendor_id 1133}]
+          }
+
+ :applications {
+                :chrome ["com.google.Chrome"]
+                :slack ["com.tinyspeck.slackmacgap"]
+               }
+
+ :main [
+        {:des "global"
+          :rules [
+                  [:left_option :left_command [:logitech_k350]]
+                  [:left_command :left_option [:logitech_k350]]
+                  [:right_option :left_command [:logitech_k350]]
+                  [:##caps_lock :left_control nil {:alone :escape}]]}
+
+        {:des "slack"
+         :rules [
+                 [:condi :slack] [:##left_command :left_command nil {:alone :!Ck}]]}
+
+       ]
+}

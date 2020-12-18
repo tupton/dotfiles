@@ -6,6 +6,17 @@
  :sim 200
  :simlayer-threshold 222
 
+ :tos {
+       :open_paren {:key :9 :modi :shift}
+       :close_paren {:key :0 :modi :shift}
+
+       :open_brace {:key :open_bracket :modi :shift}
+       :close_brace {:key :close_bracket :modi :shift}
+
+       :less_than {:key :comma :modi :shift}
+       :greater_than {:key :period :modi :shift}
+      }
+
  :devices {
            :logitech_k350 [{:product_id 50475 :vendor_id 1133}]
           }
@@ -14,6 +25,10 @@
                 :chrome ["com.google.Chrome"]
                 :slack ["com.tinyspeck.slackmacgap"]
                }
+
+ :simlayers {
+             :spacebar-mode {:key :spacebar}
+           }
 
  :main [
         {:des "global"
@@ -26,6 +41,7 @@
         {:des "slack"
          :rules [
                  [:condi :slack] [:##left_command :left_command nil {:alone :!Ck}]]}
+
 
        ]
 }

@@ -1,10 +1,5 @@
 {
  :default true
- :alone 500
- :delay 200
- :held 500
- :sim 200
- :simlayer-threshold 222
 
  :tos {
        :open_paren {:key :9 :modi :shift}

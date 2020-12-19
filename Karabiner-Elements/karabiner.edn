@@ -47,11 +47,15 @@
        :open_paren {:key :9 :modi :shift}
        :close_paren {:key :0 :modi :shift}
 
-       :open_brace {:key :open_bracket :modi :shift}
-       :close_brace {:key :close_bracket :modi :shift}
+       ; cannot override built-in key info
+       :-open_bracket {:key :hyphen}
+       :-close_bracket {:key :equal_sign}
 
-       :less_than {:key :comma :modi :shift}
-       :greater_than {:key :period :modi :shift}
+       :open_brace {:key :hyphen :modi :shift}
+       :close_brace {:key :equal_sign :modi :shift}
+
+       :less_than {:key :w :modi :shift}
+       :greater_than {:key :e :modi :shift}
       }
 
  :devices {

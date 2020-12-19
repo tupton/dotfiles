@@ -1,6 +1,48 @@
 {
  :default true
 
+ :froms {
+         ; dvorak froms for easier mnemonics
+         :-quote {:key :q}
+         :-comma {:key :w}
+         :-period {:key :e}
+         :-p {:key :r}
+         :-y {:key :t}
+         :-f {:key :y}
+         :-g {:key :u}
+         :-c {:key :i}
+         :-r {:key :o}
+         :-l {:key :p}
+
+         :-a {:key :a}
+         :-o {:key :s}
+         :-e {:key :d}
+         :-u {:key :f}
+         :-i {:key :g}
+         :-d {:key :h}
+         :-h {:key :j}
+         :-t {:key :k}
+         :-n {:key :l}
+         :-s {:key :semicolon}
+         :-hyphen {:key :quote}
+
+         :-semicolon {:key :z}
+         :-q {:key :x}
+         :-j {:key :c}
+         :-k {:key :v}
+         :-x {:key :b}
+         :-b {:key :n}
+         :-m {:key :m}
+         :-w {:key :comma}
+         :-v {:key :period}
+         :-z {:key :slash}
+
+         :-open_bracket {:key :hypen}
+         :-close_bracket {:key :equal_sign}
+         :-slash {:key :open_bracket}
+         :-equal_sign {:key :close_bracket}
+        }
+
  :tos {
        :open_paren {:key :9 :modi :shift}
        :close_paren {:key :0 :modi :shift}

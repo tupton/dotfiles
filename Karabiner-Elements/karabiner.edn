@@ -68,7 +68,7 @@
                }
 
  :simlayers {
-             :spacebar-mode {:key :spacebar}
+             :symbols-mode {:key :slash}
            }
 
  :main [
@@ -83,8 +83,8 @@
          :rules [
                  [:condi :slack] [:##left_command :left_command nil {:alone :!Ck}]]}
 
-        {:des "spacebar"
-         :rules [:spacebar-mode
+        {:des "symbols"
+         :rules [:symbols-mode
                  ;symbols [](){}<>
                  [:-a :-open_bracket]
                  [:-o :-close_bracket]

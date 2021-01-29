@@ -84,6 +84,7 @@ Plug 'tpope/vim-rhubarb'
 
 " CoC.nvim LSP
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
 " Prose
 Plug 'junegunn/goyo.vim'
@@ -676,7 +677,7 @@ set noequalalways
 " }}}
 " {{{ CoC.nvim
 " Explicitly list installed extensions
-let g:coc_global_extensions = ['coc-dictionary', 'coc-syntax', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyls']
+let g:coc_global_extensions = ['coc-dictionary', 'coc-syntax', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyls', 'coc-eslint']
 
 " Confirm first item with <cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"

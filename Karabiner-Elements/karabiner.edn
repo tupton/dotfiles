@@ -83,39 +83,39 @@
          :rules [
                  [:condi :slack] [:##left_command :left_command nil {:alone :!Ck}]]}
 
-        {:des "symbols"
-         :rules [:symbols-mode
-                 ;symbols [](){}<>
-                 [:-a :-open_bracket]
-                 [:-o :-close_bracket]
+        ;{:des "symbols"
+        ; :rules [:symbols-mode
+        ;         ;symbols [](){}<>
+        ;         [:-a :-open_bracket]
+        ;         [:-o :-close_bracket]
 
-                 [:-e :open_paren]
-                 [:-u :close_paren]
+        ;         [:-e :open_paren]
+        ;         [:-u :close_paren]
 
-                 [:-h :open_brace]
-                 [:-t :close_brace]
+        ;         [:-h :open_brace]
+        ;         [:-t :close_brace]
 
-                 [:-n :less_than]
-                 [:-s :greater_than]
+        ;         [:-n :less_than]
+        ;         [:-s :greater_than]
 
-                 [:-quote :grave_accent_and_tilde]
+        ;         [:-quote :grave_accent_and_tilde]
 
-                 ;symbol sequences
-                 ; [:left_shift [:spacebar :equal_sign :spacebar]]; =  =  =  =  =  =  =  =  =  =
-                 ; [:q [:!S9 :!S0 :equal_sign :greater_than :spacebar]];()=>
-                 ; [:e [:!S9 :!S9 :!S0 :equal_sign :greater_than :spacebar :open_brace :close_brace :!S0 :left_arrow :left_arrow]];(()=> {})
+        ;         ;symbol sequences
+        ;         ; [:left_shift [:spacebar :equal_sign :spacebar]]; =  =  =  =  =  =  =  =  =  =
+        ;         ; [:q [:!S9 :!S0 :equal_sign :greater_than :spacebar]];()=>
+        ;         ; [:e [:!S9 :!S9 :!S0 :equal_sign :greater_than :spacebar :open_brace :close_brace :!S0 :left_arrow :left_arrow]];(()=> {})
 
-                 ; [:g [:spacebar :equal_sign :greater_than :spacebar]]; =>  => ={} =""
-                 ; [:h [:equal_sign :open_brace :close_brace :left_arrow]];={}
-                 ; [:b [:equal_sign :open_brace :close_brace :left_arrow]];={}
-                 ; [:quote [:equal_sign :!Squote :!Squote :left_arrow]];=""
-
-
-                 ;macros
+        ;         ; [:g [:spacebar :equal_sign :greater_than :spacebar]]; =>  => ={} =""
+        ;         ; [:h [:equal_sign :open_brace :close_brace :left_arrow]];={}
+        ;         ; [:b [:equal_sign :open_brace :close_brace :left_arrow]];={}
+        ;         ; [:quote [:equal_sign :!Squote :!Squote :left_arrow]];=""
 
 
-                 ;
-                 ]}
+        ;         ;macros
+
+
+        ;         ;
+        ;         ]}
 
        ]
 }

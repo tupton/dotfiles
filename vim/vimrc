@@ -95,18 +95,20 @@ Plug 'prettier/vim-prettier', {
 " Project config and alternate files
 Plug 'tpope/vim-projectionist'
 
-call g:plug#end()
+" Use sensible defaults (loads after this config, so some config is probably duplicated)
+Plug 'tpope/vim-sensible'
 
-filetype plugin indent on
-syntax enable
+call g:plug#end()
 
 " }}}
 " {{{ Setup
 
 " Set the terminal font encoding
-set encoding=utf-8
-scriptencoding utf-8
-set termencoding=utf-8
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+  scriptencoding utf-8
+  set termencoding=utf-8
+endif
 
 " Manage multiple buffers
 set hidden
@@ -265,9 +267,6 @@ endif
 " {{{ Commands
 " Note that these options don't really matter when using vim-airline.
 if has('cmdline_info')
-    " Show line and column information
-    set ruler
-
     " Show command information in the status
     set showcmd
 
@@ -290,16 +289,10 @@ endif
 
 " }}}
 " {{{ Formatting
-" Auto indent new lines
-set autoindent
-
 " Show matching braces
 set showmatch
 
 " Spacing and tabbing
-" Use shiftwidth and tabstop smartly
-set smarttab
-
 " Spaces
 set expandtab
 
@@ -348,11 +341,6 @@ endif
 "            wraps
 "         2. the second item
 set formatoptions+=t,c,r,o,n
-
-" Delete comment character when joining commented lines
-if v:version > 703 || v:version == 703 && has('patch541')
-  set formatoptions+=j
-endif
 
 " Use only 1 space after "." when joining lines instead of 2
 set nojoinspaces
@@ -501,18 +489,13 @@ endif
 " {{{ List
 " Toggle invisibles, hide by default
 set nolist
-set listchars=eol:¬,tab:▸·,trail:·,nbsp:_,extends:❯,precedes:❮
+set listchars=tab:⇥\ ,trail:·,eol:¬,extends:❯,precedes:❮,nbsp:_
 nnoremap <leader>l :set list!<CR>
 
 " }}}
 " {{{ Markdown
 " Explicit syntax highlighting for fenced code blocks in markdown
 let g:markdown_fenced_languages = ['javascript', 'html', 'python', 'bash=sh']
-
-" }}}
-" {{{ Matching
-" Enable extended % matching
-silent! runtime macros/matchit.vim
 
 " }}}
 " {{{ Messages
@@ -550,8 +533,12 @@ set grepprg =rg\ --vimgrep\ $*
 " }}}
 " {{{ Scrolling
 " Scrolling context; lines/columns of buffer while scrolling
-set scrolloff=3
-set sidescrolloff=5
+if !&scrolloff
+  set scrolloff=3
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
 
 " Scrolling speed
 nnoremap <C-e> 5<C-e>
@@ -566,9 +553,6 @@ if has('extra_search')
     " Be smart about searching case-sensitively
     set smartcase
     set ignorecase
-
-    " Search as you type
-    set incsearch
 
     " Wrap around the file when searching
     set wrapscan
@@ -593,11 +577,6 @@ augroup helpfiles
     " Always open help in vertical split
     autocmd vimrc FileType help wincmd L
 augroup END
-
-" }}}
-" {{{ Status line
-" Always show the status line
-set laststatus=2
 
 " }}}
 " {{{ Swap
@@ -646,9 +625,6 @@ set title
 " Highlight the line the cursor is on
 set cursorline
 
-" Let backspace do what it's supposed to: allow backspace over indent, eol, and start of an insert
-set backspace=indent,eol,start
-
 " Reuse open buffers and tabs
 set switchbuf=useopen,usetab
 
@@ -656,7 +632,6 @@ set switchbuf=useopen,usetab
 " {{{ Wildmenu
 if has('wildmenu')
     " Bash-like tab completion for commands
-    set wildmenu
     set wildmode=longest:list
     set wildchar=<Tab>
     if has('wildignore')

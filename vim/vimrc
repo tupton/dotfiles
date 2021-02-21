@@ -95,6 +95,9 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'mdx'] }
 
+" Project config and alternate files
+Plug 'tpope/vim-projectionist'
+
 call g:plug#end()
 
 filetype plugin indent on

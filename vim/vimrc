@@ -81,6 +81,15 @@ Plug 'tpope/vim-rhubarb'
 
 " CoC.nvim LSP
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" And all the extensions I use
+Plug 'neoclide/coc-syntax', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
 " Prose
@@ -651,9 +660,6 @@ set noequalalways
 
 " }}}
 " {{{ CoC.nvim
-" Explicitly list installed extensions
-let g:coc_global_extensions = ['coc-dictionary', 'coc-syntax', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyls', 'coc-eslint']
-
 " Confirm first item with <cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 

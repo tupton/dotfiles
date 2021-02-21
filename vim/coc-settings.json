@@ -3,5 +3,5 @@
     "typescript.suggestionActions.enabled": false,
     "javascript.suggestionActions.enabled": false,
     "typescript.showUnused": false,
-    "javascript.showUnused": false,
+    "javascript.showUnused": false
 }

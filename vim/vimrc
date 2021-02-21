@@ -45,9 +45,6 @@ Plug 'tpope/vim-repeat'
 " JSON pretty printing with gqaj
 Plug 'tpope/vim-jdaddy'
 
-" git runtime files - highlight git config, commit, etc.
-Plug 'tpope/vim-git'
-
 " Inline git status
 Plug 'airblade/vim-gitgutter'
 

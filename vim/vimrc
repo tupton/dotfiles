@@ -91,6 +91,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+Plug 'haishanh/coc-swagger',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
 " Prose
 Plug 'junegunn/goyo.vim'

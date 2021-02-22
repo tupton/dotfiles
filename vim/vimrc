@@ -687,6 +687,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>af  <Plug>(coc-fix-current)
 
+" Add :Swagger to call coc-swagger render
+command -nargs=0 Swagger :CocCommand swagger.render
+
 " {{{ Epilogue
 " Turn syntax on after everything else
 syntax on

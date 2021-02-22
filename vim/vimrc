@@ -108,6 +108,7 @@ Plug 'tpope/vim-projectionist'
 " Use sensible defaults (loads after this config, so some config is probably duplicated)
 Plug 'tpope/vim-sensible'
 
+" GraphQL syntax highlighting
 Plug 'jparise/vim-graphql'
 
 call g:plug#end()

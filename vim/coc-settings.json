@@ -1,11 +1,11 @@
 {
-    "diagnostic.displayByAle": true,
-    "typescript.suggestionActions.enabled": false,
-    "javascript.suggestionActions.enabled": false,
-    "typescript.showUnused": false,
-    "javascript.showUnused": false,
-    "css.validate": false,
-    "less.validate": false,
-    "scss.validate": false,
-    "wxss.validate": false
+  "diagnostic.displayByAle": true,
+  "typescript.suggestionActions.enabled": false,
+  "javascript.suggestionActions.enabled": false,
+  "typescript.showUnused": false,
+  "javascript.showUnused": false,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "wxss.validate": false
 }

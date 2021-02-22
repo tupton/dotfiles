@@ -91,7 +91,6 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
-Plug 'haishanh/coc-swagger',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bmatcuk/coc-stylelintplus', {'do': 'yarn install --frozen-lockfile'}
 
@@ -666,6 +665,9 @@ set noequalalways
 
 " }}}
 " {{{ CoC.nvim
+" List extensions that can't be managed with vim-plug
+let g:coc_global_extensions = ['coc-syntax', 'coc-dictionary', 'coc-swagger']
+
 " Confirm first item with <cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 

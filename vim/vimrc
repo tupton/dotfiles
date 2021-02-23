@@ -93,6 +93,7 @@ Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn r
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bmatcuk/coc-stylelintplus', {'do': 'yarn install --frozen-lockfile'}
+Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose
 Plug 'junegunn/goyo.vim'

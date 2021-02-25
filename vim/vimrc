@@ -193,7 +193,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'vim': ['vint']
+\   'vim': ['vint'],
+\   'scss': []
 \}
 
 " Be explicit about fixers

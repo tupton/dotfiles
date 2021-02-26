@@ -117,6 +117,9 @@ Plug 'jparise/vim-graphql'
 " Emmet snippet expansion
 Plug 'mattn/emmet-vim'
 
+" Path additions for a number of languages including Javascript
+Plug 'tpope/vim-apathy'
+
 call g:plug#end()
 
 " }}}

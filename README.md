@@ -50,6 +50,6 @@ Note that you *do not* need to install `pip` and `npm` requirements in order to 
 
 ## Inspiration and Thanks
 
-<https://github.com/tejr/dotfiles> - Makefile and overall project structure
+<https://sanctum.geek.nz/cgit/dotfiles.git/about/> - Makefile and overall project structure
 
 <https://github.com/holman/dotfiles> - Interactive, templated gitconfig

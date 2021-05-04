@@ -142,14 +142,9 @@ let g:maplocalleader = ' '
 " More frequent updates for, e.g. signs.
 set updatetime=750
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has('patch-8.1.1564')
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become
+" resolved.
+set signcolumn=yes
 
 " }}}
 " {{{ Airline
@@ -435,6 +430,9 @@ let g:gitgutter_diff_args = '-w'
 " Don't map any keys by default
 let g:gitgutter_map_keys = 0
 
+" Let git-gutter set colors for the sign column
+let g:gitgutter_set_sign_backgrounds = 1
+
 " Re-add some useful mappings
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
@@ -718,11 +716,7 @@ silent! colorscheme solarized
 
 hi Folded term=standout ctermfg=3 ctermbg=NONE
 
-highlight link SignColumn LineNr
-highlight link GitGutterAdd DiffAdd
-highlight link GitGutterChange DiffChange
-highlight link GitGutterDelete DiffDelete
-highlight link GitGutterChangeDelete DiffDelete
+highlight! link SignColumn LineNr
 
 " }}}
 " }}}

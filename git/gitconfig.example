@@ -27,6 +27,8 @@
     hm = !git heatmap -b \"${REVIEW_BASE-origin/dev}\"
     review = !git diff-review $(git diff-review-names --diff-filter=d)
 
+  stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
+
 [merge]
     tool = vimdiff
 [mergetool]

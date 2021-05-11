@@ -4,12 +4,16 @@ if [ -f "$HOME"/.fzf.zsh ]; then
 fi
 
 if hash 2>/dev/null fzf; then
-    export FZF_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD 2>/dev/null || fd --hidden --no-ignore --type f 2>/dev/null'
-    export FZF_DEFAULT_OPTS='--extended --preview=" [[ $(file --mime {}) =~ binary ]] &&
-        echo {} is a binary file ||
-        (bat --color always {} || head -500 {}) 2> /dev/null | head -$LINES"'
+    export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+    export FZF_DEFAULT_OPTS="--ansi"
+
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_CTRL_R_OPTS='--no-preview'
-    export FZF_ALT_C_COMMAND='fd $( [[ $(git rev-parse --is-inside-work-tree) 2>/dev/null ]] || echo "--hidden --no-ignore" ) --type d'
-    export FZF_ALT_C_OPTS='--preview="CLICOLOR_FORCE=1 command ls -F -G -al {}"'
+    export FZF_CTRL_T_OPTS="--preview-window right:60% --preview '(bat --color=always --style=header,grid --line-range :300 {} || cat {} || tree -C {}) 2>/dev/null | head -300'"
+
+    export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
+    export FZF_ALT_C_COMMAND='fd --type directory'
+    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+    export FZF_TMUX=1
 fi

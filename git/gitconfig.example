@@ -36,7 +36,7 @@
 [core]
     excludesfile = ~/.gitignore-global
     ignorecase = true
-    pager = hash diff-so-fancy 2>&1 >/dev/null && diff-so-fancy | less --tabs=4 -RFXS || less --tabs=4 -RFXS
+    pager = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
 [push]
     default = GIT_PUSH_DEFAULT
 [color]
@@ -78,9 +78,6 @@
     prune = true
 [help]
     autocorrect = 1
-[diff-so-fancy]
-    markEmptyLines = false
-    rulerWidth = 100
 [commit]
     gpgsign = true
 [diff]
@@ -89,3 +86,8 @@
     tool = vimdiff
 [difftool]
     prompt = false
+[delta]
+    syntax-theme = Solarized (dark)
+    line-numbers = true
+[interactive]
+    diffFilter = delta --color-only

@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# Pick changed files from the working tree. Useful when combined with other commands like `git add` or `vim`
-git ls-files --modified --deleted --others --exclude-standard | fzf --multi --select-1 --exit-0 --preview 'git diff --color -- {}'

@@ -19,7 +19,7 @@
     fa = fuzzy-add
     fb = fuzzy-branch
     fco = fuzzy-checkout
-    pt = pick-tree
+    ff = fuzzy-files
     dt = difftool
 
     # Reviews

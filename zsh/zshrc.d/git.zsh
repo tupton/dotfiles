@@ -5,5 +5,5 @@ gt() {
 
 # edit files changed in the working tree
 vimtree() {
-    ${EDITOR:-vim} $(git pick-tree)
+    ${EDITOR:-vim} $(git fuzzy-files)
 }

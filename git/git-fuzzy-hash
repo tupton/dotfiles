@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+git one --graph --color=always |
+fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview \
+  --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+  --header 'Press CTRL-S to toggle sort' \
+  --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+grep -o "[a-f0-9]\{7,\}"

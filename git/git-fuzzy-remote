@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+git remote -v | awk '{print $1 "\t" $2}' | uniq |
+fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview \
+  --tac \
+  --preview 'git one --graph {1}' |
+cut -d$'\t' -f1

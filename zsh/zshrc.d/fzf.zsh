@@ -4,7 +4,7 @@ if [ -f "$HOME"/.fzf.zsh ]; then
 fi
 
 if hash 2>/dev/null fzf; then
-    export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+    export FZF_DEFAULT_COMMAND="fd --hidden --type file --color=always"
     export FZF_DEFAULT_OPTS="--ansi"
 
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -12,7 +12,7 @@ if hash 2>/dev/null fzf; then
 
     export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
-    export FZF_ALT_C_COMMAND='fd --type directory --color=always'
+    export FZF_ALT_C_COMMAND='fd --hidden --type directory --color=always'
     export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
     export FZF_TMUX=1

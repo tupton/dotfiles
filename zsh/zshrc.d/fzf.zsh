@@ -16,4 +16,7 @@ if hash 2>/dev/null fzf; then
     export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
     export FZF_TMUX=1
+
+    # Explicitly enable the  fzf-tab oh-my-zsh extension if it is loaded
+    typeset -f enable-fzf-tab >/dev/null && enable-fzf-tab
 fi

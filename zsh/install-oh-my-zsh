@@ -2,5 +2,5 @@
 
 # Clone oh-my-zsh, but only if it doesn't exist yet
 if [ ! -d "$HOME"/.oh-my-zsh ]; then
-    git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME"/.oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi

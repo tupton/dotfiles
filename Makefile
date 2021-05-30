@@ -148,7 +148,7 @@ install-ripgrep : install-zsh
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :
-	@for setup in git/setup vim/install-* vim/update-* zsh/install-* ; do \
+	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
 		echo "Parsing $$setup" ; \
 		if [ -f "$$setup" ] && ! zsh --no-exec "$$setup" ; then \
 			exit 1 ; \

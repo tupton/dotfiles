@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+typeset -f omz >/dev/null && omz update
+
+for dir in "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/*(/); do
+  (cd $dir && git pull origin $(git rev-parse --abbrev-ref HEAD))
+done

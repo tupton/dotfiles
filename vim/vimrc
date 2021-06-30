@@ -98,7 +98,6 @@ Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 
 " Prettier integration
 Plug 'prettier/vim-prettier', {
@@ -257,9 +256,7 @@ if has('autocmd')
         " Automatically use github-flavored markdown
         autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 
-        autocmd User GoyoEnter Limelight
-        autocmd User GoyoLeave Limelight!
-        autocmd FileType markdown Goyo 110
+        autocmd FileType markdown Goyo 125
     augroup END
 
     augroup golang
@@ -535,13 +532,6 @@ let g:prettier#exec_cmd_async = 1
 
 " Show the errors in quickfix but don't focus it
 let g:prettier#quickfix_auto_focus = 0
-
-" }}}
-" {{{ Prose
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_paragraph_span = 1
-
-let g:goyo_width = 110
 
 " }}}
 " {{{ Rainbow

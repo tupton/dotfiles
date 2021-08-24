@@ -90,6 +90,8 @@ install-tmux :
 	cp -p -- tmux/tmux.conf "$(HOME)"/.tmux.conf
 	mkdir -p -- "$(HOME)"/.tmuxinator
 	cp -p -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
+	mkdir -p -- "$(HOME)"/.local/bin
+	cp -p -- tmux/bin/* "$(HOME)"/.local/bin
 
 install-vim : install-vim-config \
 	install-vim-init \

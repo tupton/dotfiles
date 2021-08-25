@@ -119,6 +119,9 @@ Plug 'mattn/emmet-vim'
 " Path additions for a number of languages including Javascript
 Plug 'tpope/vim-apathy'
 
+" vim <--> tmux navigation with C-<h,j,k,l>
+Plug 'christoomey/vim-tmux-navigator'
+
 call g:plug#end()
 
 " }}}

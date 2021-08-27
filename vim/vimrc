@@ -280,6 +280,12 @@ if has('autocmd')
 
       autocmd FileType json setlocal foldmethod=syntax
     augroup END
+
+    augroup resize
+      autocmd!
+
+      autocmd VimResized * :wincmd =
+    augroup END
 endif
 
 " }}}

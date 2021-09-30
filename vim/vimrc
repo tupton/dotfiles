@@ -503,6 +503,11 @@ noremap <F1> <nop>
 " Shortcuts for diff
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dp :diffput<cr>
+
+" Use <C-S> to clear the highlighting of :set hlsearch.
+if maparg('<C-S>', 'n') ==# ''
+  nnoremap <silent> <C-S> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 " }}}
 " {{{ Line Numbers
 " Show line numbers

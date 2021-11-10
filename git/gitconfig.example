@@ -36,7 +36,6 @@
 [core]
     excludesfile = ~/.gitignore-global
     ignorecase = true
-    pager = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
 [push]
     default = GIT_PUSH_DEFAULT
 [color]
@@ -86,8 +85,13 @@
     tool = vimdiff
 [difftool]
     prompt = false
+[pager]
+    diff = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
+    log = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
+    reflog = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
+    show = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
+[interactive]
+    diffFilter = delta --color-only
 [delta]
     syntax-theme = Monokai Extended Bright
     line-numbers = true
-[interactive]
-    diffFilter = delta --color-only

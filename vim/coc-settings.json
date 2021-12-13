@@ -1,9 +1,9 @@
 {
   "diagnostic.displayByAle": true,
-  "typescript.suggestionActions.enabled": false,
-  "javascript.suggestionActions.enabled": false,
-  "typescript.showUnused": false,
-  "javascript.showUnused": false,
+  "typescript.suggestionActions.enabled": true,
+  "javascript.suggestionActions.enabled": true,
+  "typescript.showUnused": true,
+  "javascript.showUnused": true,
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,

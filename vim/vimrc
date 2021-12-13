@@ -700,8 +700,8 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>af  <Plug>(coc-fix-current)
 
-" Add :Swagger to call coc-swagger render
-command -nargs=0 Swagger :CocCommand swagger.render
+" Add :OpenAPI to call coc-swagger render
+command -nargs=0 OpenAPI :CocCommand swagger.render
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>

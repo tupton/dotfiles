@@ -147,6 +147,9 @@ install-karabiner-elements : install-xdg-config
 install-ripgrep : install-zsh
 	cp -p -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc
 
+install-gh :
+	cp -p -- gh/config.yml "$(HOME)"/.config/gh/config.yml
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

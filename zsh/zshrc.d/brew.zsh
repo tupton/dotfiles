@@ -5,7 +5,7 @@ if hash brew 2>/dev/null; then
         /usr/local/opt/perl/bin \
         /usr/local/opt/php/bin \
         /usr/local/opt/python/libexec/bin \
-        /usr/local/opt/node@16/bin \
+        /usr/local/opt/node@14/bin \
         "$path[@]")
     export PATH
 

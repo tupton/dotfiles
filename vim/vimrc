@@ -122,6 +122,9 @@ Plug 'tpope/vim-apathy'
 " vim <--> tmux navigation with C-<h,j,k,l>
 Plug 'christoomey/vim-tmux-navigator'
 
+" adoc rendering and syntax highlighting
+Plug 'habamax/vim-asciidoctor'
+
 call g:plug#end()
 
 " }}}

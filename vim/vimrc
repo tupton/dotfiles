@@ -102,7 +102,7 @@ Plug 'junegunn/goyo.vim'
 " Prettier integration
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'mdx'] }
+  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'ghmarkdown', 'vue', 'yaml', 'html', 'mdx'] }
 
 " Project config and alternate files
 Plug 'tpope/vim-projectionist'
@@ -262,7 +262,8 @@ if has('autocmd')
         " Automatically use github-flavored markdown
         autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 
-        autocmd FileType markdown Goyo 125
+        autocmd FileType markdown,ghmarkdown Goyo 125
+        autocmd FileType markdown,ghmarkdown setlocal spell
     augroup END
 
     augroup golang

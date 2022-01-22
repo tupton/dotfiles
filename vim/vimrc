@@ -98,6 +98,7 @@ Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " Prettier integration
 Plug 'prettier/vim-prettier', {
@@ -264,6 +265,9 @@ if has('autocmd')
 
         autocmd FileType markdown,ghmarkdown Goyo 125
         autocmd FileType markdown,ghmarkdown setlocal spell
+
+        autocmd User GoyoEnter Limelight
+        autocmd User GoyoLeave Limelight!
     augroup END
 
     augroup golang
@@ -719,6 +723,11 @@ function! s:show_documentation()
     execute '!' . &keywordprg . ' ' . expand('<cword>')
   endif
 endfunction
+" }}}
+" {{{ Prose
+" Solarized color scheme requires that we manually specify the conceal color for Limelight
+let g:limelight_conceal_ctermfg = '240'
+
 " }}}
 
 " {{{ Epilogue

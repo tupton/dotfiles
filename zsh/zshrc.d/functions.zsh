@@ -24,3 +24,8 @@ gif() {
 pjq() {
     pbpaste | jq '.' --color-output | less
 }
+
+hexdec() {
+  local input="${(U)1}"
+  bc <<< "ibase=16; $input"
+}

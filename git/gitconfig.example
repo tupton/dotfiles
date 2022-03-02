@@ -95,3 +95,6 @@
 [delta]
     syntax-theme = Monokai Extended Bright
     line-numbers = true
+[blame]
+	markIgnoredLines = true
+	markUnblamedLines = true

@@ -6,6 +6,7 @@ if hash brew 2>/dev/null; then
         /usr/local/opt/php/bin \
         /usr/local/opt/python/libexec/bin \
         /usr/local/opt/node@14/bin \
+        /usr/local/opt/gnu-sed/libexec/gnubin \
         "$path[@]")
     export PATH
 

@@ -86,12 +86,15 @@ configure-tarsnap-acts-newsyslog :
 install-textmate :
 	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 
-install-tmux :
+install-tmux : install-tpm
 	cp -p -- tmux/tmux.conf "$(HOME)"/.tmux.conf
 	mkdir -p -- "$(HOME)"/.tmuxinator
 	cp -p -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
 	mkdir -p -- "$(HOME)"/.local/bin
 	cp -p -- tmux/bin/* "$(HOME)"/.local/bin
+
+install-tpm :
+	tmux/install-tpm
 
 install-vim : install-vim-config \
 	install-vim-init \

@@ -126,6 +126,10 @@ Plug 'christoomey/vim-tmux-navigator'
 " adoc rendering and syntax highlighting
 Plug 'habamax/vim-asciidoctor'
 
+" Prefer two-way merge with conflicts pre-resolved
+" Requires gitconfig changes to use as git mergetool
+Plug 'samoshkin/vim-mergetool'
+
 call g:plug#end()
 
 " }}}

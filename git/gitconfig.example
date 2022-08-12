@@ -30,9 +30,13 @@
   stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
 
 [merge]
-    tool = vimdiff
+	tool = vim_mergetool
+	conflictStyle = diff3
 [mergetool]
     keepBackup = false
+[mergetool "vim_mergetool"]
+  cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+  trustExitCode = true
 [core]
     excludesfile = ~/.gitignore-global
     ignorecase = true

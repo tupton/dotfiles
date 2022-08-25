@@ -21,7 +21,7 @@ defaults: &defaults
             export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"
             pip install -r test-requirements.txt --user
-            npm install --only=dev
+            npm install
       - run:
           name: Print versions
           command: |

@@ -37,6 +37,7 @@ defaults: &defaults
             export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"
             make test
+  parallelism: 3
 jobs:
   build_zsh571:
     environment:

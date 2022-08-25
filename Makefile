@@ -192,5 +192,5 @@ test-vimrc :
 	@echo "All vim config files linted successfully."
 
 test-dotjs :
-	@npm test || exit 1
+	@yarn test || exit 1
 	@echo "All dotjs files linted successfully."

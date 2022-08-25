@@ -21,7 +21,7 @@ defaults: &defaults
             export LOCAL="/home/circleci/.local"
             export PATH="$LOCAL/bin:$PATH"
             pip install -r test-requirements.txt --user
-            npm install
+            yarn
       - run:
           name: Print versions
           command: |
@@ -29,7 +29,7 @@ defaults: &defaults
             export PATH="$LOCAL/bin:$PATH"
             zsh --version
             bash --version
-            npm --version
+            yarn --version
             node --version
       - run:
           name: Test

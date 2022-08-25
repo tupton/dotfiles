@@ -15,7 +15,7 @@ function user_name() {
     [[ -n "$SSH_CONNECTION" ]] && echo "%F{yellow}%n%f%F{gray}@%f%F{blue}%m%f " || echo ""
 }
 
-function compact_path() {
+function __compact_path() {
     local cp="$HOME/.local/bin/compact_path"
     if [[ -e "$cp" ]]; then
         local pwd="${PWD/#$HOME/~}"
@@ -99,7 +99,7 @@ add-zsh-hook precmd vcs_info
 
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 
-__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(compact_path)%f%b ${vcs_info_msg_0_}%E
+__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(__compact_path)%f%b ${vcs_info_msg_0_}%E
 ${prompt_leader}'
 
 function prompt_simple() {

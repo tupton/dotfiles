@@ -1,7 +1,7 @@
 version: 2
 defaults: &defaults
   docker:
-      - image: circleci/python:2.7-node
+      - image: cimg/python:3.10-node
   steps:
       - checkout
       - run:

@@ -19,7 +19,7 @@ function __compact_path() {
     local cp="$HOME/.local/bin/compact_path"
     if [[ -e "$cp" ]]; then
         local pwd="${PWD/#$HOME/~}"
-        /usr/local/bin/python3 "$cp" --trigger=20 "$pwd"
+        "$HOMEBREW_PREFIX"/bin/python3 "$cp" --trigger=20 "$pwd"
     else
         echo "%~"
     fi

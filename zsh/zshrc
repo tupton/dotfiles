@@ -126,7 +126,7 @@ hash vim 2>/dev/null && export EDITOR=vim
 bindkey -v
 
 # Explicit JAVA_HOME, for OS X
-[[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
+[[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
 
 # Path
 # Explicitly add /usr/local/bin and sbin to PATH first

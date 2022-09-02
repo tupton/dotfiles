@@ -1,12 +1,21 @@
+if [ -e /usr/local/bin/brew ]; then
+  eval $(/usr/local/bin/brew shellenv)
+fi
+
+if [ -e /opt/homebrew/bin/brew ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
+
 if hash brew 2>/dev/null; then
-    path=( /usr/local/opt/ipython@5/bin \
-        /usr/local/opt/ruby/bin \
-        /usr/local/lib/ruby/gems/2.7.0/bin \
-        /usr/local/opt/perl/bin \
-        /usr/local/opt/php/bin \
-        /usr/local/opt/python/libexec/bin \
-        /usr/local/opt/node@14/bin \
-        /usr/local/opt/gnu-sed/libexec/gnubin \
+    prefix="$(brew --prefix)"
+    path=( "$prefix"/opt/ipython@5/bin \
+        "$prefix"/opt/ruby/bin \
+        "$prefix"/lib/ruby/gems/2.7.0/bin \
+        "$prefix"/opt/perl/bin \
+        "$prefix"/opt/php/bin \
+        "$prefix"/opt/python/libexec/bin \
+        "$prefix"/opt/node@14/bin \
+        "$prefix"/opt/gnu-sed/libexec/gnubin \
         "$path[@]")
     export PATH
 

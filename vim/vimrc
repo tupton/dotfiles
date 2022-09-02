@@ -690,8 +690,9 @@ set noequalalways
 " List extensions that can't be managed with vim-plug
 let g:coc_global_extensions = ['coc-syntax', 'coc-dictionary', 'coc-swagger']
 
-" Confirm first item with <cr>
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)

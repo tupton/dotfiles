@@ -226,6 +226,9 @@ let g:ale_fix_on_save = 1
 " Ignore specific flake8 errors and warnings
 let g:ale_python_flake8_options = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,E121,W801"'
 
+" Detect if the file is in a pipenv and invoke linters+fixers with pipenv
+let g:ale_python_auto_pipenv = 1
+
 " Better sign symbols
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'

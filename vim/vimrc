@@ -130,6 +130,9 @@ Plug 'habamax/vim-asciidoctor'
 " Requires gitconfig changes to use as git mergetool
 Plug 'samoshkin/vim-mergetool'
 
+" Utilities for coercing casing, e.g. `crc` to change to camelCase
+Plug 'tpope/vim-abolish'
+
 call g:plug#end()
 
 " }}}

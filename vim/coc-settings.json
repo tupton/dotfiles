@@ -65,5 +65,12 @@
     "xsl",
     "yaml",
     "ghmarkdown"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    "tw`([^`]*)",
+    "tw=\"([^\"]*)",
+    "tw={\"([^\"}]*)",
+    "tw\\.\\w+`([^`]*)",
+    "tw\\(.*?\\)`([^`]*)"
   ]
 }

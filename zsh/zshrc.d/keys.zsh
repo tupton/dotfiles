@@ -77,5 +77,12 @@ bind-git-helper() {
     eval "bindkey '^g^$c' fzf-g$c-widget"
   done
 }
-bind-git-helper f b t h r s
+
+FZF_GIT_SH=${FZF_GIT_SH:-~/.local/bin/fzf-git.sh}
+if [[ -f "$FZF_GIT_SH" ]]; then
+  source "$FZF_GIT_SH"
+else
+  bind-git-helper f b t h r s
+fi
+
 unset -f bind-git-helper

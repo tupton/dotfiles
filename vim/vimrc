@@ -133,6 +133,9 @@ Plug 'samoshkin/vim-mergetool'
 " Utilities for coercing casing, e.g. `crc` to change to camelCase
 Plug 'tpope/vim-abolish'
 
+" Preview CSS colors inline
+Plug 'ap/vim-css-color'
+
 call g:plug#end()
 
 " }}}

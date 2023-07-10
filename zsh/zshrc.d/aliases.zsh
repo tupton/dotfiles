@@ -5,3 +5,5 @@ hash ack-grep 2>/dev/null && alias ack=ack-grep
 
 unalias gr
 alias gr='"$(git rev-parse --show-toplevel)"/gradlew'
+
+[[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] && alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

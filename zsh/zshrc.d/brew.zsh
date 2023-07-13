@@ -12,7 +12,6 @@ if hash brew 2>/dev/null; then
     prefix="$(brew --prefix)"
     path=( "$prefix"/opt/ipython@5/bin \
         "$prefix"/opt/ruby/bin \
-        "$prefix"/lib/ruby/gems/2.7.0/bin \
         "$prefix"/opt/perl/bin \
         "$prefix"/opt/php/bin \
         "$prefix"/opt/python/libexec/bin \

@@ -136,6 +136,9 @@ Plug 'tpope/vim-abolish'
 " Preview CSS colors inline
 Plug 'ap/vim-css-color'
 
+" Github copilot
+Plug 'github/copilot.vim'
+
 call g:plug#end()
 
 " }}}

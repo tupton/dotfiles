@@ -72,5 +72,7 @@
     "tw={\"([^\"}]*)",
     "tw\\.\\w+`([^`]*)",
     "tw\\(.*?\\)`([^`]*)"
-  ]
+  ],
+  "ruff.builtin.pythonPath": "python",
+  "ruff.autoFixOnSave": true
 }

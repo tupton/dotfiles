@@ -80,7 +80,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rhubarb'
 
 " CoC.nvim LSP
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " And all the extensions I use
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
@@ -94,7 +94,7 @@ Plug 'yaegassy/coc-tailwindcss3', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bmatcuk/coc-stylelintplus', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
+Plug 'josa42/coc-sh', {'do': 'npm ci'}
 Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose

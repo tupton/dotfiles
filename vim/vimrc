@@ -103,7 +103,7 @@ Plug 'junegunn/limelight.vim'
 
 " Prettier integration
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
+  \ 'do': 'yarn install --frozen-lockfile',
   \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'ghmarkdown', 'vue', 'yaml', 'html', 'mdx'] }
 
 " Project config and alternate files

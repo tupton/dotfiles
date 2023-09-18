@@ -96,6 +96,7 @@ Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'bmatcuk/coc-stylelintplus', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-sh', {'do': 'npm ci'}
 Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-biome', {'do': 'yarn install --frozen-lockfile'}
 
 " Prose
 Plug 'junegunn/goyo.vim'

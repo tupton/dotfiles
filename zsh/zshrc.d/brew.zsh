@@ -14,6 +14,7 @@ if hash brew 2>/dev/null; then
         "$prefix"/opt/ruby/bin \
         "$prefix"/opt/perl/bin \
         "$prefix"/opt/php/bin \
+        "$prefix"/opt/python/bin \
         "$prefix"/opt/python/libexec/bin \
         "$prefix"/opt/gnu-sed/libexec/gnubin \
         "$path[@]")

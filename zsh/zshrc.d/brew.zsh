@@ -10,8 +10,7 @@ fi
 
 if hash brew 2>/dev/null; then
     prefix="$(brew --prefix)"
-    path=( "$prefix"/opt/ipython@5/bin \
-        "$prefix"/opt/ruby/bin \
+    path=( "$prefix"/opt/ruby/bin \
         "$prefix"/opt/perl/bin \
         "$prefix"/opt/php/bin \
         "$prefix"/opt/python/bin \

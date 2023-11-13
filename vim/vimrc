@@ -223,14 +223,16 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['black', 'ruff'],
 \   'vim': ['vint'],
-\   'scss': []
+\   'scss': [],
+\   'yaml': ['yamllint', 'actionlint']
 \}
 
 " Be explicit about fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python': ['black', 'ruff']
+\   'python': ['black', 'ruff'],
+\   'yaml': ['yamlfmt']
 \}
 
 " Fix on save, like Prettier

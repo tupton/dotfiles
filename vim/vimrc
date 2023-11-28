@@ -28,7 +28,6 @@ Plug 'altercation/vim-colors-solarized'
 
 " Javascript syntax
 Plug 'othree/yajs.vim', { 'for': 'javascript'}
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescriptreact']}
 Plug 'maxmellon/vim-jsx-pretty'
 
 " JSON syntax highlighting

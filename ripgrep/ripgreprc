@@ -12,18 +12,3 @@
 
 # Show context by default
 --context=3
-
-# Add some more types
---type-add
-clj:include:clojure
-
---type-add
-edn:*.edn
-
---type-add
-gradle:*.gradle
---type-add
-gr:include:gradle
-
---type-add
-gql:*.{gql,graphql}

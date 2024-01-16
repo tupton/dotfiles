@@ -17,3 +17,8 @@ hexdec() {
   local input="${(U)1}"
   bc <<< "ibase=16; $input"
 }
+
+base64dec() {
+  local input="${1}"
+  echo "$input" | base64 --decode -i -
+}

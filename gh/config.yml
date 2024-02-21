@@ -5,19 +5,20 @@ aliases:
     pu: pr view --json url --jq '.url'
     ps: pr status
     user: |-
-      api graphql --paginate
-        --template '{{range .data.repository.assignableUsers.nodes}}{{printf "%-32s" .login | color "green"}}{{.name}}{{"\n"}}{{end}}'
-        -F owner=':owner' -F repo=':repo' -F name='$1' -f query='
-          query ($repo: String!, $owner: String!, $name: String!, $endCursor: String) {
-            repository(name: $repo, owner: $owner) {
-              assignableUsers(first: 50, after: $endCursor, query: $name) {
-                nodes {
-                  login
-                  name
-                },
-                pageInfo {
-                  hasNextPage
-                  endCursor
+        api graphql --paginate
+          --template '{{range .data.repository.assignableUsers.nodes}}{{printf "%-32s" .login | color "green"}}{{.name}}{{"\n"}}{{end}}'
+          -F owner=':owner' -F repo=':repo' -F name='$1' -f query='
+            query ($repo: String!, $owner: String!, $name: String!, $endCursor: String) {
+              repository(name: $repo, owner: $owner) {
+                assignableUsers(first: 50, after: $endCursor, query: $name) {
+                  nodes {
+                    login
+                    name
+                  },
+                  pageInfo {
+                    hasNextPage
+                    endCursor
+                  }
                 }
               }
             }

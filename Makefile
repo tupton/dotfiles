@@ -153,6 +153,9 @@ install-ripgrep : install-zsh
 install-gh :
 	cp -p -- gh/config.yml "$(HOME)"/.config/gh/config.yml
 
+install-atuin :
+	cp -p -- atuin/config.toml "$(HOME)"/.config/atuin/config.toml
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

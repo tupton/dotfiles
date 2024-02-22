@@ -6,8 +6,8 @@ bindkey '^N' history-search-forward
 
 # history substring search
 # bind UP and DOWN arrow keys
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
@@ -26,6 +26,8 @@ bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
+
+bindkey '^r' atuin-search
 
 # https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 is_in_git_repo() {

@@ -13,11 +13,17 @@ if hash brew 2>/dev/null; then
     path=( "$prefix"/opt/ruby/bin \
         "$prefix"/opt/perl/bin \
         "$prefix"/opt/php/bin \
-        "$prefix"/opt/python/bin \
-        "$prefix"/opt/python/libexec/bin \
         "$prefix"/opt/gnu-sed/libexec/gnubin \
         "$path[@]")
+
+    if [ -z "$CFG_EXCLUDE_HOMEBREW_PYTHON" ]; then
+        path=( "$prefix"/opt/python/bin \
+          "$prefix"/opt/python/libexec/bin \
+          "$path[@]")
+    fi
+
     export PATH
+
 
     unset PYTHONPATH
 fi

@@ -68,7 +68,7 @@ ENABLE_CORRECTION="true"
 # Highlight all available matches
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
-# nvm options 
+# nvm options
 # Lazy load nvm when running nvm, node, npm instead of on shell init
 NVM_LAZY_LOAD=true
 # Also lazy load when running vim
@@ -129,9 +129,48 @@ bindkey -v
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
 
 # Path
-# Explicitly add /usr/local/bin and sbin to PATH first
 typeset -U path
+
+# Explicitly add /usr/local/bin and sbin to PATH first
 path=(/usr/local/bin /usr/local/sbin "$path[@]")
+
+# path modifications for homebrew
+if [ -e /usr/local/bin/brew ]; then
+  eval $(/usr/local/bin/brew shellenv)
+fi
+if [ -e /opt/homebrew/bin/brew ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
+if hash brew 2>/dev/null; then
+    prefix="$(brew --prefix)"
+    path=( "$prefix"/opt/ruby/bin \
+        "$prefix"/opt/perl/bin \
+        "$prefix"/opt/php/bin \
+        "$prefix"/opt/gnu-sed/libexec/gnubin \
+        "$path[@]")
+
+    if [ -z "$CFG_EXCLUDE_HOMEBREW_PYTHON" ]; then
+        path=( "$prefix"/opt/python/bin \
+          "$prefix"/opt/python/libexec/bin \
+          "$path[@]")
+    fi
+fi
+
+# Rust path
+if [ -d ~/.cargo/bin ]; then
+  path=(~/.cargo/bin "$path[@]")
+fi
+
+# Go path
+if hash go 2>/dev/null; then
+    GOPATH=$HOME/go
+    path=( $GOPATH/bin "$path[@]")
+fi
+
+# Yarn path
+if hash yarn 2>/dev/null; then
+  path=( $HOME/.yarn/bin $HOME/.config/yarn/global/node_modules/.bin "$path[@]")
+fi
 
 if [[ -d "$HOME"/.zshrc.d ]]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do
@@ -144,4 +183,5 @@ unset -v config
 path=(. "$HOME"/.local/bin "$path[@]")
 
 # do this last in case any scripts touch the path
+# path=( ${(u)^path:A} )
 export PATH

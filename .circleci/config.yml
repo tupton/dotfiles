@@ -1,7 +1,7 @@
 version: 2
 defaults: &defaults
   docker:
-    - image: cimg/python:3.10-node
+    - image: cimg/python:3.12-node
   steps:
     - checkout
     - run:
@@ -39,22 +39,17 @@ defaults: &defaults
           make test
   parallelism: 3
 jobs:
-  build_zsh571:
-    environment:
-      DEP_ZSH_VERSION: zsh-5.7.1
-    !!merge <<: *defaults
   build_zsh58:
     environment:
-      DEP_ZSH_VERSION: zsh-5.8
+      DEP_ZSH_VERSION: zsh-5.8.1
     !!merge <<: *defaults
   build_zsh59:
     environment:
-      DEP_ZSH_VERSION: zsh-5.8
+      DEP_ZSH_VERSION: zsh-5.9
     !!merge <<: *defaults
 workflows:
   version: 2
   build_all:
     jobs:
-      - build_zsh571
       - build_zsh58
       - build_zsh59

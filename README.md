@@ -1,6 +1,6 @@
 # Dotfiles
 
-[![CircleCI Build Status](https://circleci.com/gh/tupton/dotfiles/tree/master.svg?style=svg)](https://circleci.com/gh/tupton/dotfiles/tree/master)
+[![CircleCI Build Status](https://dl.circleci.com/status-badge/img/gh/tupton/dotfiles/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/tupton/dotfiles/tree/main)
 
 A collection of config files that I use.
 

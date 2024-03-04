@@ -1,56 +1,56 @@
 version: 2
 defaults: &defaults
   docker:
-      - image: cimg/python:3.10-node
+    - image: cimg/python:3.10-node
   steps:
-      - checkout
-      - run:
-          name: Install zsh
-          command: |
-            export LOCAL="/home/circleci/.local"
-            mkdir -p $LOCAL
-            curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.xz | tar -xJ
-            cd $DEP_ZSH_VERSION
-            ./configure --prefix=$LOCAL
-            make
-            make install
-            cd -
-      - run:
-          name: Install test requirements
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            pip install -r test-requirements.txt --user
-            yarn
-      - run:
-          name: Print versions
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            zsh --version
-            bash --version
-            yarn --version
-            node --version
-      - run:
-          name: Test
-          command: |
-            export LOCAL="/home/circleci/.local"
-            export PATH="$LOCAL/bin:$PATH"
-            make test
+    - checkout
+    - run:
+        name: Install zsh
+        command: |
+          export LOCAL="/home/circleci/.local"
+          mkdir -p $LOCAL
+          curl -L http://downloads.sourceforge.net/zsh/$DEP_ZSH_VERSION.tar.xz | tar -xJ
+          cd $DEP_ZSH_VERSION
+          ./configure --prefix=$LOCAL
+          make
+          make install
+          cd -
+    - run:
+        name: Install test requirements
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          pip install -r test-requirements.txt --user
+          yarn
+    - run:
+        name: Print versions
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          zsh --version
+          bash --version
+          yarn --version
+          node --version
+    - run:
+        name: Test
+        command: |
+          export LOCAL="/home/circleci/.local"
+          export PATH="$LOCAL/bin:$PATH"
+          make test
   parallelism: 3
 jobs:
   build_zsh571:
     environment:
       DEP_ZSH_VERSION: zsh-5.7.1
-    <<: *defaults
+    !!merge <<: *defaults
   build_zsh58:
     environment:
       DEP_ZSH_VERSION: zsh-5.8
-    <<: *defaults
+    !!merge <<: *defaults
   build_zsh59:
     environment:
       DEP_ZSH_VERSION: zsh-5.8
-    <<: *defaults
+    !!merge <<: *defaults
 workflows:
   version: 2
   build_all:

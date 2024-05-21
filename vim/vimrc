@@ -222,7 +222,7 @@ let g:airline#extensions#ale#enabled = 1
 " Be explicit about languages I care about
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'python': ['black', 'ruff'],
+\   'python': ['ruff'],
 \   'vim': ['vint'],
 \   'scss': [],
 \   'yaml': ['yamllint', 'actionlint']
@@ -232,7 +232,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python': ['black', 'ruff'],
+\   'python': ['ruff'],
 \   'yaml': ['yamlfmt']
 \}
 

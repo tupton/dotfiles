@@ -72,6 +72,7 @@ join-lines() {
 }
 
 bind-git-helper() {
+  bindkey -r '^G'
   local c
   for c in $@; do
     eval "fzf-g$c-widget() { local result=\$(_g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
@@ -82,6 +83,7 @@ bind-git-helper() {
 
 FZF_GIT_SH=${FZF_GIT_SH:-~/.local/bin/fzf-git.sh}
 if [[ -f "$FZF_GIT_SH" ]]; then
+  bindkey -r '^G'
   source "$FZF_GIT_SH"
 else
   bind-git-helper f b t h r s

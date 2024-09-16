@@ -128,6 +128,9 @@ bindkey -v
 # Explicit JAVA_HOME, for OS X
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
 
+# Explicitly set GPG_TTY for gpg-agent so git can prompt for passphrase
+export GPG_TTY=$(tty)
+
 # Path
 typeset -U path
 

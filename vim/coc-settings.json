@@ -74,5 +74,8 @@
     "tw\\(.*?\\)`([^`]*)"
   ],
   "ruff.builtin.pythonPath": "python",
-  "ruff.autoFixOnSave": true
+  "ruff.autoFixOnSave": true,
+  "[python]": {
+    "coc.preferences.formatOnSave": true
+  }
 }

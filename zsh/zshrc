@@ -175,6 +175,11 @@ if hash yarn 2>/dev/null; then
   path=( $HOME/.yarn/bin $HOME/.config/yarn/global/node_modules/.bin "$path[@]")
 fi
 
+# Deno path
+if hash deno 2>/dev/null; then
+    path=( $HOME/.deno/bin "$path[@]")
+fi
+
 if [[ -d "$HOME"/.zshrc.d ]]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do
         source "$config"

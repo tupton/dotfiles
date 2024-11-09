@@ -27,16 +27,16 @@
     hm = !git heatmap -b \"${REVIEW_BASE-origin/dev}\"
     review = !git diff-review $(git diff-review-names --diff-filter=d)
 
-  stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
+    stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
 
 [merge]
-	tool = vim_mergetool
-	conflictStyle = diff3
+    tool = vim_mergetool
+    conflictStyle = diff3
 [mergetool]
     keepBackup = false
 [mergetool "vim_mergetool"]
-  cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
-  trustExitCode = true
+    cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExitCode = true
 [core]
     excludesfile = ~/.gitignore-global
     ignorecase = true
@@ -100,7 +100,7 @@
     syntax-theme = Monokai Extended Bright
     line-numbers = true
 [blame]
-	markIgnoredLines = true
-	markUnblamedLines = true
+    markIgnoredLines = true
+    markUnblamedLines = true
 [init]
-	defaultBranch = main
+    defaultBranch = main

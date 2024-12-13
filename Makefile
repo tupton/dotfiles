@@ -159,6 +159,10 @@ install-atuin : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/atuin
 	cp -p -- atuin/config.toml "$(HOME)"/.config/atuin/config.toml
 
+install-nvim : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/nvim
+	cp -p -- nvim/init.lua "$(HOME)"/.config/nvim/init.lua
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

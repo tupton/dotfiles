@@ -123,6 +123,8 @@ export LESS="-R -s -X -F"
 
 # Use vim if it's available
 hash vim 2>/dev/null && export EDITOR=vim
+# ...but prefer nvim
+hash nvim 2>/dev/null && export EDITOR=nvim
 bindkey -v
 
 # Explicit JAVA_HOME, for OS X

@@ -144,16 +144,19 @@ install-xdg-config :
 	mkdir -p -- "$(HOME)"/.config
 
 install-karabiner-elements : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/karabiner
 	cp -p -- Karabiner-Elements/karabiner.json "$(HOME)"/.config/karabiner/karabiner.json
 	cp -p -- Karabiner-Elements/karabiner.edn "$(HOME)"/.config/karabiner.edn
 
 install-ripgrep : install-zsh
 	cp -p -- ripgrep/ripgreprc "$(HOME)"/.ripgreprc
 
-install-gh :
+install-gh : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/gh
 	cp -p -- gh/config.yml "$(HOME)"/.config/gh/config.yml
 
-install-atuin :
+install-atuin : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/atuin
 	cp -p -- atuin/config.toml "$(HOME)"/.config/atuin/config.toml
 
 test : test-setup test-zsh test-bash test-vimrc test-dotjs

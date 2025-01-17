@@ -80,7 +80,7 @@
 [fetch]
     prune = true
 [help]
-    autocorrect = 1
+    autocorrect = prompt
 [commit]
     gpgsign = true
 [diff]

@@ -159,6 +159,10 @@ if hash brew 2>/dev/null; then
           "$prefix"/opt/python/libexec/bin \
           "$path[@]")
     fi
+
+    if [ -d "$prefix"/opt/protobuf@3/bin ]; then
+        path=("$prefix"/opt/protobuf@3/bin "$path[@]")
+    fi
 fi
 
 # Rust path

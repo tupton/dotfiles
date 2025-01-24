@@ -68,20 +68,12 @@ ENABLE_CORRECTION="true"
 # Highlight all available matches
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
-# nvm options
-# Lazy load nvm when running nvm, node, npm instead of on shell init
-NVM_LAZY_LOAD=true
-# Also lazy load when running vim
-NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
-# Automatically use the right version of node when there's an .nvmrc
-NVM_AUTO_USE=true
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git macos colored-man-pages history-substring-search zsh-nvm zsh-better-npm-completion fzf-tab zsh-autosuggestions fast-syntax-highlighting)
+plugins=(git macos colored-man-pages history-substring-search mise zsh-better-npm-completion fzf-tab zsh-autosuggestions fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

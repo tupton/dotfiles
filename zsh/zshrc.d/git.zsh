@@ -7,3 +7,12 @@ gt() {
 vimtree() {
     ${EDITOR:-vim} $(git fuzzy-files)
 }
+
+# check out a branch that tracks a remote branch
+# Used to create a branch from a Linear ticket branch name
+# [g]it [c]heck[o]ut with [t]racking
+gcot() {
+    local local_branch=${1:-$(pbpaste | tr -d '\n')}
+    local remote_tracking_branch=${2:-origin/main}
+    git checkout -b ${local_branch} -t ${remote_tracking_branch}
+}

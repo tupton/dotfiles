@@ -88,10 +88,6 @@ install-textmate :
 
 install-tmux : install-tpm
 	cp -p -- tmux/tmux.conf "$(HOME)"/.tmux.conf
-	mkdir -p -- "$(HOME)"/.tmuxinator
-	cp -p -- tmux/tmuxinator/* "$(HOME)"/.tmuxinator
-	mkdir -p -- "$(HOME)"/.local/bin
-	cp -p -- tmux/bin/* "$(HOME)"/.local/bin
 
 install-tpm :
 	tmux/install-tpm

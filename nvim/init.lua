@@ -200,6 +200,11 @@ vim.opt.fillchars:append { diff = ' ' }
 -- Show matching parens
 vim.opt.showmatch = true
 
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.opt.confirm = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -375,7 +380,9 @@ require('lazy').setup({
       local fzf = require 'fzf-lua'
       vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = '[ ] Search files' })
       vim.keymap.set('n', '<leader><Left>', fzf.buffers, { desc = '[←] Search buffers' })
+      vim.keymap.set('n', '<leader><Right>', fzf.git_status, { desc = '[→] Search git files with status' })
       vim.keymap.set('n', 'z=', fzf.spell_suggest, { desc = 'Select suggested spelling' })
+      vim.keymap.set('n', '<leader>8', fzf.grep_cword, { desc = 'Search word under cursor' })
     end,
   },
 

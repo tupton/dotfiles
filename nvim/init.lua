@@ -94,74 +94,74 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
+-- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
+vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = false
+vim.o.list = false
 vim.opt.listchars = { tab = '⇥ ', trail = '·', nbsp = '␣', eol = '¬', extends = '❯', precedes = '❮' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-vim.opt.sidescrolloff = 5
+vim.o.scrolloff = 10
+vim.o.sidescrolloff = 5
 
 -- Don't wrap
-vim.opt.wrap = false
+vim.o.wrap = false
 
 -- Set text width
-vim.opt.textwidth = 100
-vim.opt.colorcolumn = '+1'
+vim.o.textwidth = 100
+vim.o.colorcolumn = '+1'
 
 -- From the Vim docs:
 -- t   Auto-wrap text using textwidth
@@ -187,35 +187,29 @@ vim.opt.colorcolumn = '+1'
 vim.opt.formatoptions:append { t = true, c = true, r = true, o = true, n = true }
 
 -- Keep window sizes when closing others
-vim.opt.equalalways = false
+vim.o.equalalways = false
 
 -- Enable spell checking
-vim.opt.spell = false
-vim.opt.spelllang = 'en_us'
+vim.o.spell = false
+vim.o.spelllang = 'en_us'
 
 -- Less busy diff views
 vim.opt.diffopt:append { vertical = true, algorithm = 'histogram', ['indent-heuristic'] = true }
 vim.opt.fillchars:append { diff = ' ' }
 
 -- Show matching parens
-vim.opt.showmatch = true
+vim.o.showmatch = true
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
-vim.opt.confirm = true
+vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<nop>')
-vim.keymap.set('n', '<right>', '<nop>')
-vim.keymap.set('n', '<up>', '<nop>')
-vim.keymap.set('n', '<down>', '<nop>')
 
 -- Scroll more lines at a time
 vim.keymap.set('n', '<C-e>', '5<C-e>')
@@ -238,15 +232,15 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('text-formatting', { clear = true }),
   pattern = { 'markdown', 'ghmarkdown', 'git*', 'text' },
   callback = function()
-    vim.opt_local.textwidth = 0
-    vim.opt_local.wrap = true
-    vim.opt_local.wrapmargin = 0
-    vim.opt_local.linebreak = true
-    vim.opt_local.breakindent = true
-    vim.opt_local.cpoptions:append 'n'
-    vim.opt_local.showbreak = '» '
+    vim.bo.textwidth = 0
+    vim.bo.wrapmargin = 0
+
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+    vim.wo.breakindent = true
+    vim.wo.showbreak = '» '
     -- 2 to hide conceal text
-    vim.opt_local.conceallevel = 2
+    vim.wo.conceallevel = 2
   end,
 })
 
@@ -271,8 +265,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     error('Error cloning lazy.nvim:\n' .. out)
   end
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+end
+
+---@type vim.Option
+local rtp = vim.opt.rtp
+rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 --
@@ -297,6 +294,7 @@ require('lazy').setup({
   -- :GBrowse with Github
   'tpope/vim-rhubarb',
 
+  -- Netrw improvements
   {
     'tpope/vim-vinegar',
     init = function()
@@ -361,12 +359,14 @@ require('lazy').setup({
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
 
+  -- FZF-powered pickers for many lists: files, buffers, git, keymaps, etc.
   {
     'ibhagwan/fzf-lua',
     event = 'VimEnter',
     config = function()
-      require('fzf-lua').setup {
-        { 'fzf-vim', 'fzf-tmux' },
+      local fzf = require 'fzf-lua'
+      fzf.setup {
+        { 'fzf-tmux' },
         fzf_colors = true,
         winopts = {
           preview = {
@@ -384,18 +384,22 @@ require('lazy').setup({
           },
         },
       }
-      -- Use the fzf-lua UI for vim.ui.select
-      require('fzf-lua').register_ui_select()
 
-      local fzf = require 'fzf-lua'
-      vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = '[ ] Search files' })
-      vim.keymap.set('n', '<leader><Left>', fzf.buffers, { desc = '[←] Search buffers' })
-      vim.keymap.set('n', '<leader><Right>', fzf.git_status, { desc = '[→] Search git files with status' })
+      -- Use the fzf-lua UI for vim.ui.select
+      fzf.register_ui_select()
+
+      vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = '[ ] Pick files' })
+      vim.keymap.set('n', "<leader>'", fzf.buffers, { desc = "['] Pick buffers" })
+      vim.keymap.set('n', '<leader>,', fzf.git_files, { desc = '[,] Pick git files' })
+      vim.keymap.set('n', '<leader><', fzf.git_status, { desc = '[<] Pick git files with status' })
+      vim.keymap.set('n', '<leader>.', fzf.grep_cword, { desc = 'Search word under cursor' })
+      vim.keymap.set('n', '<leader>>', fzf.grep_cWORD, { desc = 'Search WORD under cursor' })
+      vim.keymap.set('n', '<leader>p', fzf.grep_project, { desc = 'Search [p]roject' })
       vim.keymap.set('n', 'z=', fzf.spell_suggest, { desc = 'Select suggested spelling' })
-      vim.keymap.set('n', '<leader>8', fzf.grep_cword, { desc = 'Search word under cursor' })
     end,
   },
 
+  -- Inline line-wise git blame
   {
     'f-person/git-blame.nvim',
     opts = {
@@ -428,12 +432,14 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  { -- Useful plugin to show you pending keybinds.
+  -- Useful plugin to show you pending key bindings
+  {
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    -- Sets the loading event to 'VimEnter'
+    event = 'VimEnter',
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.opt.timeoutlen
+      -- this setting is independent of vim.o.timeoutlen
       delay = 0,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -477,8 +483,6 @@ require('lazy').setup({
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>g', group = '[G]it' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>w', group = '[W]orkspace' },
         { '<leader>x', group = 'Diagnostics' },
       },
     },
@@ -492,9 +496,10 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
   -- LSP Plugins
+
+  -- `lazydev` configures Lua LSP for your Neovim config, runtime, and plugins
+  -- used for completion, annotations and signatures of Neovim APIs
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime, and plugins
-    -- used for completion, annotations and signatures of Neovim APIs
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
@@ -507,15 +512,18 @@ require('lazy').setup({
       },
     },
   },
+
+  -- Main LSP Configuration
   {
-    -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependents
-      { 'zapling/mason-lock.nvim', opts = {} },
-      'williamboman/mason-lspconfig.nvim',
+      -- Mason must be loaded before its dependents so we need to set it up here.
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+      { 'mason-org/mason.nvim', opts = {} },
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+      { 'zapling/mason-lock.nvim', opts = {} },
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
@@ -701,7 +709,7 @@ require('lazy').setup({
             },
           },
         },
-        pyright = {},
+        basedpyright = {},
         ruff = {},
         rust_analyzer = {},
         stylelint_lsp = {},
@@ -714,6 +722,7 @@ require('lazy').setup({
             ['harper-ls'] = {
               linters = {
                 SentenceCapitalization = false,
+                Spaces = false,
               },
             },
           },
@@ -760,6 +769,8 @@ require('lazy').setup({
       }
     end,
   },
+
+  -- Typescript specific LSP config
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -782,7 +793,9 @@ require('lazy').setup({
       },
     },
   },
-  { -- Autoformat
+
+  -- Autoformat
+  {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -849,7 +862,6 @@ require('lazy').setup({
     dependencies = {
       { 'supermaven-inc/supermaven-nvim', opts = {} },
       'huijiro/blink-cmp-supermaven',
-      'ribru17/blink-cmp-spell',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -895,21 +907,12 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'supermaven', 'path', 'buffer', 'spell' },
+        default = { 'lsp', 'supermaven', 'path', 'buffer' },
         providers = {
           supermaven = {
             name = 'supermaven',
             module = 'blink-cmp-supermaven',
             async = true,
-          },
-          spell = {
-            name = 'spell',
-            module = 'blink-cmp-spell',
-            opts = {
-              -- If true, then completion candidates will be sorted using the same algorithm used by cmp-spell.
-              -- This can be helpful for sorting words that are partially typed. Otherwise, a custom sorting is used.
-              use_cmp_spell_sorting = true,
-            },
           },
         },
       },
@@ -928,6 +931,7 @@ require('lazy').setup({
     },
   },
 
+  -- Colorscheme
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -952,6 +956,7 @@ require('lazy').setup({
     opts = {},
   },
 
+  -- Diagnostics display
   {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -980,23 +985,17 @@ require('lazy').setup({
     },
   },
 
+  -- Focus mode for prose filetypes
   {
     'folke/zen-mode.nvim',
     ft = { 'markdown', 'ghmarkdown', 'text', 'gitcommit' },
     event = 'VimEnter',
-    dependencies = { 'folke/twilight.nvim' },
     opts = {
       window = {
         width = 0.65,
       },
     },
     config = function()
-      require('twilight').setup {
-        dimming = {
-          alpha = 0.75,
-        },
-        context = 30,
-      }
       vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         desc = 'Zen mode for prose',
         group = vim.api.nvim_create_augroup('zen-mode', { clear = true }),
@@ -1008,6 +1007,7 @@ require('lazy').setup({
     end,
   },
 
+  -- Color highlighting
   {
     'uga-rosa/ccc.nvim',
     opts = {
@@ -1018,7 +1018,8 @@ require('lazy').setup({
     },
   },
 
-  { -- Collection of various small independent plugins/modules
+  -- Collection of various small independent plugins/modules
+  {
     'echasnovski/mini.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
     config = function()
@@ -1031,7 +1032,10 @@ require('lazy').setup({
       local spec_treesitter = require('mini.ai').gen_spec.treesitter
       require('mini.ai').setup {
         custom_textobjects = {
-          F = spec_treesitter { a = '@function.outer', i = '@function.inner' },
+          F = spec_treesitter {
+            a = '@function.outer',
+            i = '@function.inner',
+          },
           o = spec_treesitter {
             a = { '@conditional.outer', '@loop.outer' },
             i = { '@conditional.inner', '@loop.inner' },
@@ -1054,9 +1058,9 @@ require('lazy').setup({
         -- set use_icons to true if you have a Nerd Font
         use_icons = vim.g.have_nerd_font,
         content = {
-          -- show modified flag in inactive buffers
+          -- show modified flag in inactive windows
           inactive = function()
-            return '%#MiniStatuslineInactive#%F %#Todo#%m%#MiniStatuslineInactive#%='
+            return '%#MiniStatuslineInactive#%f %#Todo#%m%#MiniStatuslineInactive#%='
           end,
         },
       }
@@ -1091,10 +1095,44 @@ require('lazy').setup({
       }
 
       -- Keymaps for forwards/backwards objects, like vim-unimpaired
-      require('mini.bracketed').setup()
+      require('mini.bracketed').setup {
+        -- Use mappings from mini.indentscope
+        indent = { suffix = '' },
+
+        -- Disable mappings that are defined elsewhere
+        file = { suffix = '' },
+        window = { suffix = '' },
+      }
 
       -- Automatically pair brackets, parens, etc.
-      require('mini.pairs').setup()
+      require('mini.pairs').setup {
+        mappings = {
+          -- Single quote: Prevent pairing if either side is a letter
+          ['"'] = {
+            action = 'closeopen',
+            pair = '""',
+            neigh_pattern = '[^%w\\][^%w]',
+            register = { cr = false },
+          },
+          -- Single quote: Prevent pairing if either side is a letter
+          ["'"] = {
+            action = 'closeopen',
+            pair = "''",
+            neigh_pattern = '[^%w\\][^%w]',
+            register = { cr = false },
+          },
+          -- Backtick: Prevent pairing if either side is a letter
+          ['`'] = {
+            action = 'closeopen',
+            pair = '``',
+            neigh_pattern = '[^%w\\][^%w]',
+            register = { cr = false },
+          },
+        },
+        skip_ts = { 'string', 'comment' },
+        skip_unbalanced = true,
+        markdown = true,
+      }
 
       -- Diff hunk manipulation
       require('mini.diff').setup {
@@ -1137,75 +1175,21 @@ require('lazy').setup({
         },
       }
 
+      -- Highlight trailing whitespace and automatically trim it on write
       require('mini.trailspace').setup()
 
+      -- Indent guides
       local indentscope = require 'mini.indentscope'
       indentscope.setup {
         draw = {
           animation = indentscope.gen_animation.none(),
         },
       }
-
-      -- local miniclue = require 'mini.clue'
-      -- miniclue.setup { -- cute prompts about bindings
-      --   triggers = {
-      --     { mode = 'n', keys = '<Leader>' },
-      --     { mode = 'x', keys = '<Leader>' },
-      --
-      --     -- Built-in completion
-      --     { mode = 'i', keys = '<C-x>' },
-      --
-      --     -- `g` key
-      --     { mode = 'n', keys = 'g' },
-      --     { mode = 'x', keys = 'g' },
-      --
-      --     -- Marks
-      --     { mode = 'n', keys = "'" },
-      --     { mode = 'n', keys = '`' },
-      --     { mode = 'x', keys = "'" },
-      --     { mode = 'x', keys = '`' },
-      --
-      --     -- Registers
-      --     { mode = 'n', keys = '"' },
-      --     { mode = 'x', keys = '"' },
-      --     { mode = 'i', keys = '<C-r>' },
-      --     { mode = 'c', keys = '<C-r>' },
-      --
-      --     -- Window commands
-      --     { mode = 'n', keys = '<C-w>' },
-      --
-      --     -- `z` key
-      --     { mode = 'n', keys = 'z' },
-      --     { mode = 'x', keys = 'z' },
-      --
-      --     -- Bracketed
-      --     { mode = 'n', keys = '[' },
-      --     { mode = 'n', keys = ']' },
-      --
-      --     -- Option toggles
-      --     { mode = 'n', keys = '\\' },
-      --   },
-      --   clues = {
-      --     miniclue.gen_clues.builtin_completion(),
-      --     miniclue.gen_clues.g(),
-      --     miniclue.gen_clues.marks(),
-      --     miniclue.gen_clues.registers(),
-      --     miniclue.gen_clues.windows(),
-      --     miniclue.gen_clues.z(),
-      --   },
-      --   window = {
-      --     delay = 100,
-      --     config = { width = 'auto' },
-      --     scroll_down = '<C-d>',
-      --     scroll_up = '<C-u>',
-      --   },
-      -- }
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 
-  { -- Highlight, edit, and navigate code
+  -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
@@ -1238,6 +1222,16 @@ require('lazy').setup({
       },
       indent = { enable = true },
     },
+    config = function()
+      -- <C-l> jumps to the end of the current treesitter node
+      vim.keymap.set('i', '<C-L>', function()
+        local node = vim.treesitter.get_node()
+        if node ~= nil then
+          local row, col = node:end_()
+          pcall(vim.api.nvim_win_set_cursor, 0, { row + 1, col })
+        end
+      end, { desc = 'insjump' })
+    end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
@@ -1288,7 +1282,8 @@ require('lazy').setup({
       },
     },
   },
-  -- lazy.nvim
+
+  -- Enforce better vim motions and text objects
   {
     'm4xshen/hardtime.nvim',
     dependencies = {
@@ -1296,7 +1291,7 @@ require('lazy').setup({
     },
     opts = {
       disable_mouse = false,
-      max_count = 5,
+      max_count = 7,
       max_time = 500,
     },
   },

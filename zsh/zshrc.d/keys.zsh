@@ -96,6 +96,8 @@ function sesh-sessions() {
       --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -H -i -d -c)' \
       --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -H -i -d -z)' \
       --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+      --preview-window 'right:55%' \
+      --preview 'sesh preview {}' \
     )
     zle reset-prompt > /dev/null 2>&1 || true
     [[ -z "$session" ]] && return

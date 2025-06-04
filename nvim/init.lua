@@ -294,6 +294,13 @@ require('lazy').setup({
   -- :GBrowse with Github
   'tpope/vim-rhubarb',
 
+  -- Allow zip file reading
+  'lbrayner/vim-rzip',
+
+  -- Prefer two-way merge with conflicts pre-resolved
+  -- Requires gitconfig changes to use as git mergetool
+  'samoshkin/vim-mergetool',
+
   -- Netrw improvements
   {
     'tpope/vim-vinegar',
@@ -330,10 +337,6 @@ require('lazy').setup({
       }
     end,
   },
-
-  -- Prefer two-way merge with conflicts pre-resolved
-  -- Requires gitconfig changes to use as git mergetool
-  'samoshkin/vim-mergetool',
 
   -- Navigate between vim and tmux panes with the same keys
   {
@@ -727,6 +730,7 @@ require('lazy').setup({
             },
           },
         },
+        gh_actions_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -1191,6 +1195,7 @@ require('lazy').setup({
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -1239,9 +1244,6 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-
-  -- Allow zip file reading
-  'lbrayner/vim-rzip',
 
   -- Edit and manage Obsidian notes and links
   {
@@ -1293,6 +1295,18 @@ require('lazy').setup({
       disable_mouse = false,
       max_count = 7,
       max_time = 500,
+    },
+  },
+
+  -- Smear cursor on motions
+  {
+    'sphamba/smear-cursor.nvim',
+    opts = {
+      stiffness = 0.8,
+      trailing_stiffness = 0.5,
+      stiffness_insert_mode = 0.6,
+      trailing_stiffness_insert_mode = 0.6,
+      distance_stop_animating = 0.5,
     },
   },
 

@@ -286,7 +286,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  { 'NMAC427/guess-indent.nvim', opts = {} },
 
   -- :Gdiff, :Gcommit, etc.
   'tpope/vim-fugitive',
@@ -1306,7 +1306,8 @@ require('lazy').setup({
       trailing_stiffness = 0.5,
       stiffness_insert_mode = 0.7,
       trailing_stiffness_insert_mode = 0.7,
-      damping = 0.65,
+      damping = 0.8,
+      damping_insert_mode = 0.8,
       distance_stop_animating = 0.5,
     },
   },

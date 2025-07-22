@@ -1,7 +1,7 @@
 [user]
     name = AUTHORNAME
     email = AUTHOREMAIL
-    signingkey = 2C5F3AD67C62F81F
+    signingkey = 9A7D5815C409B113034A85E192E7BA83DD7C4FB3
 
 [alias]
     co = checkout

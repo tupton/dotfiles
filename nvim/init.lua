@@ -409,6 +409,14 @@ require('lazy').setup({
       enabled = false,
       date_format = '%r',
       virtual_text_column = 100,
+      use_blame_commit_file_urls = true,
+    },
+    cmd = {
+      'GitBlameCopyCommitURL',
+      'GitBlameCopyFileURL',
+      'GitBlameOpenCommitURL',
+      'GitBlameOpenFileURL',
+      'GitBlameToggle',
     },
     keys = {
       {
@@ -532,7 +540,7 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
-      'saghen/blink.cmp',
+      { 'saghen/blink.cmp', opts = {} },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -657,7 +665,9 @@ require('lazy').setup({
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      --  This is commented out because blink.cmp does this automatically, but other plugins may
+      --  requre manual configuration for capabilities.
+      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -668,6 +678,8 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      ---@class LspServersConfig
+      ---@type table<string, vim.lsp.Config>
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -681,7 +693,6 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -731,7 +742,20 @@ require('lazy').setup({
           },
         },
         gh_actions_ls = {},
+        bashls = {
+          filetypes = { 'bash', 'sh', 'zsh' },
+        },
       }
+
+      -- Add any extra servers that are not managed by Mason here
+      local external_servers = {}
+
+      -- Explicitly set up LSP servers before mason-lspconfig loads default configs
+      for server, config in pairs(vim.tbl_extend('keep', servers, external_servers)) do
+        if not vim.tbl_isempty(config) then
+          vim.lsp.config(server, config)
+        end
+      end
 
       -- Ensure the servers and tools above are installed
       --
@@ -759,18 +783,13 @@ require('lazy').setup({
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true, -- automatically enable servers installed via Mason
       }
+
+      -- Enable extra server not managed by Mason, if any
+      if not vim.tbl_isempty(external_servers) then
+        vim.lsp.enable(vim.tbl_keys(external_servers))
+      end
     end,
   },
 
@@ -853,6 +872,8 @@ require('lazy').setup({
           markdown = { 'prettierd', 'injected' },
           css = { 'stylelint' },
           proto = { 'buf' },
+          bash = { 'shfmt' },
+          zsh = { 'shfmt' },
           ['*'] = { 'trim_whitespace' },
         },
       }
@@ -1024,7 +1045,7 @@ require('lazy').setup({
 
   -- Collection of various small independent plugins/modules
   {
-    'echasnovski/mini.nvim',
+    'nvim-mini/mini.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
     config = function()
       -- Better Around/Inside textobjects
@@ -1282,6 +1303,7 @@ require('lazy').setup({
         blink = true,
         min_chars = 1,
       },
+      legacy_commands = false,
     },
   },
 

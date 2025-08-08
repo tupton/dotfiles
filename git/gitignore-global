@@ -72,3 +72,6 @@ doc/tags
 
 # local config
 profiles.clj
+
+# LLM config
+.crush

@@ -120,62 +120,66 @@ hash nvim 2>/dev/null && export EDITOR=nvim
 bindkey -v
 
 # Explicit JAVA_HOME, for OS X
-[[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
+if [[ -x /usr/libexec/java_home ]]; then
+    JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
+    export JAVA_HOME
+fi
 
 # Explicitly set GPG_TTY for gpg-agent so git can prompt for passphrase
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Path
 typeset -U path
 
 # Explicitly add /usr/local/bin and sbin to PATH first
-path=(/usr/local/bin /usr/local/sbin "$path[@]")
+path=(/usr/local/bin /usr/local/sbin "${path[@]}")
 
 # path modifications for homebrew
 if [ -e /usr/local/bin/brew ]; then
-  eval $(/usr/local/bin/brew shellenv)
+    eval "$(/usr/local/bin/brew shellenv)"
 fi
 if [ -e /opt/homebrew/bin/brew ]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 if hash brew 2>/dev/null; then
     prefix="$(brew --prefix)"
-    path=( "$prefix"/opt/ruby/bin \
-        "$prefix"/opt/perl/bin \
-        "$prefix"/opt/php/bin \
-        "$prefix"/opt/gnu-sed/libexec/gnubin \
-        "$path[@]")
+    path=("$prefix"/opt/ruby/bin
+        "$prefix"/opt/perl/bin
+        "$prefix"/opt/php/bin
+        "$prefix"/opt/gnu-sed/libexec/gnubin
+        "${path[@]}")
 
     if [ -z "$CFG_EXCLUDE_HOMEBREW_PYTHON" ]; then
-        path=( "$prefix"/opt/python/bin \
-          "$prefix"/opt/python/libexec/bin \
-          "$path[@]")
+        path=("$prefix"/opt/python/bin
+            "$prefix"/opt/python/libexec/bin
+            "${path[@]}")
     fi
 
     if [ -d "$prefix"/opt/protobuf@3/bin ]; then
-        path=("$prefix"/opt/protobuf@3/bin "$path[@]")
+        path=("$prefix"/opt/protobuf@3/bin "${path[@]}")
     fi
 fi
 
 # Rust path
 if [ -d ~/.cargo/bin ]; then
-  path=(~/.cargo/bin "$path[@]")
+    path=(~/.cargo/bin "${path[@]}")
 fi
 
 # Go path
 if hash go 2>/dev/null; then
     GOPATH=$HOME/go
-    path=( $GOPATH/bin "$path[@]")
+    path=("$GOPATH"/bin "${path[@]}")
 fi
 
 # Yarn path
 if hash yarn 2>/dev/null; then
-  path=( $HOME/.yarn/bin $HOME/.config/yarn/global/node_modules/.bin "$path[@]")
+    path=("$HOME"/.yarn/bin "$HOME"/.config/yarn/global/node_modules/.bin "${path[@]}")
 fi
 
 # Deno path
 if hash deno 2>/dev/null; then
-    path=( $HOME/.deno/bin "$path[@]")
+    path=("$HOME"/.deno/bin "${path[@]}")
 fi
 
 if [[ -d "$HOME"/.zshrc.d ]]; then
@@ -186,7 +190,7 @@ fi
 unset -v config
 
 # add cwd and ~/.local/bin after including other config
-path=(. "$HOME"/.local/bin "$path[@]")
+path=(. "$HOME"/.local/bin "${path[@]}")
 
 # do this last in case any scripts touch the path
 # path=( ${(u)^path:A} )

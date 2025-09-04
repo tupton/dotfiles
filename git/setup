@@ -9,11 +9,11 @@ elif [[ "$uname" == "Darwin" ]]; then
     stat_command+=("-f" "%m")
 fi
 
-local example_modified=$("$stat_command[@]" git/gitconfig.example)
+local template_modified=$("$stat_command[@]" git/gitconfig.template)
 local installed_modified=$("$stat_command[@]" "${HOME}"/.gitconfig)
 unset stat_command
 
-if [[ "$example_modified" -lt "$installed_modified" ]]; then
+if [[ "$template_modified" -lt "$installed_modified" ]]; then
     exit 0
 fi
 
@@ -32,4 +32,4 @@ fi
 vared -p 'What is your GitHub author name? ' -c git_author
 vared -p 'What is your GitHub author email? ' -c git_email
 
-sed -e "s/AUTHORNAME/$git_author/g" -e "s/AUTHOREMAIL/$git_email/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/GIT_PUSH_DEFAULT/$git_push_default/g" git/gitconfig.example > git/gitconfig
+sed -e "s/AUTHORNAME/$git_author/g" -e "s/AUTHOREMAIL/$git_email/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/GIT_PUSH_DEFAULT/$git_push_default/g" git/gitconfig.template >git/gitconfig

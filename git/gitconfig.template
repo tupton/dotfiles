@@ -104,3 +104,5 @@
     markUnblamedLines = true
 [init]
     defaultBranch = main
+
+# vim: ft=gitconfig

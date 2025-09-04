@@ -1,6 +1,6 @@
 [user]
-    name = AUTHORNAME
-    email = AUTHOREMAIL
+    name = {AUTHOR_NAME}
+    email = {AUTHOR_EMAIL}
     signingkey = 9A7D5815C409B113034A85E192E7BA83DD7C4FB3
 
 [alias]
@@ -41,7 +41,7 @@
     excludesfile = ~/.gitignore-global
     ignorecase = true
 [push]
-    default = GIT_PUSH_DEFAULT
+    default = {GIT_PUSH_DEFAULT}
 [color]
     ui = auto
 [color "diff"]
@@ -72,7 +72,7 @@
     autosetuprebase = always
     autosetupmerge = always
 [credential]
-    helper = GIT_CREDENTIAL_HELPER
+    helper = {GIT_CREDENTIAL_HELPER}
 [web]
     browser = open
 [rerere]

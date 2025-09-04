@@ -32,4 +32,4 @@ fi
 vared -p 'What is your GitHub author name? ' -c git_author
 vared -p 'What is your GitHub author email? ' -c git_email
 
-sed -e "s/AUTHORNAME/$git_author/g" -e "s/AUTHOREMAIL/$git_email/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/GIT_PUSH_DEFAULT/$git_push_default/g" git/gitconfig.template >git/gitconfig
+sed -e "s/{AUTHOR_NAME}/$git_author/g" -e "s/{AUTHOR_EMAIL}/$git_email/g" -e "s/{GIT_CREDENTIAL_HELPER}/$git_credential/g" -e "s/{GIT_PUSH_DEFAULT}/$git_push_default/g" git/gitconfig.template >git/gitconfig

@@ -87,7 +87,7 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     local session
-    session=$(sesh list -H -i -d | fzf-tmux -p 55%,60% \
+    session=$(sesh list -H -i -d | fzf-tmux -p 75%,60% \
       --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
       --header '  ^a all ^t tmux ^g configs ^x zoxide ^f find' \
       --bind 'tab:down,btab:up' \

@@ -1,0 +1,20 @@
+<!-- https://gist.github.com/tkafka/e3eb63a5ec448e9be6701bfd1f1b1e58#temporary-workaround -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>environment.fix-electron-resource-hog-bug</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>launchctl</string>
+      <string>setenv</string>
+      <string>CHROME_HEADLESS</string>
+      <string>1</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>

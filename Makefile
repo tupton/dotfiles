@@ -84,6 +84,10 @@ configure-tarsnap-acts-newsyslog :
 	cp -p -- tarsnap/com.thomasupton.tarsnap-acts.conf /etc/newsyslog.d/com.thomasupton.tarsnap-acts.conf
 	newsyslog -nvv -f /etc/newsyslog.d/com.thomasupton.tarsnap-acts.conf
 
+configure-system-environment-fix-electron-resource-hog-bug :
+	cp -p -- system/environment.fix-electron-resource-hog-bug.plist "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
+	launchctl unload "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist && launchctl load -w "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
+
 install-textmate :
 	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 

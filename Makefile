@@ -77,6 +77,7 @@ configure-tarsnap-acts : configure-tarsnap-acts-launch-daemon \
 
 configure-tarsnap-acts-launch-daemon :
 	cp -p -- tarsnap/com.thomasupton.tarsnap-acts.plist /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist
+	chown root:wheel /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist
 	launchctl unload /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist && launchctl load -w /Library/LaunchDaemons/com.thomasupton.tarsnap-acts.plist
 
 configure-tarsnap-acts-newsyslog :

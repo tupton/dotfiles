@@ -1,6 +1,6 @@
 # https://github.com/junegunn/fzf
 if hash 2>/dev/null fzf; then
-  export FZF_DEFAULT_COMMAND="fd --hidden --type file --color=always"
+  export FZF_DEFAULT_COMMAND="fd --hidden --color always --type file"
   export FZF_DEFAULT_OPTS="--ansi"
 
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -19,7 +19,7 @@ if hash 2>/dev/null fzf; then
     --bind='ctrl-/:toggle-preview'
     --bind='ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
 
-  export FZF_ALT_C_COMMAND='fd --hidden --type directory --color=always'
+  export FZF_ALT_C_COMMAND='fd --hidden --color always --type directory'
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
   export FZF_TMUX=1
@@ -27,6 +27,14 @@ if hash 2>/dev/null fzf; then
 
   # Explicitly enable the  fzf-tab oh-my-zsh extension if it is loaded
   typeset -f enable-fzf-tab >/dev/null && enable-fzf-tab
+
+  _fzf_compgen_path() {
+    "${=FZF_CTRL_T_COMMAND}" . "$1"
+  }
+
+  _fzf_compgen_dir() {
+    "${=FZF_ALT_C_COMMAND}" . "$1"
+  }
 
   source <(fzf --zsh)
 fi

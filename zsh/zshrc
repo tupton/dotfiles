@@ -160,6 +160,7 @@ if hash brew 2>/dev/null; then
         path=("$prefix"/opt/protobuf@3/bin "${path[@]}")
     fi
 fi
+unset -v prefix
 
 # Rust path
 if [ -d ~/.cargo/bin ]; then
@@ -171,6 +172,7 @@ if hash go 2>/dev/null; then
     GOPATH=$HOME/go
     path=("$GOPATH"/bin "${path[@]}")
 fi
+unset -v GOPATH
 
 # Yarn path
 if hash yarn 2>/dev/null; then

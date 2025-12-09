@@ -17,15 +17,9 @@ function user_name() {
 
 function __compact_path() {
     local cp="$HOME/.local/bin/compact_path"
-    local cp_src="$HOME/code/compact-path"
-    local trigger=20
-    if hash uv 2>/dev/null ; then
-        if ! uv run compact-path --trigger="$trigger" "${PWD/#$HOME/~}"; then
-            uv pip install -e "$cp_src" >/dev/null 2>&1
-            uv run compact-path --trigger="$trigger" "${PWD/#$HOME/~}"
-        fi
-    elif [[ -e "$cp" ]]; then
-        "$HOMEBREW_PREFIX"/bin/python3 "$cp" --trigger="$trigger" "${PWD/#$HOME/~}"
+    if [[ -e "$cp" ]]; then
+        local pwd="${PWD/#$HOME/~}"
+        "$HOMEBREW_PREFIX"/bin/python3 "$cp" --trigger=20 "$pwd"
     else
         echo "%~"
     fi

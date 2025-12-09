@@ -90,55 +90,67 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.o.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.o.relativenumber = true
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
+vim.o.mousescroll = 'ver:25,hor:6'
 
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+-- Disable swap files
+vim.o.swapfile = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
-
--- Enable break indent
-vim.o.breakindent = true
+-- Use already opened buffers when switching
+vim.o.switchbuf = 'usetab'
 
 -- Save undo history
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- Limit ShaDa file (for startup)
+vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
 
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
+-- Enable all filetype plugins and syntax (if not enabled, for better startup)
+vim.cmd 'filetype plugin indent on'
+if vim.fn.exists 'syntax_on' ~= 1 then
+  vim.cmd 'syntax enable'
+end
 
 -- Decrease update time
 vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
 
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
+-- [[ UI options ]]
+-- Indent wrapped lines to match line start
+vim.o.breakindent = true
+
+-- with padding for lists if 'wrap' is set
+vim.o.breakindentopt = 'list:-1'
+
+-- Draw column on the right of maximum width
+vim.o.colorcolumn = '+1'
+
+-- Show which line your cursor is on
+vim.o.cursorline = true
+
+-- Show cursor line per screen line
+vim.o.cursorlineopt = 'screenline,number'
+
+-- Keep window sizes when closing others
+vim.o.equalalways = false
+
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
+
+-- Wrap lines at 'breakat' (if 'wrap' is set)
+vim.o.linebreak = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -146,22 +158,57 @@ vim.o.splitbelow = true
 vim.o.list = false
 vim.opt.listchars = { tab = '⇥ ', trail = '·', nbsp = '␣', eol = '¬', extends = '❯', precedes = '❮' }
 
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
+-- Show line numbers
+vim.o.number = true
 
--- Show which line your cursor is on
-vim.o.cursorline = true
+-- Make popup menu smaller
+vim.o.pumheight = 10
+
+-- Show relative line numbers
+vim.o.relativenumber = true
+
+-- Don't show cursor coordinates
+vim.o.ruler = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 5
 
--- Don't wrap
+-- Disable some built-in completion messages
+vim.o.shortmess = 'CFOSWaco'
+
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
+
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'yes'
+
+-- Configure how new splits should be opened
+vim.o.splitbelow = true -- Horizontal splits will be below
+vim.o.splitkeep = 'screen' -- Reduce scroll during window split
+vim.o.splitright = true -- Vertical splits will be to the right
+
+-- Set rounded window borders
+vim.o.winborder = 'single'
+
+-- Do not wrap by default
 vim.o.wrap = false
 
--- Set text width
-vim.o.textwidth = 100
-vim.o.colorcolumn = '+1'
+-- Less busy diff views
+vim.opt.diffopt:append { vertical = true, algorithm = 'histogram', ['indent-heuristic'] = true }
+vim.opt.fillchars:append { diff = ' ' }
+
+-- [[ Editing options ]]
+
+-- Use auto indent
+vim.o.autoindent = true
+
+-- Built-in completion
+vim.o.complete = '.,w,b,kspell' -- Use less sources
+vim.o.completeopt = 'menuone,noselect,fuzzy,nosort' -- Use custom behavior
+
+-- Convert tabs to spaces
+vim.o.expandtab = true
 
 -- From the Vim docs:
 -- t   Auto-wrap text using textwidth
@@ -175,6 +222,11 @@ vim.o.colorcolumn = '+1'
 -- o   Automatically insert the current comment leader after hitting 'o' or
 --     'O' in Normal mode.
 --
+-- q	 Allow formatting of comments with "gq".
+--  	 Note that formatting will not change blank lines or lines containing
+--  	 only the comment leader.  A new paragraph starts after such a line,
+--  	 or when the comment leader changes.
+--
 -- n   When formatting text, recognize numbered lists.  This actually uses
 --     the 'formatlistpat' option, thus any kind of list can be used.  The
 --     indent of the text after the number is used for the next line.  The
@@ -184,32 +236,55 @@ vim.o.colorcolumn = '+1'
 --     Example:
 --         1. the first item
 --            wraps
-vim.opt.formatoptions:append { t = true, c = true, r = true, o = true, n = true }
+--
+-- l   Long lines are not broken in insert mode: When a line was longer than
+-- 	   'textwidth' when the insert command started, Vim does not
+-- 	   automatically format it.
+--
+-- 1	 Don't break a line after a one-letter word.  It's broken before it
+--	   instead (if possible).
+--
+-- j   Where it makes sense, remove a comment leader when joining lines.  For
+--    	example, joining:
+--    		int i;   // the index ~
+--    		         // in the list ~
+--    	Becomes:
+--    		int i;   // the index in the list ~
+vim.o.formatoptions = 'tcroqnl1j'
 
--- Keep window sizes when closing others
-vim.o.equalalways = false
+-- Case-insensitive searching by default
+vim.o.ignorecase = true
 
--- Enable spell checking
-vim.o.spell = false
-vim.o.spelllang = 'en_us'
+-- Show search matches while typing
+vim.o.incsearch = true
 
--- Less busy diff views
-vim.opt.diffopt:append { vertical = true, algorithm = 'histogram', ['indent-heuristic'] = true }
-vim.opt.fillchars:append { diff = ' ' }
+-- Infer case in built-in completion
+vim.o.infercase = true
 
 -- Show matching parens
 vim.o.showmatch = true
 
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.o.confirm = true
+-- Respect case in search if \C or one or more capital letters in the search term
+vim.o.smartcase = true
+
+-- Make indenting smart
+vim.o.smartindent = true
+
+-- Configure but disable spell checking by default because of Harper
+vim.o.spell = false
+vim.o.spelllang = 'en_us'
+vim.o.spelloptions = 'camel' -- Treat camelCase word parts as separate words
+
+-- Set text width
+vim.o.textwidth = 100
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>xq', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>xl', vim.diagnostic.setloclist, { desc = 'Open diagnostic [L]ocation list' })
+vim.keymap.set('n', '<leader>xd', vim.diagnostic.open_float, { desc = 'Open diagnostic [D]etails in floating window' })
 
 -- Scroll more lines at a time
 vim.keymap.set('n', '<C-e>', '5<C-e>')
@@ -286,6 +361,10 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = true
+
 require('lazy').setup {
   spec = {
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -324,6 +403,14 @@ require('lazy').setup {
     {
       'tpope/vim-jdaddy',
       ft = 'json',
+    },
+
+    {
+      'itspriddle/vim-marked',
+      init = function()
+        vim.g.marked_filetypes = { 'markdown', 'mkd', 'ghmarkdown', 'vimwiki' }
+        vim.g.marked_auto_quit = 0
+      end,
     },
 
     -- Rainbow parens, brackets, etc. Also affects JSX/HTML nesting
@@ -398,8 +485,8 @@ require('lazy').setup {
 
         vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = '[ ] Pick files' })
         vim.keymap.set('n', "<leader>'", fzf.buffers, { desc = "['] Pick buffers" })
-        vim.keymap.set('n', '<leader>,', fzf.git_files, { desc = '[,] Pick git files' })
-        vim.keymap.set('n', '<leader><', fzf.git_status, { desc = '[<] Pick git files with status' })
+        vim.keymap.set('n', '<leader><', fzf.git_files, { desc = '[<] Pick git files' })
+        vim.keymap.set('n', '<leader>,', fzf.git_status, { desc = '[,] Pick git files with status' })
         vim.keymap.set('n', '<leader>.', fzf.grep_cword, { desc = 'Search word under cursor' })
         vim.keymap.set('n', '<leader>>', fzf.grep_cWORD, { desc = 'Search WORD under cursor' })
         vim.keymap.set('n', '<leader>p', fzf.grep_project, { desc = 'Search [p]roject' })
@@ -456,7 +543,7 @@ require('lazy').setup {
       opts = {
         -- delay between pressing a key and opening which-key (milliseconds)
         -- this setting is independent of vim.o.timeoutlen
-        delay = 0,
+        delay = 100,
         icons = {
           -- set icon mappings to true if you have a Nerd Font
           mappings = vim.g.have_nerd_font,
@@ -497,9 +584,12 @@ require('lazy').setup {
         -- Document existing key chains
         spec = {
           { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-          { '<leader>d', group = '[D]ocument' },
+          { '<leader>d', group = '[D]iff' },
           { '<leader>g', group = '[G]it' },
           { '<leader>x', group = 'Diagnostics' },
+          { '<leader>a', group = 'Sidekick', mode = { 'n', 'x' } },
+          { 'gr', group = 'LSP Actions', mode = { 'n' } },
+          { 'C-w', group = '[W]indow', mode = { 'n' } },
         },
       },
     }, -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
@@ -639,10 +729,17 @@ require('lazy').setup {
 
         -- Diagnostic Config
         -- See :help vim.diagnostic.Opts
-        vim.diagnostic.config {
+        local virtual_lines_config = {
+          current_line = true,
+          severity = {
+            min = vim.diagnostic.severity.ERROR,
+          },
+        }
+
+        local diagnostic_config = {
           severity_sort = true,
-          float = { border = 'rounded', source = 'if_many' },
-          underline = { severity = vim.diagnostic.severity.ERROR },
+          float = { border = 'single', source = 'if_many' },
+          underline = { severity = { min = vim.diagnostic.severity.WARN } },
           signs = vim.g.have_nerd_font and {
             text = {
               [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -652,19 +749,30 @@ require('lazy').setup {
             },
           } or {},
           virtual_text = {
+            current_line = true,
             source = 'if_many',
             spacing = 2,
-            format = function(diagnostic)
-              local diagnostic_message = {
-                [vim.diagnostic.severity.ERROR] = diagnostic.message,
-                [vim.diagnostic.severity.WARN] = diagnostic.message,
-                [vim.diagnostic.severity.INFO] = diagnostic.message,
-                [vim.diagnostic.severity.HINT] = diagnostic.message,
-              }
-              return diagnostic_message[diagnostic.severity]
-            end,
+            severity = {
+              min = vim.diagnostic.severity.WARN,
+            },
           },
+          virtual_lines = false,
+          update_in_insert = false,
         }
+
+        vim.diagnostic.config(diagnostic_config)
+
+        -- Function to toggle virtual_lines
+        local function toggle_virtual_lines()
+          if diagnostic_config.virtual_lines == false then
+            diagnostic_config.virtual_lines = virtual_lines_config
+          else
+            diagnostic_config.virtual_lines = false
+          end
+          vim.diagnostic.config(diagnostic_config)
+        end
+
+        vim.keymap.set('n', '<leader>xv', toggle_virtual_lines, { desc = 'Toggle diagnostic [V]irtual lines' })
 
         -- LSP servers and clients are able to communicate to each other what features they support.
         --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -737,6 +845,7 @@ require('lazy').setup {
           sqlls = {},
           buf_ls = {},
           harper_ls = {
+            -- filetypes = { 'markdown', 'text', 'gitcommit', 'gitrebase' },
             settings = {
               ['harper-ls'] = {
                 linters = {
@@ -1082,6 +1191,7 @@ require('lazy').setup {
         vim.o.background = 'dark'
         vim.g.nord_contrast = true
         vim.g.nord_borders = true
+        vim.g.nord_uniform_diff_background = true
         vim.cmd.colorscheme 'nord'
       end,
     },
@@ -1179,14 +1289,113 @@ require('lazy').setup {
               i = { '@conditional.inner', '@loop.inner' },
             },
           },
+          search_method = 'cover',
         }
 
-        -- Add/delete/replace surroundings (brackets, quotes, etc.)
-        --
-        -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-        -- - sd'   - [S]urround [D]elete [']quotes
-        -- - sr)'  - [S]urround [R]eplace [)] [']
-        require('mini.surround').setup()
+        -- Similar to vim-sensible, but broader.
+        --   Some config and options above likely duplicate this.
+        require('mini.basics').setup {
+          options = {
+            basic = true,
+            extra_ui = true,
+          },
+          mappings = {
+            basic = false,
+            windows = true,
+          },
+          autocommands = {
+            basic = true,
+          },
+        }
+
+        -- Keymaps for forwards/backwards objects, like vim-unimpaired
+        require('mini.bracketed').setup {
+          -- Use mappings from mini.indentscope
+          indent = { suffix = '' },
+
+          -- Disable mappings that are defined elsewhere
+          file = { suffix = '' },
+          window = { suffix = '' },
+        }
+
+        -- Better un/commenting, text object
+        require('mini.comment').setup()
+
+        -- Highlight the word under the cursor
+        require('mini.cursorword').setup()
+
+        -- Diff hunk manipulation
+        require('mini.diff').setup {
+          view = {
+            style = 'sign',
+          },
+        }
+        vim.keymap.set('n', '<leader>do', require('mini.diff').toggle_overlay, { desc = 'Toggle [D]iff [O]verlay' })
+
+        -- Fun icons for filetypes, actions, signs, etc.
+        require('mini.icons').setup()
+
+        -- Indent guides
+        local indentscope = require 'mini.indentscope'
+        indentscope.setup {
+          draw = {
+            animation = indentscope.gen_animation.none(),
+          },
+        }
+
+        -- t, f, T, F are repeatable motions
+        -- Highlight the next motion for subsequent tfTF motions
+        require('mini.jump').setup {
+          delay = {
+            -- Delay between jump and highlighting all possible jumps
+            highlight = 1000,
+            -- Delay between jump and automatic stop if idle (no jump is done)
+            idle_stop = 3000,
+          },
+        }
+
+        -- Jump to locations with <enter>
+        require('mini.jump2d').setup {
+          view = {
+            dim = true,
+            n_steps_ahead = 2,
+          },
+          allowed_lines = {
+            cursor_at = false,
+            blank = false,
+            fold = false,
+          },
+        }
+
+        -- Automatically pair brackets, parens, etc.
+        require('mini.pairs').setup {
+          mappings = {
+            -- Double quote: Prevent pairing if either side is a letter
+            ['"'] = {
+              action = 'closeopen',
+              pair = '""',
+              neigh_pattern = '[^%w\\][^%w]',
+              register = { cr = false },
+            },
+            -- Single quote: Prevent pairing if either side is a letter
+            ["'"] = {
+              action = 'closeopen',
+              pair = "''",
+              neigh_pattern = '[^%w\\][^%w]',
+              register = { cr = false },
+            },
+            -- Backtick: Prevent pairing if either side is a letter
+            ['`'] = {
+              action = 'closeopen',
+              pair = '``',
+              neigh_pattern = '[^%w\\][^%w]',
+              register = { cr = false },
+            },
+          },
+          skip_ts = { 'string', 'comment' },
+          skip_unbalanced = true,
+          markdown = true,
+        }
 
         -- Simple and easy statusline.
         --  You could remove this setup call if you don't like it,
@@ -1216,113 +1425,15 @@ require('lazy').setup {
           return '%f %#DiffChange#%m%#MinistatusLineFilename#'
         end
 
-        -- Similar to vim-sensible, but broader.
-        --   Some config and options above likely duplicate this.
-        require('mini.basics').setup {
-          options = {
-            basic = true,
-            extra_ui = true,
-          },
-          mappings = {
-            basic = false,
-            windows = true,
-          },
-          autocommands = {
-            basic = true,
-          },
-        }
-
-        -- Keymaps for forwards/backwards objects, like vim-unimpaired
-        require('mini.bracketed').setup {
-          -- Use mappings from mini.indentscope
-          indent = { suffix = '' },
-
-          -- Disable mappings that are defined elsewhere
-          file = { suffix = '' },
-          window = { suffix = '' },
-        }
-
-        -- Automatically pair brackets, parens, etc.
-        require('mini.pairs').setup {
-          mappings = {
-            -- Single quote: Prevent pairing if either side is a letter
-            ['"'] = {
-              action = 'closeopen',
-              pair = '""',
-              neigh_pattern = '[^%w\\][^%w]',
-              register = { cr = false },
-            },
-            -- Single quote: Prevent pairing if either side is a letter
-            ["'"] = {
-              action = 'closeopen',
-              pair = "''",
-              neigh_pattern = '[^%w\\][^%w]',
-              register = { cr = false },
-            },
-            -- Backtick: Prevent pairing if either side is a letter
-            ['`'] = {
-              action = 'closeopen',
-              pair = '``',
-              neigh_pattern = '[^%w\\][^%w]',
-              register = { cr = false },
-            },
-          },
-          skip_ts = { 'string', 'comment' },
-          skip_unbalanced = true,
-          markdown = true,
-        }
-
-        -- Diff hunk manipulation
-        require('mini.diff').setup {
-          view = {
-            style = 'sign',
-          },
-        }
-        vim.keymap.set('n', '<leader>do', require('mini.diff').toggle_overlay, { desc = 'Toggle [D]iff [O]verlay' })
-
-        -- Fun icons for filetypes, actions, signs, etc.
-        require('mini.icons').setup()
-
-        -- Better un/commenting, text object
-        require('mini.comment').setup()
-
-        -- Highlight the word under the cursor
-        require('mini.cursorword').setup()
-
-        -- t, f, T, F are repeatable motions
-        -- Highlight the next motion for subsequent tfTF motions
-        require('mini.jump').setup {
-          delay = {
-            -- Delay between jump and highlighting all possible jumps
-            highlight = 1000,
-            -- Delay between jump and automatic stop if idle (no jump is done)
-            idle_stop = 3000,
-          },
-        }
-
-        -- Jump to locations with <enter>
-        require('mini.jump2d').setup {
-          view = {
-            dim = true,
-            n_steps_ahead = 2,
-          },
-          allowed_lines = {
-            cursor_at = false,
-            blank = false,
-            fold = false,
-          },
-        }
+        -- Add/delete/replace surroundings (brackets, quotes, etc.)
+        --
+        -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+        -- - sd'   - [S]urround [D]elete [']quotes
+        -- - sr)'  - [S]urround [R]eplace [)] [']
+        require('mini.surround').setup()
 
         -- Highlight trailing whitespace and automatically trim it on write
         require('mini.trailspace').setup()
-
-        -- Indent guides
-        local indentscope = require 'mini.indentscope'
-        indentscope.setup {
-          draw = {
-            animation = indentscope.gen_animation.none(),
-          },
-        }
       end,
     },
 
@@ -1363,7 +1474,7 @@ require('lazy').setup {
       },
       config = function()
         -- <C-l> jumps to the end of the current treesitter node
-        vim.keymap.set('i', '<C-L>', function()
+        vim.keymap.set('i', '<C-l>', function()
           local node = vim.treesitter.get_node()
           if node ~= nil then
             local row, col = node:end_()
@@ -1438,11 +1549,11 @@ require('lazy').setup {
       'sphamba/smear-cursor.nvim',
       opts = {
         stiffness = 0.8,
-        trailing_stiffness = 0.5,
+        trailing_stiffness = 0.6,
         stiffness_insert_mode = 0.7,
         trailing_stiffness_insert_mode = 0.7,
-        damping = 0.8,
-        damping_insert_mode = 0.8,
+        damping = 0.95,
+        damping_insert_mode = 0.95,
         distance_stop_animating = 0.5,
       },
     },

@@ -16,10 +16,10 @@ function user_name() {
 }
 
 function __compact_path() {
-    local cp="$HOME/.local/bin/compact_path"
+    local cp="$(command -v compact-path)"
     if [[ -e "$cp" ]]; then
         local pwd="${PWD/#$HOME/~}"
-        "$HOMEBREW_PREFIX"/bin/python3 "$cp" --trigger=20 "$pwd"
+        "$cp" --trigger=20 "$pwd"
     else
         echo "%~"
     fi

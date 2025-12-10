@@ -5,6 +5,8 @@
 
 [alias]
     co = checkout
+    sw = switch # replace `checkout -b` with `switch` for switching branches
+    re = restore # use `checkout <ref> -- ` with `restore` for restoring files
     ci = commit
     st = status
     br = branch
@@ -13,7 +15,6 @@
     one = log --pretty=format:'%C(blue)%h %C(green)%<(12)%ad %C(auto,yellow)%<(12,trunc)%an %C(auto,magenta)%G?%C(auto)%d %s' --date=relative
     type = cat-file -t
     dump = cat-file -p
-    diff = diff -F
     patch = !git --no-pager diff --no-color
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     fa = fuzzy-add
@@ -21,6 +22,7 @@
     fco = fuzzy-checkout
     ff = fuzzy-files
     dt = difftool
+    mt = mergetool
 
     # Reviews
     rs = diff-review-stat

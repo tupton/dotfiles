@@ -1407,22 +1407,26 @@ require('lazy').setup {
           content = {
             -- show modified flag in inactive windows
             inactive = function()
-              return '%#MiniStatuslineInactive#%f %#Todo#%m%#MiniStatuslineInactive#%='
+              return '%#MiniStatuslineFilename#%F %#Todo#%m%#MiniStatuslineFilename#%r%='
             end,
           },
         }
 
         -- You can configure sections in the statusline by overriding their
-        -- default behavior. For example, here we set the section for
-        -- cursor location to LINE:COLUMN
+        -- default behavior.
         ---@diagnostic disable-next-line: duplicate-set-field
-        statusline.section_location = function()
-          return '%2l:%-2v'
-        end
-
-        ---@diagnostic disable-next-line: duplicate-set-field
-        statusline.section_filename = function()
-          return '%f %#DiffChange#%m%#MinistatusLineFilename#'
+        statusline.section_filename = function(args)
+          -- In terminal always use plain name
+          if vim.bo.buftype == 'terminal' then
+            return '%t'
+          elseif MiniStatusline.is_truncated(args.trunc_width) then
+            -- File name with 'truncate', 'modified', 'readonly' flags
+            -- Use relative path if truncated
+            return '%f %#DiffChange#%m%#MinistatusLineFilename#%r%='
+          else
+            -- Use fullpath if not truncated
+            return '%F %#DiffChange#%m%#MinistatusLineFilename#%r%='
+          end
         end
 
         -- Add/delete/replace surroundings (brackets, quotes, etc.)

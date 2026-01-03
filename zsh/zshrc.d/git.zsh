@@ -14,5 +14,5 @@ vimtree() {
 gcot() {
     local local_branch=${1:-$(pbpaste | tr -d '\n')}
     local remote_tracking_branch=${2:-origin/main}
-    git checkout -b ${local_branch} -t ${remote_tracking_branch}
+    git switch -c ${local_branch} ${remote_tracking_branch}
 }

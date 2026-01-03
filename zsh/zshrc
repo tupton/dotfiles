@@ -107,11 +107,14 @@ source $ZSH/oh-my-zsh.sh
 export HISTSIZE=65535
 export SAVEHIST=$HISTSIZE
 
-# -R -- properly display color escape sequences (was on by default; necessary to include when changing)
-# -s -- squeeze consecutive blank lines into one line
-# -X -- don't clear the screen on exit
-# -F -- immediately quit if the output fits on one screen; useful for `git diff` and short man pages
-export LESS="-R -s -X -F"
+# -R properly display color escape sequences (was on by default; necessary to include when changing)
+# -s squeeze consecutive blank lines into one line
+# -X don't clear the screen on exit
+# -F immediately quit if the output fits on one screen; useful for `git diff` and short man pages
+# -i case-insensitive search
+# -x set tab stop space count
+# -j offset 'target' line from the top of the screen
+export LESS="-R -s -X -F -i -x4 -j2"
 
 # Use vim if it's available
 hash vim 2>/dev/null && export EDITOR=vim

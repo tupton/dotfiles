@@ -94,10 +94,10 @@
 [difftool]
     prompt = false
 [pager]
-    diff = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
-    log = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
-    reflog = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
-    show = hash delta 2>&1 >/dev/null && delta || less --tabs=4 -RFXS
+    diff = hash delta 2>&1 >/dev/null && delta || less -RsXFi -x4 -j2
+    log = hash delta 2>&1 >/dev/null && delta || less -RsXFi -x4 -j2 -p"^commit.*$"
+    reflog = hash delta 2>&1 >/dev/null && delta || less -RsXFi -x4 -j2
+    show = hash delta 2>&1 >/dev/null && delta || less -RsXFi -x4 -j2
 [interactive]
     diffFilter = delta --color-only
 [delta]

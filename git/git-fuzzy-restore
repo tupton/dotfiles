@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+local files
+files=$(git fuzzy-files "$@")
+if [ -z "$branch" ]; then
+    exit 0
+fi
+
+PS4=''
+set -x
+git restore $files

@@ -19,8 +19,10 @@
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     fa = fuzzy-add
     fb = fuzzy-branch
-    fco = fuzzy-checkout
     ff = fuzzy-files
+    fco = fuzzy-checkout
+    fsw = fuzzy-switch
+    fre = fuzzy-restore
     dt = difftool
     mt = mergetool
 

@@ -101,7 +101,7 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    syntax-theme = Monokai Extended Bright
+    syntax-theme = Nord
     line-numbers = true
 [blame]
     markIgnoredLines = true

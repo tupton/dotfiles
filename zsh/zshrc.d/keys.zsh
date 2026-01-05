@@ -72,10 +72,10 @@ bind-git-helper() {
   done
 }
 
-FZF_GIT_SH="${FZF_GIT_SH:-~/.local/bin/fzf-git.sh}"
-if [[ -f "$FZF_GIT_SH" ]]; then
+FZF_GIT_SH=${FZF_GIT_SH:-~/.local/bin/fzf-git.sh}
+if [[ -f $FZF_GIT_SH ]]; then
   bindkey -r '^G'
-  source "$FZF_GIT_SH"
+  source $FZF_GIT_SH
 else
   bind-git-helper f b t h r s
 fi

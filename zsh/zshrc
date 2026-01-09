@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias zshconfig="mate "$HOME"/.zshrc"
+# alias ohmyzsh="mate "$HOME"/.oh-my-zsh"
 
 # Bigger history
 export HISTSIZE=65535
@@ -166,8 +166,8 @@ fi
 unset -v prefix
 
 # Rust path
-if [ -d ~/.cargo/bin ]; then
-    path=(~/.cargo/bin "${path[@]}")
+if [ -d "$HOME"/.cargo/bin ]; then
+    path=("$HOME"/.cargo/bin "${path[@]}")
 fi
 
 # Go path
@@ -194,7 +194,7 @@ if [[ -d "$HOME"/.zshrc.d ]]; then
 fi
 unset -v config
 
-# add cwd and ~/.local/bin after including other config
+# add cwd and "$HOME"/.local/bin after including other config
 path=(. "$HOME"/.local/bin "${path[@]}")
 
 # do this last in case any scripts touch the path

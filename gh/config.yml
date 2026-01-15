@@ -1,8 +1,10 @@
 aliases:
     co: pr checkout
+    sw: pr checkout
     pc: pr create
     pv: pr view
     pu: pr view --json url --jq '.url'
+    pb: pr view -w
     ps: pr status
     user: |-
         api graphql --paginate

@@ -164,6 +164,10 @@ install-nvim : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/nvim
 	cp -p -- nvim/init.lua "$(HOME)"/.config/nvim/init.lua
 
+install-opencode : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/opencode
+	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
+
 test : test-setup test-zsh test-bash test-vimrc test-dotjs
 
 test-setup :

@@ -118,9 +118,7 @@ vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
 
 -- Enable all filetype plugins and syntax (if not enabled, for better startup)
 vim.cmd 'filetype plugin indent on'
-if vim.fn.exists 'syntax_on' ~= 1 then
-  vim.cmd 'syntax enable'
-end
+if vim.fn.exists 'syntax_on' ~= 1 then vim.cmd 'syntax enable' end
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -296,9 +294,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   desc = 'Jump to last cursor position',
   group = vim.api.nvim_create_augroup('last-cursor-position', { clear = true }),
   callback = function()
-    if vim.bo.filetype:sub(1, 3) ~= 'git' and vim.fn.line '\'"' > 0 and vim.fn.line '\'"' <= vim.fn.line '$' then
-      vim.cmd 'normal! g`"'
-    end
+    if vim.bo.filetype:sub(1, 3) ~= 'git' and vim.fn.line '\'"' > 0 and vim.fn.line '\'"' <= vim.fn.line '$' then vim.cmd 'normal! g`"' end
   end,
 })
 
@@ -330,6 +326,23 @@ vim.api.nvim_create_user_command('Wa', 'wa', { bang = true, desc = 'Write all bu
 vim.api.nvim_create_user_command('QA', 'qa', { bang = true, desc = 'Quit all buffers' })
 vim.api.nvim_create_user_command('Qa', 'qa', { bang = true, desc = 'Quit all buffers' })
 vim.api.nvim_create_user_command('Wqa', 'wqa', { bang = true, desc = 'Write and quit all buffers' })
+
+-- [[ Helper Functions ]]
+local function get_github_token_from_netrc()
+  local netrc_path = vim.fn.expand '~/.netrc'
+  local file = io.open(netrc_path, 'r')
+  if not file then return '' end
+  local token = ''
+  for line in file:lines() do
+    local machine, login, password = line:match 'machine api%.github%.com login (%S+) password (%S+)'
+    if machine and login and password then
+      token = password
+      break
+    end
+  end
+  file:close()
+  return token
+end
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -388,9 +401,7 @@ require('lazy').setup {
     -- Netrw improvements
     {
       'tpope/vim-vinegar',
-      init = function()
-        vim.cmd [[ nnoremap - -]]
-      end,
+      init = function() vim.cmd [[ nnoremap - -]] end,
     },
 
     -- JSON syntax, concealment
@@ -429,7 +440,6 @@ require('lazy').setup {
         }
       end,
     },
-
     -- Navigate between vim and tmux panes with the same keys
     {
       'alexghergh/nvim-tmux-navigation',
@@ -446,7 +456,6 @@ require('lazy').setup {
         }
       end,
     },
-
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
     -- keys can be used to configure plugin behavior/loading/etc.
@@ -468,6 +477,19 @@ require('lazy').setup {
               default = 'bat',
               hidden = false,
               horizontal = 'right:40%',
+              winopts = { -- builtin previewer window options
+                number = true,
+                relativenumber = false,
+                cursorline = true,
+                cursorlineopt = 'both',
+                cursorcolumn = false,
+                signcolumn = 'yes',
+                list = false,
+                foldenable = false,
+                foldmethod = 'manual',
+                scrolloff = 0,
+                winblend = 0,
+              },
             },
           },
           keymap = {
@@ -513,9 +535,7 @@ require('lazy').setup {
       keys = {
         {
           '<leader>gb',
-          function()
-            vim.cmd.GitBlameToggle()
-          end,
+          function() vim.cmd.GitBlameToggle() end,
           desc = '[G]it [B]lame',
         },
       },
@@ -700,15 +720,11 @@ require('lazy').setup {
             -- Jump to the definition of the word under your cursor.
             --  This is where a variable was first declared, or where a function is defined, etc.
             --  To jump back, press <C-t>.
-            map('grd', function()
-              fzf.lsp_definitions { jump1 = true }
-            end, '[G]oto [D]efinition')
+            map('grd', function() fzf.lsp_definitions { jump1 = true } end, '[G]oto [D]efinition')
 
             -- WARN: This is not Goto Definition, this is Goto Declaration.
             --  For example, in C this would take you to the header.
-            map('grD', function()
-              fzf.lsp_declarations { jump1 = true }
-            end, '[G]oto [D]eclaration')
+            map('grD', function() fzf.lsp_declarations { jump1 = true } end, '[G]oto [D]eclaration')
 
             -- Fuzzy find all the symbols in your current document.
             --  Symbols are things like variables, functions, types, etc.
@@ -721,9 +737,7 @@ require('lazy').setup {
             -- Jump to the type of the word under your cursor.
             --  Useful when you're not sure what type a variable is and you want to see
             --  the definition of its *type*, not where it was *defined*.
-            map('grt', function()
-              fzf.lsp_typedefs { jump1 = true }
-            end, '[T]ype Definition')
+            map('grt', function() fzf.lsp_typedefs { jump1 = true } end, '[T]ype Definition')
           end,
         })
 
@@ -753,7 +767,7 @@ require('lazy').setup {
             source = 'if_many',
             spacing = 2,
             severity = {
-              min = vim.diagnostic.severity.WARN,
+              min = vim.diagnostic.severity.HINT,
             },
           },
           virtual_lines = false,
@@ -836,10 +850,10 @@ require('lazy').setup {
               },
             },
           },
-          basedpyright = {},
+          ty = {},
           ruff = {},
           rust_analyzer = {},
-          stylelint_lsp = {},
+          ['stylelint-language-server'] = {},
           cssls = {},
           css_variables = {},
           sqlls = {},
@@ -866,9 +880,7 @@ require('lazy').setup {
 
         -- Explicitly set up LSP servers before mason-lspconfig loads default configs
         for server, config in pairs(vim.tbl_extend('keep', servers, external_servers)) do
-          if not vim.tbl_isempty(config) then
-            vim.lsp.config(server, config)
-          end
+          if not vim.tbl_isempty(config) then vim.lsp.config(server, config) end
         end
 
         -- Ensure the servers and tools above are installed
@@ -901,9 +913,7 @@ require('lazy').setup {
         }
 
         -- Enable extra server not managed by Mason, if any
-        if not vim.tbl_isempty(external_servers) then
-          vim.lsp.enable(vim.tbl_keys(external_servers))
-        end
+        if not vim.tbl_isempty(external_servers) then vim.lsp.enable(vim.tbl_keys(external_servers)) end
       end,
     },
 
@@ -947,8 +957,39 @@ require('lazy').setup {
     {
       'folke/sidekick.nvim',
       opts = {
-        -- add any options here
         cli = {
+          win = {
+            keys = {
+              nav_left = {
+                '<C-h>',
+                function() vim.schedule(require('nvim-tmux-navigation').NvimTmuxNavigateLeft) end,
+                mode = 't',
+                expr = false,
+                desc = 'Navigate Left',
+              },
+              nav_down = {
+                '<C-j>',
+                function() vim.schedule(require('nvim-tmux-navigation').NvimTmuxNavigateDown) end,
+                mode = 't',
+                expr = false,
+                desc = 'Navigate Down',
+              },
+              nav_up = {
+                '<C-k>',
+                function() vim.schedule(require('nvim-tmux-navigation').NvimTmuxNavigateUp) end,
+                mode = 't',
+                expr = false,
+                desc = 'Navigate Up',
+              },
+              nav_right = {
+                '<C-l>',
+                function() vim.schedule(require('nvim-tmux-navigation').NvimTmuxNavigateRight) end,
+                mode = 't',
+                expr = false,
+                desc = 'Navigate Right',
+              },
+            },
+          },
           mux = {
             backend = 'tmux',
             enabled = true,
@@ -969,72 +1010,54 @@ require('lazy').setup {
         },
         {
           '<c-.>',
-          function()
-            require('sidekick.cli').toggle()
-          end,
+          function() require('sidekick.cli').toggle() end,
           desc = 'Sidekick Toggle',
           mode = { 'n', 't', 'i', 'x' },
         },
         {
           '<leader>aa',
-          function()
-            require('sidekick.cli').toggle()
-          end,
+          function() require('sidekick.cli').toggle() end,
           desc = 'Sidekick Toggle CLI',
         },
         {
           '<leader>as',
-          function()
-            require('sidekick.cli').select()
-          end,
+          function() require('sidekick.cli').select() end,
           -- Or to select only installed tools:
           -- require("sidekick.cli").select({ filter = { installed = true } })
           desc = 'Select CLI',
         },
         {
           '<leader>ad',
-          function()
-            require('sidekick.cli').close()
-          end,
+          function() require('sidekick.cli').close() end,
           desc = 'Detach a CLI Session',
         },
         {
           '<leader>at',
-          function()
-            require('sidekick.cli').send { msg = '{this}' }
-          end,
+          function() require('sidekick.cli').send { msg = '{this}' } end,
           mode = { 'x', 'n' },
           desc = 'Send This',
         },
         {
           '<leader>af',
-          function()
-            require('sidekick.cli').send { msg = '{file}' }
-          end,
+          function() require('sidekick.cli').send { msg = '{file}' } end,
           desc = 'Send File',
         },
         {
           '<leader>av',
-          function()
-            require('sidekick.cli').send { msg = '{selection}' }
-          end,
+          function() require('sidekick.cli').send { msg = '{selection}' } end,
           mode = { 'x' },
           desc = 'Send Visual Selection',
         },
         {
           '<leader>ap',
-          function()
-            require('sidekick.cli').prompt()
-          end,
+          function() require('sidekick.cli').prompt() end,
           mode = { 'n', 'x' },
           desc = 'Sidekick Select Prompt',
         },
         -- Example of a keybinding to open Claude directly
         {
           '<leader>ao',
-          function()
-            require('sidekick.cli').toggle { name = 'opencode', focus = true }
-          end,
+          function() require('sidekick.cli').toggle { name = 'opencode', focus = true } end,
           desc = 'Sidekick Toggle OpenCode',
         },
       },
@@ -1048,9 +1071,7 @@ require('lazy').setup {
       keys = {
         {
           '<leader>f',
-          function()
-            require('conform').format { async = true, lsp_format = 'fallback' }
-          end,
+          function() require('conform').format { async = true, lsp_format = 'fallback' } end,
           mode = '',
           desc = '[F]ormat buffer',
         },
@@ -1109,6 +1130,7 @@ require('lazy').setup {
       version = '1.*',
       dependencies = {
         { 'fang2hou/blink-copilot', opts = {} },
+        { 'Kaiser-Yang/blink-cmp-git' },
       },
       --- @module 'blink.cmp'
       --- @type blink.cmp.Config
@@ -1154,16 +1176,41 @@ require('lazy').setup {
         },
 
         sources = {
-          default = { 'lsp', 'copilot', 'path', 'buffer' },
+          default = { 'copilot', 'lsp', 'git', 'path', 'buffer' },
           providers = {
             copilot = {
               name = 'copilot',
               module = 'blink-copilot',
               async = true,
+              score_offset = 100, -- Make copilot suggestions have higher priority
+            },
+            git = {
+              module = 'blink-cmp-git',
+              name = 'git',
+              enabled = function() return vim.tbl_contains({ 'git', 'gitcommit', 'ghmarkdown', 'markdown' }, vim.bo.filetype) end,
+              --- @module 'blink-cmp-git'
+              --- @type blink-cmp-git.Options
+              opts = {
+                commit = {
+                  get_token = get_github_token_from_netrc,
+                },
+                git_centers = {
+                  github = {
+                    issue = {
+                      get_token = get_github_token_from_netrc,
+                    },
+                    pull_request = {
+                      get_token = get_github_token_from_netrc,
+                    },
+                    mention = {
+                      get_token = get_github_token_from_netrc,
+                    },
+                  },
+                },
+              },
             },
           },
         },
-
         -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
         -- which automatically downloads a prebuilt binary when enabled.
         --
@@ -1248,9 +1295,7 @@ require('lazy').setup {
           desc = 'Zen mode for prose',
           group = vim.api.nvim_create_augroup('zen-mode', { clear = true }),
           pattern = { '*.md', '*.markdown', '*.txt', 'COMMIT_EDITMSG' },
-          callback = function()
-            require('zen-mode').open { window = { width = 0.65 } }
-          end,
+          callback = function() require('zen-mode').open { window = { width = 0.65 } } end,
         })
       end,
     },
@@ -1269,7 +1314,7 @@ require('lazy').setup {
     -- Collection of various small independent plugins/modules
     {
       'nvim-mini/mini.nvim',
-      dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+      dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' } },
       config = function()
         -- Better Around/Inside textobjects
         --
@@ -1401,13 +1446,16 @@ require('lazy').setup {
         --  You could remove this setup call if you don't like it,
         --  and try some other statusline plugin
         local statusline = require 'mini.statusline'
+        -- Add custom highlights for inactive statusline
+        vim.cmd 'hi MiniStatuslineInactiveMod guifg=#ebcb8b guibg=#2e3440'
         statusline.setup {
           -- set use_icons to true if you have a Nerd Font
           use_icons = vim.g.have_nerd_font,
           content = {
             -- show modified flag in inactive windows
             inactive = function()
-              return '%#MiniStatuslineFilename#%F %#Todo#%m%#MiniStatuslineFilename#%r%='
+              if vim.bo.buftype == 'terminal' then return '%t' end
+              return '%#MiniStatuslineInactive#%f %#MiniStatuslineInactiveMod#%m%#MiniStatuslineInactive#%r%='
             end,
           },
         }
@@ -1444,39 +1492,90 @@ require('lazy').setup {
     -- Highlight, edit, and navigate code
     {
       'nvim-treesitter/nvim-treesitter',
-      branch = 'master',
+      lazy = false,
+      branch = 'main',
       build = ':TSUpdate',
-      main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-      opts = {
-        ensure_installed = {
+      -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
+      config = function()
+        -- The main branch of nvim-treesitter is a rewrite with different architecture.
+        -- Configure the install directory to use the lazy plugin directory
+        local ts = require 'nvim-treesitter'
+
+        local languages = {
           'bash',
+          'c',
+          'css',
           'diff',
+          'dockerfile',
+          'git_config',
+          'git_rebase',
+          'gitattributes',
+          'gitcommit',
+          'gitignore',
           'html',
+          'javascript',
+          'json',
           'lua',
           'luadoc',
           'markdown',
           'markdown_inline',
+          'python',
           'query',
+          'regex',
+          'rust',
+          'sql',
+          'toml',
+          'tsx',
+          'typescript',
           'vim',
           'vimdoc',
-          'python',
-          'typescript',
-          'javascript',
-          'css',
-        },
-        -- Autoinstall languages that are not installed
-        auto_install = true,
-        highlight = {
-          enable = true,
-          -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-          --  If you are experiencing weird indenting issues, add the language to
-          --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-          additional_vim_regex_highlighting = false,
-        },
-        indent = { enable = true },
-      },
-      config = function()
+          'yaml',
+        }
+        ts.install(languages)
+
+        -- Shared function to enable treesitter for a buffer
+        ---@param buf integer?
+        local function enable_treesitter(buf)
+          buf = buf or 0
+          vim.treesitter.start(buf)
+          vim.api.nvim_set_option_value('indentexpr', "v:lua.require'nvim-treesitter'.indentexpr()", { buf = buf })
+        end
+
+        local filetypes = {}
+        for _, lang in ipairs(languages) do
+          for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+            table.insert(filetypes, ft)
+          end
+        end
+        vim.api.nvim_create_autocmd('FileType', {
+          group = vim.api.nvim_create_augroup('start-treesitter', { clear = true }),
+          pattern = filetypes,
+          callback = function(ev) enable_treesitter(ev.buf) end,
+          desc = 'Enable treesitter',
+        })
+
+        -- Command to install a parser for a specific filetype
+        vim.api.nvim_create_user_command('TSInstallForFiletype', function(opts)
+          local filetype = opts.args ~= '' and opts.args or vim.bo.filetype
+          local lang = vim.treesitter.language.get_lang(filetype)
+
+          if not lang then
+            vim.notify('No treesitter language mapping for filetype: ' .. filetype, vim.log.levels.WARN)
+            return
+          end
+
+          vim.notify('Installing treesitter parser for ' .. lang .. '...', vim.log.levels.INFO)
+          -- Install the parser and wait for completion (5 minute timeout)
+          ts.install({ lang }):wait(300000)
+          enable_treesitter()
+          vim.notify('Installed and enabled treesitter for ' .. lang, vim.log.levels.INFO)
+        end, {
+          nargs = '?',
+          desc = 'Install treesitter parser for the current or specified filetype',
+        })
+
+        -- Install common parsers asynchronously (non-blocking startup)
+
         -- <C-l> jumps to the end of the current treesitter node
         vim.keymap.set('i', '<C-l>', function()
           local node = vim.treesitter.get_node()
@@ -1484,14 +1583,13 @@ require('lazy').setup {
             local row, col = node:end_()
             pcall(vim.api.nvim_win_set_cursor, 0, { row + 1, col })
           end
-        end, { desc = 'insjump' })
+        end, { desc = 'Jump to end of treesitter node' })
       end,
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects (using the `main` branch)
     },
 
     -- Edit and manage Obsidian notes and links
@@ -1560,6 +1658,21 @@ require('lazy').setup {
         damping_insert_mode = 0.95,
         distance_stop_animating = 0.5,
       },
+    },
+
+    -- Custom plugin to load Ghostty's vim files
+    {
+      dir = (vim.env.GHOSTTY_RESOURCES_DIR or '') .. '/../nvim/site',
+      lazy = false, -- Ensures it loads for Ghostty config detection
+      name = 'ghostty', -- Avoids the name being "vimfiles"
+      cond = vim.env.GHOSTTY_RESOURCES_DIR ~= nil, -- Only load if Ghostty is installed
+      -- The default ftdetect looks for */ghostty/config, but it is in a different location on MacOS.
+      init = function()
+        vim.api.nvim_create_autocmd('BufRead', {
+          pattern = '*/com.mitchellh.ghostty/config',
+          callback = function() vim.bo.filetype = 'ghostty' end,
+        })
+      end,
     },
 
     -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the

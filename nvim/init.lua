@@ -653,9 +653,6 @@ require('lazy').setup {
 
         -- Useful status updates for LSP.
         { 'j-hui/fidget.nvim', opts = {} },
-
-        -- Allows extra capabilities provided by blink.cmp
-        { 'saghen/blink.cmp', opts = {} },
       },
       config = function()
         -- Brief aside: **What is LSP?**
@@ -751,8 +748,9 @@ require('lazy').setup {
         }
 
         local diagnostic_config = {
+          update_in_insert = false,
           severity_sort = true,
-          float = { border = 'single', source = 'if_many' },
+          float = { border = 'rounded', source = 'if_many' },
           underline = { severity = { min = vim.diagnostic.severity.WARN } },
           signs = vim.g.have_nerd_font and {
             text = {
@@ -771,7 +769,6 @@ require('lazy').setup {
             },
           },
           virtual_lines = false,
-          update_in_insert = false,
         }
 
         vim.diagnostic.config(diagnostic_config)
@@ -1324,6 +1321,11 @@ require('lazy').setup {
         --  - ci'  - [C]hange [I]nside [']quote
         local spec_treesitter = require('mini.ai').gen_spec.treesitter
         require('mini.ai').setup {
+          -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
+          mappings = {
+            around_next = 'aa',
+            inside_next = 'ii',
+          },
           custom_textobjects = {
             F = spec_treesitter {
               a = '@function.outer',
@@ -1429,13 +1431,6 @@ require('lazy').setup {
               neigh_pattern = '[^%w\\][^%w]',
               register = { cr = false },
             },
-            -- Backtick: Prevent pairing if either side is a letter
-            ['`'] = {
-              action = 'closeopen',
-              pair = '``',
-              neigh_pattern = '[^%w\\][^%w]',
-              register = { cr = false },
-            },
           },
           skip_ts = { 'string', 'comment' },
           skip_unbalanced = true,
@@ -1493,8 +1488,8 @@ require('lazy').setup {
     {
       'nvim-treesitter/nvim-treesitter',
       lazy = false,
-      branch = 'main',
       build = ':TSUpdate',
+      branch = 'main',
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
       config = function()
         -- The main branch of nvim-treesitter is a rewrite with different architecture.
@@ -1533,48 +1528,51 @@ require('lazy').setup {
         }
         ts.install(languages)
 
-        -- Shared function to enable treesitter for a buffer
-        ---@param buf integer?
-        local function enable_treesitter(buf)
-          buf = buf or 0
-          vim.treesitter.start(buf)
-          vim.api.nvim_set_option_value('indentexpr', "v:lua.require'nvim-treesitter'.indentexpr()", { buf = buf })
+        ---@param buf integer
+        ---@param language string
+        local function treesitter_try_attach(buf, language)
+          -- check if parser exists and load it
+          if not vim.treesitter.language.add(language) then return end
+          -- enables syntax highlighting and other treesitter features
+          vim.treesitter.start(buf, language)
+
+          -- enables treesitter based folds
+          -- for more info on folds see `:help folds`
+          -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          -- vim.wo.foldmethod = 'expr'
+
+          -- check if treesitter indentation is available for this language, and if so enable it
+          -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
+          local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
+
+          -- enables treesitter based indentation
+          if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
         end
 
-        local filetypes = {}
-        for _, lang in ipairs(languages) do
-          for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-            table.insert(filetypes, ft)
-          end
-        end
+        local available_parsers = require('nvim-treesitter').get_available()
         vim.api.nvim_create_autocmd('FileType', {
-          group = vim.api.nvim_create_augroup('start-treesitter', { clear = true }),
-          pattern = filetypes,
-          callback = function(ev) enable_treesitter(ev.buf) end,
-          desc = 'Enable treesitter',
-        })
+          callback = function(args)
+            local buf, filetype = args.buf, args.match
 
-        -- Command to install a parser for a specific filetype
-        vim.api.nvim_create_user_command('TSInstallForFiletype', function(opts)
-          local filetype = opts.args ~= '' and opts.args or vim.bo.filetype
-          local lang = vim.treesitter.language.get_lang(filetype)
+            local language = vim.treesitter.language.get_lang(filetype)
+            if not language then return end
 
-          if not lang then
-            vim.notify('No treesitter language mapping for filetype: ' .. filetype, vim.log.levels.WARN)
-            return
-          end
+            local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
 
-          vim.notify('Installing treesitter parser for ' .. lang .. '...', vim.log.levels.INFO)
-          -- Install the parser and wait for completion (5 minute timeout)
-          ts.install({ lang }):wait(300000)
-          enable_treesitter()
-          vim.notify('Installed and enabled treesitter for ' .. lang, vim.log.levels.INFO)
-        end, {
-          nargs = '?',
+            if vim.tbl_contains(installed_parsers, language) then
+              -- enable the parser if it is installed
+              treesitter_try_attach(buf, language)
+            elseif vim.tbl_contains(available_parsers, language) then
+              -- if a parser is available in `nvim-treesitter` auto install it, and enable it after the installation is done
+              vim.notify('Installing treesitter parser for ' .. language .. '...', vim.log.levels.INFO)
+              require('nvim-treesitter').install(language):await(function() treesitter_try_attach(buf, language) end)
+            else
+              -- try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
+              treesitter_try_attach(buf, language)
+            end
+          end,
           desc = 'Install treesitter parser for the current or specified filetype',
         })
-
-        -- Install common parsers asynchronously (non-blocking startup)
 
         -- <C-l> jumps to the end of the current treesitter node
         vim.keymap.set('i', '<C-l>', function()

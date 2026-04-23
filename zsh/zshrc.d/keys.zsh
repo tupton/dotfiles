@@ -22,7 +22,7 @@ bindkey '^r' atuin-search
 
 # https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 is_in_git_repo() {
-  git rev-parse HEAD > /dev/null 2>&1
+  git rev-parse HEAD &>/dev/null
 }
 
 _gf() {
@@ -87,25 +87,26 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     local session
-    session=$(sesh list -H -i -d | fzf-tmux -p 75%,60% \
-      --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-      --header '  ^a all ^t tmux ^g configs ^x zoxide ^f find' \
-      --bind 'tab:down,btab:up' \
-      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list -H -i -d)' \
-      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -H -i -d -t)' \
-      --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -H -i -d -c)' \
-      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -H -i -d -z)' \
-      --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-      --preview-window 'right:55%' \
-      --preview 'sesh preview {}' \
+    session=$(
+      sesh list -H -i -d | fzf-tmux -p 75%,60% \
+        --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+        --header '  ^a all ^t tmux ^g configs ^x zoxide ^f find' \
+        --bind 'tab:down,btab:up' \
+        --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list -H -i -d)' \
+        --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -H -i -d -t)' \
+        --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -H -i -d -c)' \
+        --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -H -i -d -z)' \
+        --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+        --preview-window 'right:55%' \
+        --preview 'sesh preview {}'
     )
-    zle reset-prompt > /dev/null 2>&1 || true
+    zle reset-prompt &>/dev/null || true
     [[ -z "$session" ]] && return
     sesh connect $session
   }
 }
 
-zle     -N             sesh-sessions
+zle -N sesh-sessions
 bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions

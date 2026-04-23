@@ -27,7 +27,7 @@ function __compact_path() {
 function prompt_char() {
     local char
     char="○"
-    git rev-parse >/dev/null 2>&1 && char="±"
+    git rev-parse &>/dev/null && char="±"
     echo "%(1j.%{%F{magenta}%}.%{%F{cyan}%})$char%f"
 }
 
@@ -36,13 +36,13 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 
 () {
-  local formats="%b %c%u"
-  zstyle ':vcs_info:git*' formats "$formats%m "
-  zstyle ':vcs_info:git*' actionformats "${formats} %F{white}%a%f "
-  zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
-  zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
-  zstyle ':vcs_info:git*' check-for-changes true
-  zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
+    local formats="%b %c%u"
+    zstyle ':vcs_info:git*' formats "$formats%m "
+    zstyle ':vcs_info:git*' actionformats "${formats} %F{white}%a%f "
+    zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
+    zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
+    zstyle ':vcs_info:git*' check-for-changes true
+    zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
 }
 
 function +vi-git-untracked() {
@@ -60,12 +60,12 @@ function +vi-git-aheadbehind() {
     # for git prior to 1.7
     # ahead=$(git rev-list origin/${branch_name}..HEAD | wc -l)
     ahead=${$(git rev-list ${branch_name}@{upstream}..HEAD 2>/dev/null | wc -l)// /}
-    (( $ahead )) && gitstatus+=( "%B%F{magenta}↑${ahead}%f%b" )
+    (($ahead)) && gitstatus+=("%B%F{magenta}↑${ahead}%f%b")
 
     # for git prior to 1.7
     # behind=$(git rev-list HEAD..origin/${branch_name} | wc -l)
     behind=${$(git rev-list HEAD..${branch_name}@{upstream} 2>/dev/null | wc -l)// /}
-    (( $behind )) && gitstatus+=( "%F{magenta}↓${behind}%f" )
+    (($behind)) && gitstatus+=("%F{magenta}↓${behind}%f")
 
     hook_com[misc]+=${(j::)gitstatus}
 }
@@ -74,14 +74,14 @@ function +vi-git-remotebranch() {
     local remote branch_name
 
     # Are we on a remote-tracking branch?
-    remote=${$(git rev-parse --verify HEAD@{upstream} --symbolic-full-name 2>/dev/null)/refs\/(remotes|heads)\/}
+    remote=${$(git rev-parse --verify HEAD@{upstream} --symbolic-full-name 2>/dev/null)/refs\/(remotes|heads)\//}
     branch_name=${$(git symbolic-ref --short HEAD 2>/dev/null)}
 
     hook_com[branch]="%F{cyan}${hook_com[branch]}%f"
     # Always show the remote
     #if [[ -n ${remote} ]] ; then
     # Only show the remote if it differs from the local
-    if [[ -n ${remote} && ${remote#*/} != ${branch_name} ]] ; then
+    if [[ -n ${remote} && ${remote#*/} != ${branch_name} ]]; then
         hook_com[branch]+="%B%F{red}→%f%b%B%F{cyan}${remote}%f%b"
     fi
 }

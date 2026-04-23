@@ -27,4 +27,4 @@ aliases:
           '
 version: "1"
 pager: delta --side-by-side
-editor: vim
+editor: nvim

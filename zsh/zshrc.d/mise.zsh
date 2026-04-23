@@ -1,5 +1,5 @@
 #! /usr/bin/env zsh
 
-if hash mise 2>/dev/null; then
+if command -v mise &>/dev/null; then
   eval "$(mise activate zsh)"
 fi

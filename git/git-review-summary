@@ -2,7 +2,7 @@
 
 review-summary() {
     local bars
-    if hash bars &>/dev/null; then
+    if command -v bars &>/dev/null; then
         bars=bars
     else
         bars=cat

@@ -1,5 +1,5 @@
 # https://github.com/junegunn/fzf
-if hash 2>/dev/null fzf; then
+if command -v fzf &>/dev/null; then
   export FZF_DEFAULT_COMMAND="fd --hidden --color always --type file"
   export FZF_DEFAULT_OPTS="--ansi"
 

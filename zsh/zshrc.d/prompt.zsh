@@ -16,7 +16,7 @@ function user_name() {
 }
 
 function __compact_path() {
-    if hash compact-path 2>/dev/null; then
+    if command -v compact-path &>/dev/null; then
         local pwd="${PWD/#$HOME/~}"
         compact-path --trigger=20 "$pwd"
     else

@@ -52,8 +52,7 @@ alias ngrep='grep -I'
 #export PS1='\e]2;\u@\h\a\[\e[1;m\]\t\[\e[0m\] [\[\e[32m\]\u\[\e[0m\]\[\e[33m\]@\h\[\e[0m\]] [\!] [\[\e[36m\]\w\[\e[0m\]]\n\[\e[35m\]\$\[\e[0m\] '
 #export SUDO_PS1='\[\h:\w\] \u\$ '
 prompt_command () {
-    hash __git_ps1 &> /dev/null
-    if [ $? -eq 0 ]; then
+    if command -v __git_ps1 &>/dev/null; then
         GITSTATUS="\$(__git_ps1 '[ %s ] ')" # if we're in a git repo, show current status
     fi
     local TIME=`fmt_time` # format time for prompt string
@@ -108,8 +107,7 @@ export PATH=.:/usr/local/Cellar/python/2.7.2/lib/python2.7:/usr/local/share/pyth
 # }}}
 # {{{ Utility
 # Bash completion
-hash brew &> /dev/null
-if [ $? -eq 0 ]; then
+if command -v brew &>/dev/null; then
     BREW_PREFIX=`brew --prefix`
 fi
 if [ -f $BREW_PREFIX/etc/bash_completion ]; then

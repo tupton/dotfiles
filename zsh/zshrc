@@ -117,9 +117,9 @@ export SAVEHIST=$HISTSIZE
 export LESS="-R -s -X -F -i -x4 -j2"
 
 # Use vim if it's available
-hash vim 2>/dev/null && export EDITOR=vim
+command -v vim &>/dev/null && export EDITOR=vim
 # ...but prefer nvim
-hash nvim 2>/dev/null && export EDITOR=nvim
+command -v nvim &>/dev/null && export EDITOR=nvim
 bindkey -v
 
 # Explicit JAVA_HOME, for OS X
@@ -145,7 +145,7 @@ fi
 if [ -e /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-if hash brew 2>/dev/null; then
+if command -v brew &>/dev/null; then
     prefix="$(brew --prefix)"
     path=("$prefix"/opt/ruby/bin
         "$prefix"/opt/perl/bin
@@ -171,19 +171,19 @@ if [ -d "$HOME"/.cargo/bin ]; then
 fi
 
 # Go path
-if hash go 2>/dev/null; then
+if command -v go &>/dev/null; then
     GOPATH=$HOME/go
     path=("$GOPATH"/bin "${path[@]}")
 fi
 unset -v GOPATH
 
 # Yarn path
-if hash yarn 2>/dev/null; then
+if command -v yarn &>/dev/null; then
     path=("$HOME"/.yarn/bin "$HOME"/.config/yarn/global/node_modules/.bin "${path[@]}")
 fi
 
 # Deno path
-if hash deno 2>/dev/null; then
+if command -v deno &>/dev/null; then
     path=("$HOME"/.deno/bin "${path[@]}")
 fi
 

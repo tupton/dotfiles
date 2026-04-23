@@ -64,7 +64,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 ### Zsh Specifics
 - Modular configs go in `zsh/zshrc.d/*.zsh` (auto-sourced)
 - Use `$HOME` instead of `~` for portability in quoted strings
-- Check for command availability with `hash <cmd> 2>/dev/null` before using
+- Check for command availability with `command -v <cmd> &>/dev/null` before using
 
 ### Vim/Neovim
 - **Vim** (`vim/vimrc`): Uses vim-plug, must pass vint linting
@@ -126,7 +126,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 
 ### Checking Command Availability
 ```zsh
-hash nvim 2>/dev/null && alias vim=nvim
+command -v nvim &>/dev/null && alias vim=nvim
 ```
 
 ### Cross-Platform Detection
@@ -147,7 +147,7 @@ path=(/new/path "${path[@]}")
 
 ### Conditional Homebrew Integration
 ```zsh
-if hash brew 2>/dev/null; then
+if command -v brew &>/dev/null; then
     prefix="$(brew --prefix)"
     # use $prefix for paths
 fi

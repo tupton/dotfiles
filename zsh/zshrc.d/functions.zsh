@@ -14,16 +14,16 @@ pjq() {
 }
 
 hexdec() {
-  local input="${(U)1}"
-  bc <<< "ibase=16; $input"
+    local input="${(U)1}"
+    bc <<<"ibase=16; $input"
 }
 
 b64enc() {
-    local input="$1"
+    local input="${1:-$(pbpaste)}"
     echo -n "$input" | base64 -i -
 }
 
 b64dec() {
-  local input="$1"
-  echo -n "$input" | base64 --decode -i -
+    local input="${1:-$(pbpaste)}"
+    echo -n "$input" | base64 --decode -i -
 }

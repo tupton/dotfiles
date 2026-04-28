@@ -27,7 +27,7 @@ function __compact_path() {
 function prompt_char() {
     local char
     char="○"
-    git rev-parse &>/dev/null && char="±"
+    git rev-parse --git-dir &>/dev/null && char="±"
     echo "%(1j.%{%F{magenta}%}.%{%F{cyan}%})$char%f"
 }
 

@@ -12,3 +12,15 @@
 
 # Show context by default
 --context=3
+
+# Add some more types
+--type-add
+clj:include:clojure
+
+--type-add
+gr:include:gradle
+
+--type-add
+gql:*.gql
+--type-add
+gql:include:graphql

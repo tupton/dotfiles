@@ -18,6 +18,11 @@
       "enabled": false,
       "type": "local",
       "command": ["yarn", "dlx", "@mantine/mcp-server"]
+    },
+    "datadog": {
+      "enabled": false
+      "type": "remote",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
     }
   }
 }

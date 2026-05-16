@@ -33,7 +33,7 @@ function prompt_char() {
 
 setopt prompt_subst
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' enable jj git
 
 () {
     local formats="%b %c%u"
@@ -43,6 +43,8 @@ zstyle ':vcs_info:*' enable git
     zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
     zstyle ':vcs_info:git*' check-for-changes true
     zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
+    zstyle ':vcs_info:jj:*' formats "%i" "%b"
+    zstyle ':vcs_info:jj:*' actionformats "%a|%i" "%b"
 }
 
 function +vi-git-untracked() {

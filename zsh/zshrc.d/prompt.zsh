@@ -99,7 +99,7 @@ add-zsh-hook precmd vcs_info
 
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 
-__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(__compact_path)%f%b ${vcs_info_msg_0_}%E
+__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(__compact_path)%f%b ${vcs_info_msg_0_}${vcs_info_msg_1_}%E
 ${prompt_leader}'
 
 function prompt_simple() {

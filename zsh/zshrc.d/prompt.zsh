@@ -43,8 +43,8 @@ zstyle ':vcs_info:*' enable jj git
     zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
     zstyle ':vcs_info:git*' check-for-changes true
     zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
-    zstyle ':vcs_info:jj:*' formats "%i" "%b"
-    zstyle ':vcs_info:jj:*' actionformats "%a|%i" "%b"
+    zstyle ':vcs_info:jj:*' formats "%F{yellow}%i" "%F{blue}%b"
+    zstyle ':vcs_info:jj:*' actionformats "%F{white}%a%F{black}|%F{yellow}%i" "%F{black}%b"
 }
 
 function +vi-git-untracked() {

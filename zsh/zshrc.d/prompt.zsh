@@ -11,9 +11,12 @@
 # %(?.$1.$2)       - $1 if exit code was successful, $2 if not
 # %(!.$1.$2)       - $1 if root, $2 if normal user
 
-function user_name() {
-    [[ -n "$SSH_CONNECTION" ]] && echo "%F{yellow}%n%f%F{gray}@%f%F{blue}%m%f " || echo ""
-}
+# SSH_CONNECTION doesn't change during a session, so evaluate once at startup
+if [[ -n "$SSH_CONNECTION" ]]; then
+    _user_name=" %F{yellow}%n%f%F{gray}@%f%F{blue}%m%f "
+else
+    _user_name=""
+fi
 
 function __compact_path() {
     if command -v compact-path &>/dev/null; then
@@ -24,14 +27,8 @@ function __compact_path() {
     fi
 }
 
-function prompt_char() {
-    local char
-    char="○"
-    git rev-parse --git-dir &>/dev/null && char="±"
-    echo "%(1j.%{%F{magenta}%}.%{%F{cyan}%})$char%f"
-}
-
 setopt prompt_subst
+
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable jj git
 
@@ -43,8 +40,9 @@ zstyle ':vcs_info:*' enable jj git
     zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
     zstyle ':vcs_info:git*' check-for-changes true
     zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
-    zstyle ':vcs_info:jj:*' formats "%F{yellow}%i" "%F{blue}%b"
-    zstyle ':vcs_info:jj:*' actionformats "%F{white}%a%F{black}|%F{yellow}%i" "%F{black}%b"
+
+    zstyle ':vcs_info:jj:*' formats "%F{yellow}%i%f" "%F{blue}%b%f"
+    zstyle ':vcs_info:jj:*' actionformats "%F{yellow}%i%f %F{brightblack}%a%f" "%F{blue}%b%f"
 }
 
 function +vi-git-untracked() {
@@ -97,9 +95,23 @@ function +vi-git-tagname() {
 
 add-zsh-hook precmd vcs_info
 
+# Runs after vcs_info; pre-computes prompt segments to avoid subshells at render time
+function _prompt_precmd() {
+    local char="○"
+    [[ -n $vcs_info_msg_0_ ]] && char="±"
+    _prompt_char="%(1j.%{%F{magenta}%}.%{%F{cyan}%})${char}%f "
+    _prompt_path=$(__compact_path)
+    _vcs_info=""
+    if [[ -n $vcs_info_msg_0_ ]]; then
+        _vcs_info=" ${vcs_info_msg_0_}"
+        [[ -n $vcs_info_msg_1_ ]] && _vcs_info+=" ${vcs_info_msg_1_}"
+    fi
+}
+add-zsh-hook precmd _prompt_precmd
+
 prompt_leader='%(?.%F{blue}.%F{red})%(!.#.❯)%f '
 
-__prompt='$(prompt_char) $(user_name)%f%B%F{green}$(__compact_path)%f%b ${vcs_info_msg_0_}${vcs_info_msg_1_}%E
+__prompt='${_prompt_char}${_user_name}%B%F{green}${_prompt_path}%f%b${_vcs_info}%E
 ${prompt_leader}'
 
 function prompt_simple() {

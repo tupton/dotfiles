@@ -123,7 +123,7 @@ command -v nvim &>/dev/null && export EDITOR=nvim
 bindkey -v
 
 # Explicit JAVA_HOME, for OS X
-if [[ -x /usr/libexec/java_home ]]; then
+if [ -x /usr/libexec/java_home ]; then
     JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
     export JAVA_HOME
 fi
@@ -171,23 +171,21 @@ if [ -d "$HOME"/.cargo/bin ]; then
 fi
 
 # Go path
-if command -v go &>/dev/null; then
-    GOPATH=$HOME/go
-    path=("$GOPATH"/bin "${path[@]}")
+if [ -d "$HOME"/go ]; then
+    path=("$HOME"/go/bin "${path[@]}")
 fi
-unset -v GOPATH
 
 # Yarn path
-if command -v yarn &>/dev/null; then
+if [ -d "$HOME"/.yarn/bin ]; then
     path=("$HOME"/.yarn/bin "$HOME"/.config/yarn/global/node_modules/.bin "${path[@]}")
 fi
 
 # Deno path
-if command -v deno &>/dev/null; then
+if [ -d "$HOME"/.deno/bin ]; then
     path=("$HOME"/.deno/bin "${path[@]}")
 fi
 
-if [[ -d "$HOME"/.zshrc.d ]]; then
+if [ -d "$HOME"/.zshrc.d ]; then
     for config in "$HOME"/.zshrc.d/*.zsh; do
         source "$config"
     done

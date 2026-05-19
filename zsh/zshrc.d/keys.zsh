@@ -102,7 +102,7 @@ function sesh-sessions() {
     )
     zle reset-prompt &>/dev/null || true
     [[ -z "$session" ]] && return
-    sesh connect $session
+    sesh connect "$session"
   }
 }
 

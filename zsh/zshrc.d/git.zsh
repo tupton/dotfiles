@@ -1,6 +1,6 @@
 # Move to the "top" of a git repository
 gt() {
-    builtin cd -P $(git rev-parse --show-toplevel)
+    builtin cd -P "$(git rev-parse --show-toplevel)"
 }
 
 # edit files changed in the working tree
@@ -14,7 +14,7 @@ vimtree() {
 gswt() {
     local local_branch=${1:-$(pbpaste | tr -d '\n')}
     local remote_tracking_branch=${2:-origin/main}
-    git switch -c ${local_branch} ${remote_tracking_branch}
+    git switch -c "${local_branch}" "${remote_tracking_branch}"
 }
 # Alias with co for any lingering shell history
 # [g]it [c]heck[o]ut with [t]racking

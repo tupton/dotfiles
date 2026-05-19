@@ -192,8 +192,8 @@ if [ -d "$HOME"/.zshrc.d ]; then
 fi
 unset -v config
 
-# add cwd and "$HOME"/.local/bin after including other config
-path=(. "$HOME"/.local/bin "${path[@]}")
+# add "$HOME"/.local/bin after including other config
+path=("$HOME"/.local/bin "${path[@]}")
 
 # do this last in case any scripts touch the path
 # path=( ${(u)^path:A} )

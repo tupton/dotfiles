@@ -55,7 +55,7 @@ function +vi-git-aheadbehind() {
     local ahead behind branch_name
     local -a gitstatus
 
-    branch_name=${$(git symbolic-ref --short HEAD 2>/dev/null)}
+    branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
     # for git prior to 1.7
     # ahead=$(git rev-list origin/${branch_name}..HEAD | wc -l)

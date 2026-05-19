@@ -17,9 +17,6 @@ fi
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-better-npm-completion ]; then
     git clone https://github.com/lukechilds/zsh-better-npm-completion "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-better-npm-completion
 fi
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-nvm ]; then
-    git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-nvm
-fi
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/jj-zsh-vcs-info ]; then
     git clone git@github.com:joeshaw/jj-zsh-vcs-info.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/jj-zsh-vcs-info
 fi

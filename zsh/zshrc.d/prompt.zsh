@@ -35,14 +35,14 @@ zstyle ':vcs_info:*' enable jj git
 () {
     local formats="%b %c%u"
     zstyle ':vcs_info:git*' formats "$formats%m "
-    zstyle ':vcs_info:git*' actionformats "${formats} %F{white}%a%f "
+    zstyle ':vcs_info:git*' actionformats "${formats} %F{magenta}%a%f "
     zstyle ':vcs_info:git*' stagedstr "%F{green}+%f"
     zstyle ':vcs_info:git*' unstagedstr "%F{red}*%f"
     zstyle ':vcs_info:git*' check-for-changes true
     zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-aheadbehind git-remotebranch git-tagname
 
     zstyle ':vcs_info:jj:*' formats "%F{yellow}%i%f" "%F{blue}%b%f"
-    zstyle ':vcs_info:jj:*' actionformats "%F{yellow}%i%f %F{brightblack}%a%f" "%F{blue}%b%f"
+    zstyle ':vcs_info:jj:*' actionformats "%F{yellow}%i%f %F{magenta}%a%f" "%F{blue}%b%f"
 }
 
 function +vi-git-untracked() {

@@ -17,8 +17,7 @@ clean :
 
 distclean :
 	@:
-install : install-dotjs \
-	install-git \
+install : install-git \
 	install-gpg \
 	install-python \
 	install-readline \
@@ -33,10 +32,6 @@ install-bash :
 	cp -p -- bash/bashrc "$(HOME)"/.bashrc
 	cp -p -- bash/bash_profile "$(HOME)"/.bash_profile
 
-install-dotjs :
-	mkdir -p -- "$(HOME)"/.js
-	cp -p -- dotjs/*.js "$(HOME)"/.js
-
 create-gitconfig:
 	git/setup
 
@@ -49,9 +44,6 @@ install-git : create-gitconfig
 install-gpg :
 	mkdir -p -- "$(HOME)"/.gnupg
 	cp -p -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
-
-install-eslint :
-	cp -p -- eslint/eslintrc "$(HOME)"/.eslintrc
 
 install-lein :
 	mkdir -p -- "$(HOME)"/.lein
@@ -168,7 +160,7 @@ install-opencode : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/opencode
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
 
-test : test-setup test-zsh test-bash test-vimrc test-dotjs
+test : test-setup test-zsh test-bash test-vimrc
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
@@ -205,7 +197,3 @@ test-vimrc :
 		fi \
 	done
 	@echo "All vim config files linted successfully."
-
-test-dotjs :
-	@yarn test || exit 1
-	@echo "All dotjs files linted successfully."

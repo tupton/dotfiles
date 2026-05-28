@@ -1,7 +1,7 @@
 version: 2
 defaults: &defaults
   docker:
-    - image: cimg/python:3.12-node
+    - image: cimg/python:3.12
   steps:
     - checkout
     - run:
@@ -21,7 +21,6 @@ defaults: &defaults
           export LOCAL="/home/circleci/.local"
           export PATH="$LOCAL/bin:$PATH"
           pip install -r test-requirements.txt --user
-          yarn
     - run:
         name: Print versions
         command: |
@@ -29,8 +28,6 @@ defaults: &defaults
           export PATH="$LOCAL/bin:$PATH"
           zsh --version
           bash --version
-          yarn --version
-          node --version
     - run:
         name: Test
         command: |

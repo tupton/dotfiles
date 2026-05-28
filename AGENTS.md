@@ -13,7 +13,6 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 | Run all tests | `make test` |
 | Test zsh/bash syntax | `make test-zsh` / `make test-bash` |
 | Lint vim configs | `make test-vimrc` |
-| Lint JavaScript | `make test-dotjs` or `yarn test` |
 | List all targets | `make list` |
 | Install all defaults | `make install` |
 | Install specific tool | `make install-<tool>` (e.g., `make install-git`) |
@@ -23,13 +22,11 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 ### Dependencies for Testing
 - **zsh** and **bash** - for syntax checking shell configs
 - **vint** - for linting vim configs (`pip install -r test-requirements.txt`)
-- **eslint** - for JavaScript linting (`yarn install`)
 
 ### What Gets Tested
 1. **Shell scripts** - Parsed with `zsh --no-exec` and `bash -n` for syntax errors
 2. **Vim configs** - Linted with [vint](https://github.com/Kuniwak/vint) for style/correctness
-3. **JavaScript (dotjs/)** - Linted with eslint using `eslint/eslintrc.js`
-4. **Setup scripts** - All install/update scripts validated for shell syntax
+3. **Setup scripts** - All install/update scripts validated for shell syntax
 
 ### CI
 CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
@@ -44,8 +41,6 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 | `nvim/` | Neovim Lua config (Kickstart.nvim-based) |
 | `git/` | Git config template, global ignore, and `git-*` scripts |
 | `gh/` | GitHub CLI config |
-| `dotjs/` | Browser JavaScript injection scripts |
-| `eslint/` | ESLint configuration |
 | `tmux/` | tmux config and TPM installer |
 | `Karabiner-Elements/` | Keyboard remapping (goku edn format) |
 | `tarsnap/` | Backup configuration (not installed by default) |
@@ -71,18 +66,6 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 - **Neovim** (`nvim/init.lua`): Lua-based, Kickstart.nvim structure with lazy.nvim
 - Keep plugins organized by category with comments
 - Use folding markers (`{{{` / `}}}`) for vim config sections
-
-### JavaScript (dotjs/)
-- ESLint config: `eslint/eslintrc.js`
-- Parser: `@babel/eslint-parser` with ES6+ features
-- Key rules:
-  - No semicolons required (`semi: 0`)
-  - Flexible quotes (`quotes: 0`)
-  - No strict indentation (`indent: 0`)
-  - Prefer dot notation (`dot-notation: 2`)
-  - No eval or extending native prototypes
-  - Wrap IIFEs (`wrap-iife: 2`)
-  - Use curly braces (`curly: 2`)
 
 ### Git Scripts
 - Named `git-<action>` in `git/` directory
@@ -164,5 +147,4 @@ fi
 
 - Shell syntax errors: Check line numbers in test output
 - Vint errors: Follow vint suggestions, use `--style-problem` flag
-- ESLint errors: Run `yarn test-eslint` directly for details
 - Installation issues: Run `make -n install-<tool>` to see what will be copied

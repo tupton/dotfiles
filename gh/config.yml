@@ -1,4 +1,5 @@
 aliases:
+    b: browse
     co: pr checkout
     sw: pr checkout
     pc: pr create

@@ -25,6 +25,7 @@
     fre = fuzzy-restore
     dt = difftool
     mt = mergetool
+    wt = worktree
 
     # Reviews
     rs = diff-review-stat

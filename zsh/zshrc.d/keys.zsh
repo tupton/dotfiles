@@ -20,6 +20,8 @@ bindkey '^?' backward-delete-char
 
 if command -v atuin &>/dev/null && (( $+widgets[atuin-search] )); then
   bindkey '^r' atuin-search
+else
+  bindkey '^r' history-incremental-search-backward
 fi
 
 # https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236

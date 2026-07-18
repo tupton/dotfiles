@@ -18,7 +18,9 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
 
-bindkey '^r' atuin-search
+if command -v atuin &>/dev/null && (( $+widgets[atuin-search] )); then
+  bindkey '^r' atuin-search
+fi
 
 # https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 is_in_git_repo() {

@@ -1,6 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Some hosts (old servers in particular) have a terminfo database that
+# predates whatever terminal emulator we're connecting from (Ghostty, etc),
+# so $TERM won't resolve there. That breaks tput and zle's cursor-movement
+# lookups (garbled/duplicate characters while typing), so fall back to a
+# widely-supported entry before oh-my-zsh or zle get a chance to use it.
+if ! infocmp "$TERM" &>/dev/null; then
+    export TERM=xterm-256color
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME"/.oh-my-zsh
 

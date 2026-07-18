@@ -37,4 +37,9 @@ if command -v fzf &>/dev/null; then
   }
 
   source <(fzf --zsh)
+else
+  # The fzf-tab oh-my-zsh plugin unconditionally grabs Tab for itself when it
+  # loads, even without the fzf binary present, which leaves completion dead.
+  # Hand Tab back to normal zsh completion in that case.
+  typeset -f disable-fzf-tab >/dev/null && disable-fzf-tab
 fi

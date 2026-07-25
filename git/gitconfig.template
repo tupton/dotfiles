@@ -26,6 +26,11 @@
     dt = difftool
     mt = mergetool
     wt = worktree
+    wtls = wt list
+    wtadd = wt add
+    wtmv = wt move
+    wtrm = wt remove
+    wtprune = wt prune
 
     # Reviews
     rs = diff-review-stat

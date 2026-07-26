@@ -13,7 +13,7 @@
 
 # SSH_CONNECTION doesn't change during a session, so evaluate once at startup
 if [[ -n "$SSH_CONNECTION" ]]; then
-    _user_name=" %F{yellow}%n%f%F{gray}@%f%F{blue}%m%f "
+    _user_name="%F{yellow}%n%f%F{gray}@%f%F{blue}%m%f "
 else
     _user_name=""
 fi

@@ -9,19 +9,19 @@ A collection of config files that I use.
 Installing will overwrite anything in the way. Run `make -n` first. If you are happy with that output, you can test the dotfile environment with
 
 
-    ❯ TMP=$(mktemp -d -t HOME); HOME=$TMP make install && ls -al $TMP && unset TMP
+    TMP=$(mktemp -d -t HOME); HOME=$TMP make install && ls -al $TMP && unset TMP
 
 Install common, cross-platform dotfiles to `$HOME` with
 
-    ❯ make install
+    make install
 
 Install individual dotfiles with, e.g.
 
-    ❯ make install-git
+    make install-git
 
 or
 
-    ❯ make install-vim-config
+    make install-vim-config
 
 and so forth.
 

@@ -101,7 +101,7 @@
     prompt = false
 [pager]
     diff = command -v delta >/dev/null 2>&1 && delta || less -RsXFi -x4 -j2
-    log = command -v delta >/dev/null 2>&1 && delta || less -RsXFi -x4 -j2 -p"^commit.*$"
+    log = command -v delta >/dev/null 2>&1 && delta || less -RsXFi -x4 -j2
     reflog = command -v delta >/dev/null 2>&1 && delta || less -RsXFi -x4 -j2
     show = command -v delta >/dev/null 2>&1 && delta || less -RsXFi -x4 -j2
 [interactive]

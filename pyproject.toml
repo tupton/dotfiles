@@ -1,0 +1,11 @@
+[project]
+name = "dotfiles"
+version = "0.0.0"
+requires-python = ">=3.9"
+dependencies = []
+
+[dependency-groups]
+test = [
+    "vim-vint",
+    "setuptools<81",
+]

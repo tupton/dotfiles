@@ -192,7 +192,7 @@ test-bash :
 test-vimrc :
 	@for vim in vim/vimrc vim/gvimrc ; do \
 		echo "Linting $$vim" ; \
-		if [ -f "$$vim" ] && ! vint --color --style-problem "$$vim" ; then \
+		if [ -f "$$vim" ] && ! uv run --group test vint --color --style-problem "$$vim" ; then \
 			exit 1 ; \
 		fi \
 	done

@@ -41,9 +41,11 @@ There is a `test` target in the Makefile. Not everything is tested, but I've att
 
 You need `bash` and `zsh` installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you have at least those two shells installed.
 
-In order to test the vim config files, you need to install vim-vint. There is a `test-requirements.txt` to help with that. Simply run `pip install -r test-requirements.txt` to install these dependencies.
+In order to test the vim config files, you need vim-vint. It's declared as a `test` dependency group in `pyproject.toml`; the `test-vimrc` Makefile target runs it via `uv run --group test vint`, which installs it into a local `.venv` automatically. You'll need [uv] installed.
 
-Note that you *do not* need to install `pip` requirements in order to install and use these dotfiles. These requirements are only used for running tests, hence their test-specific install command.
+  [uv]: https://docs.astral.sh/uv/
+
+Note that you *do not* need `uv` or its test dependencies in order to install and use these dotfiles. They are only used for running tests.
 
 ## Inspiration and Thanks
 

@@ -21,7 +21,7 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 
 ### Dependencies for Testing
 - **zsh** and **bash** - for syntax checking shell configs
-- **vint** - for linting vim configs (`pip install -r test-requirements.txt`)
+- **vint** - for linting vim configs (declared in `pyproject.toml`'s `test` dependency group, run via `uv run --group test vint`)
 
 ### What Gets Tested
 1. **Shell scripts** - Parsed with `zsh --no-exec` and `bash -n` for syntax errors

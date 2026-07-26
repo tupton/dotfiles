@@ -16,15 +16,6 @@ defaults: &defaults
           make install
           cd -
     - run:
-        name: Install uv
-        command: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-    - run:
-        name: Install test requirements
-        command: |
-          export PATH="$HOME/.local/bin:$PATH"
-          uv sync --group test
-    - run:
         name: Print versions
         command: |
           export LOCAL="/home/circleci/.local"

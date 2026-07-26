@@ -160,7 +160,7 @@ install-opencode : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/opencode
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
 
-test : test-setup test-zsh test-bash test-vimrc
+test : test-setup test-zsh test-bash
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
@@ -188,12 +188,3 @@ test-bash :
 		fi \
 	done
 	@echo "All bash scripts parsed successfully."
-
-test-vimrc :
-	@for vim in vim/vimrc vim/gvimrc ; do \
-		echo "Linting $$vim" ; \
-		if [ -f "$$vim" ] && ! uv run --group test vint --color --style-problem "$$vim" ; then \
-			exit 1 ; \
-		fi \
-	done
-	@echo "All vim config files linted successfully."

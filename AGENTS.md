@@ -12,7 +12,6 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 |------|---------|
 | Run all tests | `make test` |
 | Test zsh/bash syntax | `make test-zsh` / `make test-bash` |
-| Lint vim configs | `make test-vimrc` |
 | List all targets | `make list` |
 | Install all defaults | `make install` |
 | Install specific tool | `make install-<tool>` (e.g., `make install-git`) |
@@ -21,12 +20,12 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 
 ### Dependencies for Testing
 - **zsh** and **bash** - for syntax checking shell configs
-- **vint** - for linting vim configs (declared in `pyproject.toml`'s `test` dependency group, run via `uv run --group test vint`)
 
 ### What Gets Tested
 1. **Shell scripts** - Parsed with `zsh --no-exec` and `bash -n` for syntax errors
-2. **Vim configs** - Linted with [vint](https://github.com/Kuniwak/vint) for style/correctness
-3. **Setup scripts** - All install/update scripts validated for shell syntax
+2. **Setup scripts** - All install/update scripts validated for shell syntax
+
+Note: vim configs are no longer linted in CI. They were previously linted with [vint](https://github.com/Kuniwak/vint), which is unmaintained (last commit Dec 2023) and broken on modern setuptools (see [Vimjas/vint#394](https://github.com/Vimjas/vint/issues/394)).
 
 ### CI
 CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
@@ -62,7 +61,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 - Check for command availability with `command -v <cmd> &>/dev/null` before using
 
 ### Vim/Neovim
-- **Vim** (`vim/vimrc`): Uses vim-plug, must pass vint linting
+- **Vim** (`vim/vimrc`): Uses vim-plug
 - **Neovim** (`nvim/init.lua`): Lua-based, Kickstart.nvim structure with lazy.nvim
 - Keep plugins organized by category with comments
 - Use folding markers (`{{{` / `}}}`) for vim config sections
@@ -146,5 +145,4 @@ fi
 ## Debugging
 
 - Shell syntax errors: Check line numbers in test output
-- Vint errors: Follow vint suggestions, use `--style-problem` flag
 - Installation issues: Run `make -n install-<tool>` to see what will be copied

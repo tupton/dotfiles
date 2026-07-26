@@ -202,7 +202,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': [],
-\   'vim': ['vint'],
 \   'scss': [],
 \   'yaml': ['yamllint', 'actionlint']
 \}

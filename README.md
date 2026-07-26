@@ -34,18 +34,8 @@ Use `make list` to see a list of all targets, including the test targets and any
 There is a `test` target in the Makefile. Not everything is tested, but I've attempted to verify the files that can be tested. If you know of a way to verify or test other dotfiles, please open an issue or let me know.
 
 - All `zsh` and `bash` config files and scripts are parsed by their respective shells. This includes all the `zsh` installation script helpers.
-- All `vim` config files are linted by [vim-vint].
-
-  [vim-vint]: https://github.com/Kuniwak/vint
-
 
 You need `bash` and `zsh` installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you have at least those two shells installed.
-
-In order to test the vim config files, you need vim-vint. It's declared as a `test` dependency group in `pyproject.toml`; the `test-vimrc` Makefile target runs it via `uv run --group test vint`, which installs it into a local `.venv` automatically. You'll need [uv] installed.
-
-  [uv]: https://docs.astral.sh/uv/
-
-Note that you *do not* need `uv` or its test dependencies in order to install and use these dotfiles. They are only used for running tests.
 
 ## Inspiration and Thanks
 

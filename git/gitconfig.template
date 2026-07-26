@@ -12,7 +12,7 @@
     br = branch
     bn = rev-parse --abbrev-ref HEAD
     one = log --pretty=format:'%C(blue)%h %C(green)%<(12)%ad %C(auto,yellow)%<(12,trunc)%an %C(auto,magenta)%G?%C(auto)%d %s' --date=relative
-    hist = one --graph
+    graph = one --graph
     type = cat-file -t
     dump = cat-file -p
     patch = !git --no-pager diff --no-color
@@ -31,11 +31,7 @@
     wtmv = wt move
     wtrm = wt remove
     wtprune = wt prune
-
-    # Reviews
-    rs = diff-review-stat
-    hm = !git heatmap -b \"${REVIEW_BASE-origin/dev}\"
-    review = !git diff-review $(git diff-review-names --diff-filter=d)
+    h = history
 
     stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
 

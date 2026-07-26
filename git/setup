@@ -32,4 +32,14 @@ fi
 vared -p 'What is your GitHub author name? ' -c git_author
 vared -p 'What is your GitHub author email? ' -c git_email
 
-sed -e "s/{AUTHOR_NAME}/$git_author/g" -e "s/{AUTHOR_EMAIL}/$git_email/g" -e "s/{GIT_CREDENTIAL_HELPER}/$git_credential/g" -e "s/{GIT_PUSH_DEFAULT}/$git_push_default/g" git/gitconfig.template >git/gitconfig
+local git_signing_key="${HOME}/.ssh/id_ed25519.pub"
+vared -p 'What is the path to your SSH public key for commit signing? ' -c git_signing_key
+
+if [[ -f "$git_signing_key" ]]; then
+    mkdir -p -- "${HOME}"/.ssh
+    touch -- "${HOME}"/.ssh/allowed_signers
+    local signer_line="${git_email} $(cat -- "$git_signing_key")"
+    grep -qxF "$signer_line" "${HOME}"/.ssh/allowed_signers || echo "$signer_line" >>"${HOME}"/.ssh/allowed_signers
+fi
+
+sed -e "s/{AUTHOR_NAME}/$git_author/g" -e "s/{AUTHOR_EMAIL}/$git_email/g" -e "s/{GIT_CREDENTIAL_HELPER}/$git_credential/g" -e "s/{GIT_PUSH_DEFAULT}/$git_push_default/g" -e "s#{GIT_SIGNING_KEY}#$git_signing_key#g" git/gitconfig.template >git/gitconfig

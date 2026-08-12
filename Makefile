@@ -87,6 +87,10 @@ configure-system-environment-fix-electron-resource-hog-bug :
 	cp -p -- system/environment.fix-electron-resource-hog-bug.plist "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
 	launchctl unload "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist && launchctl load -w "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
 
+uninstall-system-environment-fix-electron-resource-hog-bug :
+	launchctl unload "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
+	rm -f -- "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
+
 install-textmate :
 	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 

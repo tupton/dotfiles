@@ -25,6 +25,12 @@ install : install-git \
 	install-vim \
 	install-zsh
 
+install-xdg-config :
+	mkdir -p -- "$(HOME)"/.config
+
+install-local-bin :
+	mkdir -p -- "$(HOME)"/.local/bin
+
 install-ack :
 	cp -p -- ack/ackrc "$(HOME)"/.ackrc
 
@@ -35,7 +41,8 @@ install-bash :
 create-gitconfig:
 	git/setup
 
-install-git : create-gitconfig
+install-git : create-gitconfig \
+	install-local-bin
 	cp -p -- git/gitconfig "$(HOME)"/.gitconfig
 	cp -p -- git/gitignore-global "$(HOME)"/.gitignore-global
 	mkdir -p -- "$(HOME)"/.local/bin
@@ -132,9 +139,6 @@ install-zsh-config : install-zshd
 
 install-oh-my-zsh :
 	zsh/install-oh-my-zsh
-
-install-xdg-config :
-	mkdir -p -- "$(HOME)"/.config
 
 install-karabiner-elements : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/karabiner

@@ -168,6 +168,11 @@ install-opencode : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/opencode
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
 
+install-claude : install-local-bin
+	cp -p -- claude/claude-statusline "$(HOME)"/.local/bin/claude-statusline
+	mkdir -p -- "$(HOME)"/.claude
+	cp -p -- claude/settings.json "$(HOME)"/.claude/settings.json
+
 test : test-setup test-zsh test-bash
 
 test-setup :

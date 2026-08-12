@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+
+# Claude Code status line
+# Shows: model name, current directory, git branch, context usage
+
+input=$(cat)
+
+model=$(echo "$input" | jq -r '.model.display_name')
+dir=$(echo "$input" | jq -r '.workspace.current_dir')
+dir_display="${dir/#$HOME/~}"
+if command -v compact-path &>/dev/null; then
+  dir_display=$(compact-path --trigger=20 "$dir_display")
+fi
+
+branch=""
+if git -C "$dir" --no-optional-locks rev-parse --is-inside-work-tree &>/dev/null; then
+  branch=$(git -C "$dir" --no-optional-locks branch --show-current 2>/dev/null)
+  if [ -z "$branch" ]; then
+    branch=$(git -C "$dir" --no-optional-locks rev-parse --short HEAD 2>/dev/null)
+  fi
+fi
+
+used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+if [ -n "$used" ]; then
+  context_display=$(printf "%.0f%%" "$used")
+else
+  context_display=""
+fi
+
+# Dimmed ANSI colors (256-color dim white / grey shades)
+DIM_CYAN="\033[2;36m"
+DIM_YELLOW="\033[2;33m"
+DIM_MAGENTA="\033[2;35m"
+DIM_GREY="\033[2;37m"
+RESET="\033[0m"
+SEP=" ${DIM_GREY}·${RESET} "
+
+output="${DIM_CYAN}${model}${RESET}"
+output="${output}${SEP}${DIM_YELLOW}${dir_display}${RESET}"
+if [ -n "$branch" ]; then
+  output="${output}${SEP}${DIM_MAGENTA}${branch}${RESET}"
+fi
+if [ -n "$context_display" ]; then
+  output="${output}${SEP}${DIM_GREY}${context_display}${RESET}"
+fi
+
+printf "%b" "$output"

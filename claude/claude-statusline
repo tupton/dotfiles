@@ -1,5 +1,4 @@
-#!/usr/bin/env zsh
-
+#!/bin/bash
 # Claude Code status line
 # Shows: model name, current directory, git branch, context usage
 

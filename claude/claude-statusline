@@ -1,6 +1,6 @@
 #!/bin/bash
 # Claude Code status line
-# Shows: model name, current directory, git branch, context usage
+# Shows: model name | current directory | git branch | context usage | /usage rate limits
 
 input=$(cat)
 
@@ -26,13 +26,57 @@ else
   context_display=""
 fi
 
+# Subscription usage windows, same numbers /usage reports. Absent until the
+# first API response of the session, and for non-subscription auth.
+IFS=$'\t' read -r five_pct five_reset week_pct week_reset <<<"$(echo "$input" | jq -r '
+  [ (.rate_limits.five_hour.used_percentage // -1),
+    (.rate_limits.five_hour.resets_at        // 0),
+    (.rate_limits.seven_day.used_percentage  // -1),
+    (.rate_limits.seven_day.resets_at        // 0) ] | @tsv')"
+
 # Dimmed ANSI colors (256-color dim white / grey shades)
 DIM_CYAN="\033[2;36m"
 DIM_YELLOW="\033[2;33m"
 DIM_MAGENTA="\033[2;35m"
 DIM_GREY="\033[2;37m"
+DIM_RED="\033[2;31m"
 RESET="\033[0m"
 SEP=" ${DIM_GREY}·${RESET} "
+
+# Escalate color as a window fills, so a near-limit session is obvious.
+usage_color() {
+  if [ "$1" -ge 90 ]; then
+    printf "%s" "$DIM_RED"
+  elif [ "$1" -ge 70 ]; then
+    printf "%s" "$DIM_YELLOW"
+  else
+    printf "%s" "$DIM_GREY"
+  fi
+}
+
+# Time until a window resets, coarse: 3d, 4h12m, or 7m.
+until_reset() {
+  local delta=$(( $1 - $(date +%s) ))
+  [ "$delta" -lt 0 ] && delta=0
+  if [ "$delta" -ge 86400 ]; then
+    printf "%dd" $(( delta / 86400 ))
+  elif [ "$delta" -ge 3600 ]; then
+    printf "%dh%02dm" $(( delta / 3600 )) $(( (delta % 3600) / 60 ))
+  else
+    printf "%dm" $(( delta / 60 ))
+  fi
+}
+
+usage_segment() { # $1=label $2=percentage $3=resets_at
+  local pct
+  pct=$(printf "%.0f" "$2")
+  [ "$pct" -lt 0 ] && return
+  local text="$1 ${pct}%"
+  if [ "$3" -gt 0 ]; then
+    text="${text} (${DIM_GREY}$(until_reset "$3")${RESET}$(usage_color "$pct"))"
+  fi
+  printf "%s%s%s" "$(usage_color "$pct")" "$text" "$RESET"
+}
 
 output="${DIM_CYAN}${model}${RESET}"
 output="${output}${SEP}${DIM_YELLOW}${dir_display}${RESET}"
@@ -41,6 +85,14 @@ if [ -n "$branch" ]; then
 fi
 if [ -n "$context_display" ]; then
   output="${output}${SEP}${DIM_GREY}${context_display}${RESET}"
+fi
+five_segment=$(usage_segment "5h" "$five_pct" "$five_reset")
+if [ -n "$five_segment" ]; then
+  output="${output}${SEP}${five_segment}"
+fi
+week_segment=$(usage_segment "7d" "$week_pct" "$week_reset")
+if [ -n "$week_segment" ]; then
+  output="${output}${SEP}${week_segment}"
 fi
 
 printf "%b" "$output"

@@ -2,29 +2,51 @@
 prefix = "ctrl+a"
 split_vertical = ["prefix+|", "prefix+\\"]
 split_horizontal = "prefix+-"
+
 previous_workspace = "prefix+ctrl+p"
 next_workspace = "prefix+ctrl+n"
 switch_workspace = "prefix+shift+1..9"
 
 last_pane = "prefix+a"
 
-focus_agent = "prefix+alt+1..9"
+# Navigate the attention queue instead of relying on changing agent indexes.
+previous_agent = "prefix+up"
+next_agent = "prefix+down"
+
+# Complements the default prefix+shift+g new-worktree binding.
+open_worktree = "prefix+ctrl+g"
+
+[terminal]
+new_cwd = "follow"
 
 [ui]
 mouse_capture = true
+
 prompt_new_tab_name = false
-pane_outer_borders = false
+prompt_new_workspace_name = false
+
+pane_outer_borders = true
 pane_gaps = false
+pane_scrollbars = false
+show_agent_labels_on_pane_borders = false
+
+hide_tab_bar_when_single_tab = true
+window_title = "{workspace}: {terminal_title}"
 
 status_indicators = "symbols"
+agent_panel_sort = "priority"
 
-agent_panel_sort = "spaces"
+[ui.sidebar.agents]
+rows = [
+    ["state_icon", "state_text", "workspace"],
+    ["agent", "terminal_title_stripped"],
+]
 
 [ui.sound]
 enabled = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 
 [theme]
 name = "nord"

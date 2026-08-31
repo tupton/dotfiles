@@ -1,0 +1,36 @@
+[keys]
+prefix = "ctrl+a"
+split_vertical = ["prefix+|", "prefix+\\"]
+split_horizontal = "prefix+-"
+previous_workspace = "prefix+ctrl+p"
+next_workspace = "prefix+ctrl+n"
+switch_workspace = "prefix+shift+1..9"
+
+last_pane = "prefix+a"
+
+focus_agent = "prefix+alt+1..9"
+
+[ui]
+mouse_capture = true
+prompt_new_tab_name = false
+pane_outer_borders = false
+pane_gaps = false
+
+status_indicators = "symbols"
+
+agent_panel_sort = "spaces"
+
+[ui.sidebar.spaces]
+row_gap = 1
+
+[ui.sidebar.agents]
+row_gap = 1
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "nord"

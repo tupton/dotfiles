@@ -100,6 +100,10 @@ install-tmux : install-tpm
 install-tpm :
 	tmux/install-tpm
 
+install-herdr : install-xdg-config
+	mkdir -p -- "$(HOME)"/.config/herdr
+	cp -p -- herdr/config.toml "$(HOME)"/.config/herdr/config.toml
+
 install-vim : install-vim-config \
 	install-vim-init \
 	install-vim-plug \

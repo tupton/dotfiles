@@ -41,6 +41,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 | `git/` | Git config template, global ignore, and `git-*` scripts |
 | `gh/` | GitHub CLI config |
 | `tmux/` | tmux config and TPM installer |
+| `herdr/` | Herdr multiplexer config and `herdr-send-key` helper |
 | `Karabiner-Elements/` | Keyboard remapping (goku edn format) |
 | `tarsnap/` | Backup configuration (not installed by default) |
 | `system/` | macOS system-level fixes |

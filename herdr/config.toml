@@ -20,12 +20,6 @@ status_indicators = "symbols"
 
 agent_panel_sort = "spaces"
 
-[ui.sidebar.spaces]
-row_gap = 1
-
-[ui.sidebar.agents]
-row_gap = 1
-
 [ui.sound]
 enabled = false
 

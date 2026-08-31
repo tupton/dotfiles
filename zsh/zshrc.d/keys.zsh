@@ -18,7 +18,7 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
 
-if command -v atuin &>/dev/null && (($+widgets[atuin - search])); then
+if command -v atuin &>/dev/null && (( ${+widgets[atuin-search]} )); then
   bindkey '^r' atuin-search
 else
   bindkey '^r' history-incremental-search-backward

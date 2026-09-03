@@ -9,12 +9,14 @@ switch_workspace = "prefix+shift+1..9"
 
 last_pane = "prefix+a"
 
-# Navigate the attention queue instead of relying on changing agent indexes.
+# Navigate the attention queue
 previous_agent = "prefix+up"
 next_agent = "prefix+down"
+focus_agent = "prefix+alt+1..9"
 
 # Complements the default prefix+shift+g new-worktree binding.
 open_worktree = "prefix+ctrl+g"
+remove_worktree = "prefix+alt+g"
 
 [terminal]
 new_cwd = "follow"

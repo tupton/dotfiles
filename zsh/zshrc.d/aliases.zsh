@@ -5,3 +5,5 @@ alias reload!="source \"$HOME\"/.zshrc"
 command -v nvim &>/dev/null && alias vim=nvim
 
 command -v rg &>/dev/null && alias hl="rg --no-config --passthru"
+
+command -v opencode &>/dev/null && alias oc="opencode"

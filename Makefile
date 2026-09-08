@@ -171,6 +171,7 @@ install-nvim : install-xdg-config
 install-opencode : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/opencode
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
+	cp -p -- opencode/tui.json "$(HOME)"/.config/opencode/tui.json
 
 install-claude : install-local-bin
 	cp -p -- claude/claude-statusline "$(HOME)"/.local/bin/claude-statusline

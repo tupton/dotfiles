@@ -7,20 +7,20 @@
     "next-devtools": {
       "enabled": false,
       "type": "local",
-      "command": ["yarn", "dlx", "next-devtools-mcp"]
+      "command": ["npx", "-y", "next-devtools-mcp"]
     },
     "linear": {
-      "enabled": false,
+      "enabled": true,
       "type": "local",
-      "command": ["yarn", "dlx", "mcp-remote", "https://mcp.linear.app/mcp"]
+      "command": ["npx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"]
     },
     "mantine": {
       "enabled": false,
       "type": "local",
-      "command": ["yarn", "dlx", "@mantine/mcp-server"]
+      "command": ["npx", "-y", "@mantine/mcp-server"]
     },
     "datadog": {
-      "enabled": false
+      "enabled": false,
       "type": "remote",
       "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
     }

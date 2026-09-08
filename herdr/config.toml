@@ -18,6 +18,16 @@ focus_agent = "prefix+alt+1..9"
 open_worktree = "prefix+ctrl+g"
 remove_worktree = "prefix+alt+g"
 
+[[keys.command]]
+key = "prefix+space"
+type = "shell"
+command = "herdr plugin action invoke herdr-pickers.all"
+
+[[keys.command]]
+key = "prefix+l"
+type = "shell"
+command = "herdr plugin action invoke herdr-pickers.last-workspace"
+
 [terminal]
 new_cwd = "follow"
 

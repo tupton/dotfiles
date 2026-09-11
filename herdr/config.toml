@@ -3,16 +3,16 @@ prefix = "ctrl+a"
 split_vertical = ["prefix+|", "prefix+\\"]
 split_horizontal = "prefix+-"
 
-previous_workspace = "prefix+ctrl+p"
-next_workspace = "prefix+ctrl+n"
+previous_workspace = "prefix+up"
+next_workspace = "prefix+down"
 switch_workspace = "prefix+shift+1..9"
 
 last_pane = "prefix+a"
 
 # Navigate the attention queue
-previous_agent = "prefix+up"
-next_agent = "prefix+down"
-focus_agent = "prefix+alt+1..9"
+previous_agent = "prefix+ctrl+p"
+next_agent = "prefix+ctrl+n"
+focus_agent = "prefix+ctrl+1..9"
 
 # Complements the default prefix+shift+g new-worktree binding.
 open_worktree = "prefix+ctrl+g"

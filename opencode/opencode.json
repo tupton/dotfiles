@@ -23,6 +23,30 @@
       "enabled": false,
       "type": "remote",
       "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
+    },
+    "figma": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp",
+      "oauth": {
+        "clientId": "{env:FIGMA_CLIENT_ID}",
+        "clientSecret": "{env:FIGMA_CLIENT_SECRET}"
+      },
+    },
+    "statsig": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://api.statsig.com/v1/mcp",
+    },
+    "metabase": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://wizehire.metabaseapp.com/api/metabase-mcp"
+    },
+    "granola": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.granola.ai/mcp"
     }
   }
 }

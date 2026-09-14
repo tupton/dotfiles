@@ -5,6 +5,7 @@
   },
   "plugin": [
     "./herdr-tui-session.js",
+    "./github-pr-tui.tsx",
     [
       "@leohenon/opencode-vim-plugin",
       {

@@ -168,8 +168,14 @@ install-nvim : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/nvim
 	cp -p -- nvim/init.lua "$(HOME)"/.config/nvim/init.lua
 
-install-opencode : install-xdg-config
+install-opencode-config-dir : install-xdg-config
 	mkdir -p -- "$(HOME)"/.config/opencode
+
+install-opencode-github-pr-plugin : install-opencode-config-dir
+	cp -p -- opencode/github-pr-status.mjs "$(HOME)"/.config/opencode/github-pr-status.mjs
+	cp -p -- opencode/github-pr-tui.tsx "$(HOME)"/.config/opencode/github-pr-tui.tsx
+
+install-opencode : install-opencode-config-dir install-opencode-github-pr-plugin
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
 	cp -p -- opencode/tui.json "$(HOME)"/.config/opencode/tui.json
 
@@ -178,7 +184,7 @@ install-claude : install-local-bin
 	mkdir -p -- "$(HOME)"/.claude
 	cp -p -- claude/settings.json "$(HOME)"/.claude/settings.json
 
-test : test-setup test-zsh test-bash
+test : test-setup test-zsh test-bash test-opencode
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
@@ -206,3 +212,10 @@ test-bash :
 		fi \
 	done
 	@echo "All bash scripts parsed successfully."
+
+test-opencode :
+	@if command -v node >/dev/null 2>&1 ; then \
+		node --test opencode/github-pr-status.test.mjs ; \
+	else \
+		echo "Skipping OpenCode tests: node is not installed." ; \
+	fi

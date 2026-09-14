@@ -18,6 +18,12 @@ focus_agent = "prefix+ctrl+1..9"
 open_worktree = "prefix+ctrl+g"
 remove_worktree = "prefix+alt+g"
 
+[[keys.command]]
+key = "prefix+ctrl+j"
+type = "plugin_action"
+command = "fullerzz.sesh.open-picker"
+description = "open Sesh picker"
+
 [terminal]
 new_cwd = "follow"
 

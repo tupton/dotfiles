@@ -1,52 +1,51 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "keybinds": {
-    "input_newline": "shift+return,ctrl+return,alt+return"
-  },
   "mcp": {
-    "next-devtools": {
-      "enabled": false,
-      "type": "local",
-      "command": ["npx", "-y", "next-devtools-mcp"]
-    },
-    "linear": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"]
-    },
-    "mantine": {
-      "enabled": false,
-      "type": "local",
-      "command": ["npx", "-y", "@mantine/mcp-server"]
-    },
-    "datadog": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
-    },
-    "figma": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://mcp.figma.com/mcp",
-      "oauth": {
-        "clientId": "{env:FIGMA_CLIENT_ID}",
-        "clientSecret": "{env:FIGMA_CLIENT_SECRET}"
+    "servers": {
+      "next-devtools": {
+        "disabled": true,
+        "type": "local",
+        "command": ["npx", "-y", "next-devtools-mcp"]
       },
-    },
-    "statsig": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://api.statsig.com/v1/mcp",
-    },
-    "metabase": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://wizehire.metabaseapp.com/api/metabase-mcp"
-    },
-    "granola": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://mcp.granola.ai/mcp"
+      "linear": {
+        "disabled": false,
+        "type": "local",
+        "command": ["npx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"]
+      },
+      "mantine": {
+        "disabled": true,
+        "type": "local",
+        "command": ["npx", "-y", "@mantine/mcp-server"]
+      },
+      "datadog": {
+        "disabled": true,
+        "type": "remote",
+        "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp"
+      },
+      "figma": {
+        "disabled": true,
+        "type": "remote",
+        "url": "https://mcp.figma.com/mcp",
+        "oauth": {
+          "client_id": "{env:FIGMA_CLIENT_ID}",
+          "client_secret": "{env:FIGMA_CLIENT_SECRET}"
+        }
+      },
+      "statsig": {
+        "disabled": true,
+        "type": "remote",
+        "url": "https://api.statsig.com/v1/mcp"
+      },
+      "metabase": {
+        "disabled": true,
+        "type": "remote",
+        "url": "https://wizehire.metabaseapp.com/api/metabase-mcp"
+      },
+      "granola": {
+        "disabled": true,
+        "type": "remote",
+        "url": "https://mcp.granola.ai/mcp"
+      }
     }
   }
 }

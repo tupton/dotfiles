@@ -177,7 +177,7 @@ install-opencode-github-pr-plugin : install-opencode-config-dir
 
 install-opencode : install-opencode-config-dir
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
-	cp -p -- opencode/tui.json "$(HOME)"/.config/opencode/tui.json
+	cp -p -- opencode/cli.json "$(HOME)"/.config/opencode/cli.json
 
 install-claude : install-local-bin
 	cp -p -- claude/claude-statusline "$(HOME)"/.local/bin/claude-statusline

@@ -175,7 +175,7 @@ install-opencode-github-pr-plugin : install-opencode-config-dir
 	cp -p -- opencode/github-pr-status.mjs "$(HOME)"/.config/opencode/github-pr-status.mjs
 	cp -p -- opencode/github-pr-tui.tsx "$(HOME)"/.config/opencode/github-pr-tui.tsx
 
-install-opencode : install-opencode-config-dir install-opencode-github-pr-plugin
+install-opencode : install-opencode-config-dir
 	cp -p -- opencode/opencode.json "$(HOME)"/.config/opencode/opencode.json
 	cp -p -- opencode/tui.json "$(HOME)"/.config/opencode/tui.json
 

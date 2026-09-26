@@ -24,6 +24,18 @@ type = "plugin_action"
 command = "fullerzz.sesh.open-picker"
 description = "open Sesh picker"
 
+[[keys.command]]
+key = "prefix+ctrl+o"
+type = "plugin_action"
+command = "fullerzz.sesh.last"
+description = "switch to previous workspace"
+
+[[keys.command]]
+key = "prefix+ctrl+m"
+type = "plugin_action"
+command = "nicosuave.memex.palette"
+description = "memex session palette"
+
 [terminal]
 new_cwd = "follow"
 

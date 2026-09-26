@@ -20,12 +20,14 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 
 ### Dependencies for Testing
 - **zsh** and **bash** - for syntax checking shell configs
+- **node** - for the OpenCode plugin tests (skipped if node is not installed)
 
 ### What Gets Tested
 1. **Shell scripts** - Parsed with `zsh --no-exec` and `bash -n` for syntax errors
 2. **Setup scripts** - All install/update scripts validated for shell syntax
+3. **OpenCode plugin** - `node --test opencode/github-pr-status.test.mjs` (`make test-opencode`)
 
-Note: vim configs are no longer linted in CI. They were previously linted with [vint](https://github.com/Kuniwak/vint), which is unmaintained (last commit Dec 2023) and broken on modern setuptools (see [Vimjas/vint#394](https://github.com/Vimjas/vint/issues/394)).
+Vim configs are not linted. Don't add vint back: it is unmaintained and broken on modern setuptools.
 
 ### CI
 CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
@@ -41,7 +43,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 | `git/` | Git config template, global ignore, and `git-*` scripts |
 | `gh/` | GitHub CLI config |
 | `tmux/` | tmux config and TPM installer |
-| `herdr/` | Herdr multiplexer config and `herdr-send-key` helper |
+| `herdr/` | Herdr multiplexer config |
 | `Karabiner-Elements/` | Keyboard remapping (goku edn format) |
 | `tarsnap/` | Backup configuration (not installed by default) |
 | `system/` | macOS system-level fixes |
@@ -63,7 +65,7 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 
 ### Vim/Neovim
 - **Vim** (`vim/vimrc`): Uses vim-plug
-- **Neovim** (`nvim/init.lua`): Lua-based, Kickstart.nvim structure with lazy.nvim
+- **Neovim** (`nvim/init.lua`): Lua-based, Kickstart.nvim structure with the built-in `vim.pack` plugin manager (lockfile: `nvim/nvim-pack-lock.json`)
 - Keep plugins organized by category with comments
 - Use folding markers (`{{{` / `}}}`) for vim config sections
 
@@ -141,9 +143,4 @@ fi
 - **Never commit secrets** - Git config uses templates with placeholders
 - **Test before installing** - `make -n install` shows what will happen
 - **Configs are copied, not linked** - Changes to installed files won't sync back
-- **Some targets require sudo** - tarsnap, system launchd configs
-
-## Debugging
-
-- Shell syntax errors: Check line numbers in test output
-- Installation issues: Run `make -n install-<tool>` to see what will be copied
+- **Some targets require sudo** - the tarsnap `configure-*` and `install-tarsnap-acts` targets (they write to `/Library/LaunchDaemons`, `/etc`, `/usr/local/etc`, `/var/root`)

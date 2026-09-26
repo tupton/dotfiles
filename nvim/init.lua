@@ -85,8 +85,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
 -- ============================================================
--- SECTION 1: FOUNDATION
--- Core Neovim settings, leaders, options, basic keymaps, basic autocmds
+-- SECTION 1: OPTIONS
+-- Core Neovim settings, leaders, options
 -- ============================================================
 do
   -- Enable faster startup by caching compiled Lua modules
@@ -288,7 +288,13 @@ do
 
   -- Set text width
   vim.o.textwidth = 100
+end
 
+-- ============================================================
+-- SECTION 2: KEYMAPS & AUTOCMDS
+-- basic keymaps, basic autocmds
+-- ============================================================
+do
   -- [[ Basic Keymaps ]]
   --  See `:help vim.keymap.set()`
 
@@ -397,7 +403,7 @@ do
 end
 
 -- ============================================================
--- SECTION 2: PLUGIN MANAGER INTRO
+-- SECTION 3: PLUGIN MANAGER INTRO
 -- vim.pack intro, build hooks
 -- ============================================================
 do
@@ -461,27 +467,28 @@ do
   })
 end
 
----Because most plugins are hosted on GitHub, you can use the helper
----function to have less repetition in the following sections.
+--- Because most plugins are hosted on GitHub, you can use the helper
+--- function to have less repetition in the following sections.
 ---@param repo string
 ---@return string
 local function gh(repo) return 'https://github.com/' .. repo end
 
--- [[ Installing and Configuring Plugins ]]
---
--- NOTE: Here is where you install your plugins.
---
--- To install a plugin simply call `vim.pack.add` with its git url.
--- This will download the default branch of the plugin, which will usually be `main` or `master`
--- You can also have more advanced specs, which we will talk about later.
---
--- For most plugins its not enough to install them, you also need to call their `.setup()` to start them.
---
---  To check plugin status or fetch updates:
---    :lua vim.pack.update(nil, { offline = true }) -- inspect state
---    :lua vim.pack.update()                        -- fetch updates
---
+-- ============================================================
+-- SECTION 4: PLUGINS
+-- ============================================================
 do
+  -- [[ Installing and Configuring Plugins ]]
+  --
+  -- To install a plugin simply call `vim.pack.add` with its git url.
+  -- This will download the default branch of the plugin, which will usually be `main` or `master`
+  -- You can also have more advanced specs, which we will talk about later.
+  --
+  -- For most plugins its not enough to install them, you also need to call their `.setup()` to start them.
+  --
+  --  To check plugin status or fetch updates:
+  --    :lua vim.pack.update(nil, { offline = true }) -- inspect state
+  --    :lua vim.pack.update()                        -- fetch updates
+  --
   -- Colorscheme (added first so it loads before everything else)
   vim.pack.add { gh 'shaunsingh/nord.nvim' }
   vim.o.termguicolors = true
@@ -584,9 +591,6 @@ do
       },
     },
   }
-
-  -- Use the fzf-lua UI for vim.ui.select
-  fzf.register_ui_select()
 
   vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = '[ ] Pick files' })
   vim.keymap.set('n', "<leader>'", fzf.buffers, { desc = "['] Pick buffers" })
@@ -732,14 +736,18 @@ do
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
+    -- tsc = {},
+    --
+    -- Some languages (like rust) have entire language plugins that can be useful:
+    --    https://github.com/mrcjkb/rustaceanvim
+    --
+    -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     -- rust_analyzer = {},
     --
-    -- Some languages (like typescript) have entire language plugins that can be useful:
-    --    https://github.com/pmizio/typescript-tools.nvim
-    --
-    -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
-    --
+
+    stylua = {}, -- Used to format Lua code
+
+    -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
       on_init = function(client)
         client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
@@ -749,7 +757,8 @@ do
           if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
         end
 
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
+        client.config.settings.Lua = vim.tbl_deep_extend('force', current_settings.Lua, {
           runtime = {
             version = 'LuaJIT',
             path = { 'lua/?.lua', 'lua/?/init.lua' },
@@ -758,10 +767,7 @@ do
             checkThirdParty = false,
             -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
             --  See https://github.com/neovim/nvim-lspconfig/issues/3189
-            library = vim.tbl_extend('force', vim.api.nvim_get_runtime_file('', true), {
-              '${3rd}/luv/library',
-              '${3rd}/busted/library',
-            }),
+            library = vim.api.nvim_get_runtime_file('', true),
           },
         })
       end,
@@ -848,16 +854,15 @@ do
   vim.list_extend(ensure_installed, {
     'stylua', -- Used to format Lua code
     'biome', -- Used to format js/ts
-    'eslint', -- Used to format js/ts
-    'eslint_d', -- Used to format js/ts
-    'prettierd', -- Used to format js/ts
+    'prettierd', -- Used to format markdown
     'stylelint', -- Used to format css
   })
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+  -- Translates between nvim-lspconfig server names and mason.nvim package names (e.g. lua_ls <-> lua-language-server)
   require('mason-lspconfig').setup {
     ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-    automatic_enable = true, -- automatically enable servers installed via Mason
+    automatic_enable = true, -- Change this to true if you want to automatically enable servers that are installed manually (e.g. via :Mason / :MasonInstall)
   }
 
   -- Enable extra server not managed by Mason, if any
@@ -970,19 +975,6 @@ do
       ['biome-check'] = {
         require_cwd = true,
       },
-      eslint_d = {
-        -- for some reason, the default cwd for eslint_d only looks for package.json
-        cwd = require('conform.util').root_file {
-          '.eslintrc.js',
-          '.eslintrc.json',
-          '.eslintrc.yaml',
-          'eslint.config.js',
-          'eslint.config.mjs',
-          'eslint.config.cjs',
-          'eslint.config.ts',
-        },
-        require_cwd = true,
-      },
       prettierd = {
         require_cwd = true,
       },
@@ -992,10 +984,10 @@ do
       -- Conform can also run multiple formatters sequentially
       -- You can use 'stop_after_first' to run the first available formatter from the list
       python = { 'ruff_organize_imports', 'ruff_fix', 'ruff_format' },
-      javascript = { 'biome-check', 'eslint_d', 'prettierd' },
-      javascriptreact = { 'biome-check', 'eslint_d', 'prettierd' },
-      typescript = { 'biome-check', 'eslint_d', 'prettierd' },
-      typescriptreact = { 'biome-check', 'eslint_d', 'prettierd' },
+      javascript = { 'biome-check' },
+      javascriptreact = { 'biome-check' },
+      typescript = { 'biome-check' },
+      typescriptreact = { 'biome-check' },
       markdown = { 'prettierd', 'injected' },
       css = { 'stylelint' },
       proto = { 'buf' },
@@ -1228,6 +1220,7 @@ do
 
   -- Fun icons for filetypes, actions, signs, etc.
   require('mini.icons').setup()
+  MiniIcons.mock_nvim_web_devicons()
 
   -- Indent guides
   local indentscope = require 'mini.indentscope'
@@ -1370,21 +1363,25 @@ do
   ---@param buf integer
   ---@param language string
   local function treesitter_try_attach(buf, language)
-    -- check if parser exists and load it
+    -- Check if a parser exists and load it
     if not vim.treesitter.language.add(language) then return end
-    -- enables syntax highlighting and other treesitter features
+
+    -- Check if the buffer is valid (might not be after install completes)
+    if not vim.api.nvim_buf_is_valid(buf) then return end
+
+    -- Enable syntax highlighting and other treesitter features
     vim.treesitter.start(buf, language)
 
-    -- enables treesitter based folds
-    -- for more info on folds see `:help folds`
+    -- Enable treesitter based folds
+    -- For more info on folds see `:help folds`
     -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     -- vim.wo.foldmethod = 'expr'
 
-    -- check if treesitter indentation is available for this language, and if so enable it
+    -- Check if treesitter indentation is available for this language, and if so enable it
     -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
     local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
 
-    -- enables treesitter based indentation
+    -- Enable treesitter based indentation
     if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
   end
 
@@ -1399,14 +1396,14 @@ do
       local installed_parsers = ts.get_installed 'parsers'
 
       if vim.tbl_contains(installed_parsers, language) then
-        -- enable the parser if it is installed
+        -- Enable the parser if it is already installed
         treesitter_try_attach(buf, language)
       elseif vim.tbl_contains(available_parsers, language) then
-        -- if a parser is available in `nvim-treesitter` auto install it, and enable it after the installation is done
+        -- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
         vim.notify('Installing treesitter parser for ' .. language .. '...', vim.log.levels.INFO)
         ts.install(language):await(function() treesitter_try_attach(buf, language) end)
       else
-        -- try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
+        -- Try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
         treesitter_try_attach(buf, language)
       end
     end,
@@ -1430,21 +1427,22 @@ do
 
   -- Edit and manage Obsidian notes and links
   -- plenary.nvim, blink.cmp, fzf-lua, and nvim-treesitter are all already added above
-  vim.pack.add { gh 'obsidian-nvim/obsidian.nvim' }
-  require('obsidian').setup {
-    workspaces = {
-      {
-        name = 'work',
-        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian Vault',
+  local obsidian_vault = vim.fn.expand '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian Vault'
+  if vim.uv.fs_stat(obsidian_vault) then
+    vim.pack.add { gh 'obsidian-nvim/obsidian.nvim' }
+    require('obsidian').setup {
+      workspaces = {
+        {
+          name = 'work',
+          path = obsidian_vault,
+        },
       },
-    },
-    completion = {
-      nvim_cmp = false,
-      blink = true,
-      min_chars = 1,
-    },
-    legacy_commands = false,
-  }
+      completion = {
+        min_chars = 1,
+      },
+      legacy_commands = false,
+    }
+  end
 
   -- Enforce better vim motions and text objects
   vim.pack.add {

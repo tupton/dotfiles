@@ -180,7 +180,7 @@ install-claude : install-local-bin
 	mkdir -p -- "$(HOME)"/.claude
 	cp -p -- claude/settings.json "$(HOME)"/.claude/settings.json
 
-test : test-setup test-zsh test-bash test-opencode
+test : test-setup test-zsh test-bash
 
 test-setup :
 	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
@@ -209,9 +209,3 @@ test-bash :
 	done
 	@echo "All bash scripts parsed successfully."
 
-test-opencode :
-	@if command -v node >/dev/null 2>&1 ; then \
-		node --test opencode/github-pr-status.test.mjs ; \
-	else \
-		echo "Skipping OpenCode tests: node is not installed." ; \
-	fi

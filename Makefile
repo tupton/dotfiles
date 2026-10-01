@@ -52,10 +52,6 @@ install-gpg :
 	mkdir -p -- "$(HOME)"/.gnupg
 	cp -p -- gpg/gpg-agent.conf "$(HOME)"/.gnupg/gpg-agent.conf
 
-install-lein :
-	mkdir -p -- "$(HOME)"/.lein
-	cp -p -- lein/profiles.clj "$(HOME)"/.lein/profiles.clj
-
 install-python :
 	cp -p -- python/pythonrc "$(HOME)"/.pythonrc
 
@@ -90,9 +86,6 @@ configure-system-environment-fix-electron-resource-hog-bug :
 uninstall-system-environment-fix-electron-resource-hog-bug :
 	launchctl unload "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
 	rm -f -- "$(HOME)"/Library/LaunchAgents/environment.fix-electron-resource-hog-bug.plist
-
-install-textmate :
-	cp -p -- TextMate/tm_properties "$(HOME)"/.tm_properties
 
 install-tmux : install-tpm
 	cp -p -- tmux/tmux.conf "$(HOME)"/.tmux.conf

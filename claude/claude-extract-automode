@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+# Extract the autoMode block from Claude Code user settings into a private file
+# that stays out of the dotfiles repo. `make install-claude` merges it back in.
+#
+# Run this after regenerating auto mode rules, since Claude writes them
+# directly into ~/.claude/settings.json.
+
+set -euo pipefail
+
+settings="${1:-$HOME/.claude/settings.json}"
+work="${2:-$HOME/.claude/settings.work.json}"
+
+if ! command -v jq &>/dev/null; then
+    echo "jq is required" >&2
+    exit 1
+fi
+
+if [[ ! -f "$settings" ]]; then
+    echo "No settings file at $settings" >&2
+    exit 1
+fi
+
+if ! jq -e 'has("autoMode")' "$settings" &>/dev/null; then
+    echo "No autoMode block in $settings" >&2
+    exit 1
+fi
+
+tmp="$(mktemp "${work}.XXXXXX")"
+trap 'rm -f -- "$tmp"' EXIT
+jq '{autoMode: .autoMode}' "$settings" > "$tmp"
+chmod 600 "$tmp"
+mv -- "$tmp" "$work"
+trap - EXIT
+
+echo "Wrote autoMode from $settings to $work"

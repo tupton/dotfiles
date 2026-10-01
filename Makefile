@@ -175,13 +175,13 @@ install-opencode : install-xdg-config
 
 install-claude : install-local-bin
 	cp -p -- claude/claude-statusline "$(HOME)"/.local/bin/claude-statusline
-	mkdir -p -- "$(HOME)"/.claude
-	cp -p -- claude/settings.json "$(HOME)"/.claude/settings.json
+	cp -p -- claude/claude-extract-automode "$(HOME)"/.local/bin/claude-extract-automode
+	claude/install-settings
 
 test : test-setup test-zsh test-bash
 
 test-setup :
-	@for setup in git/setup vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
+	@for setup in git/setup claude/install-* vim/install-* vim/update-* zsh/install-* zsh/update-*; do \
 		echo "Parsing $$setup" ; \
 		if [ -f "$$setup" ] && ! zsh --no-exec "$$setup" ; then \
 			exit 1 ; \
@@ -190,7 +190,7 @@ test-setup :
 	@echo "All setup scripts parsed successfully."
 
 test-zsh :
-	@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh git/git-* ; do \
+	@for zsh in zsh/zshrc zsh/zshrc.d/*.zsh git/git-* claude/claude-extract-automode ; do \
 		echo "Parsing $$zsh" ; \
 		if [ -f "$$zsh" ] && ! zsh --no-exec "$$zsh" ; then \
 			exit 1 ; \

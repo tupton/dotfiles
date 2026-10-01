@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+# Install Claude Code user settings, merging in private auto mode rules from
+# ~/.claude/settings.work.json if present. That file stays out of the dotfiles
+# repo; regenerate it with claude-extract-automode.
+
+set -euo pipefail
+
+src="${0:A:h}/settings.json"
+work="$HOME/.claude/settings.work.json"
+dest="$HOME/.claude/settings.json"
+
+mkdir -p -- "$HOME/.claude"
+
+if [[ ! -f "$work" ]]; then
+    cp -p -- "$src" "$dest"
+    exit 0
+fi
+
+if ! command -v jq &>/dev/null; then
+    echo "jq is required to merge $work" >&2
+    exit 1
+fi
+
+tmp="$(mktemp "${dest}.XXXXXX")"
+trap 'rm -f -- "$tmp"' EXIT
+jq -s '.[0] * .[1]' "$src" "$work" > "$tmp"
+mv -- "$tmp" "$dest"
+trap - EXIT

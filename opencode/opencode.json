@@ -45,6 +45,11 @@
         "disabled": true,
         "type": "remote",
         "url": "https://mcp.granola.ai/mcp"
+      },
+      "playwright": {
+        "disabled": true,
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp@latest"]
       }
     }
   }

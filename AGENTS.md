@@ -20,12 +20,10 @@ This is a personal dotfiles collection for macOS/Linux. Configs are organized by
 
 ### Dependencies for Testing
 - **zsh** and **bash** - for syntax checking shell configs
-- **node** - for the OpenCode plugin tests (skipped if node is not installed)
 
 ### What Gets Tested
 1. **Shell scripts** - Parsed with `zsh --no-exec` and `bash -n` for syntax errors
 2. **Setup scripts** - All install/update scripts validated for shell syntax
-3. **OpenCode plugin** - `node --test opencode/github-pr-status.test.mjs` (`make test-opencode`)
 
 Vim configs are not linted. Don't add vint back: it is unmaintained and broken on modern setuptools.
 
@@ -44,6 +42,8 @@ CircleCI runs `make test` against zsh 5.8.1 and 5.9. See `.circleci/config.yml`.
 | `gh/` | GitHub CLI config |
 | `tmux/` | tmux config and TPM installer |
 | `herdr/` | Herdr multiplexer config |
+| `claude/` | Claude Code settings installer, statusline and auto-mode helper scripts (`make install-claude`) |
+| `opencode/` | OpenCode config (`make install-opencode`) |
 | `Karabiner-Elements/` | Keyboard remapping (goku edn format) |
 | `tarsnap/` | Backup configuration (not installed by default) |
 | `system/` | macOS system-level fixes |
